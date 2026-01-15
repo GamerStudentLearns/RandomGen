@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class RoomManager : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class RoomManager : MonoBehaviour
     private int roomCount;
 
     private bool generationComplete = false;
+
+    public GameObject EndLevel;
 
     private void Start()
     {
@@ -54,7 +57,17 @@ public class RoomManager : MonoBehaviour
         {
             Debug.Log($"Room generation complete with {roomCount} rooms.");
             generationComplete = true;
+
+            // -----------------------------
+            // Spawn next-level object here
+            // -----------------------------
+            GameObject lastRoom = roomObjects.Last();
+
+            // Replace "boss" with your portal / stairs / exit prefab
+            Instantiate(EndLevel, lastRoom.transform.position, Quaternion.identity);
         }
+
+
     }
 
     private void StartRoomGenerationFromRoom(Vector2Int roomIndex)
@@ -117,39 +130,54 @@ public class RoomManager : MonoBehaviour
         StartRoomGenerationFromRoom(initialRoomIndex);
     }
 
+    // Only showing the modified OpenDoors() section
+
     void OpenDoors(GameObject room, int x, int y)
     {
         Room newRoomScript = room.GetComponent<Room>();
 
-        Room leftRoomScript = GetRoomScriptAt(new Vector2Int(x -1, y));
-        Room rightRoomScript = GetRoomScriptAt(new Vector2Int(x +1, y));
-        Room topRoomScript = GetRoomScriptAt(new Vector2Int(x, y +1));
-        Room bottomRoomScript = GetRoomScriptAt(new Vector2Int(x, y -1));
+        Room leftRoomScript = GetRoomScriptAt(new Vector2Int(x - 1, y));
+        Room rightRoomScript = GetRoomScriptAt(new Vector2Int(x + 1, y));
+        Room topRoomScript = GetRoomScriptAt(new Vector2Int(x, y + 1));
+        Room bottomRoomScript = GetRoomScriptAt(new Vector2Int(x, y - 1));
 
         if (x > 0 && roomGrid[x - 1, y] != 0)
         {
+            newRoomScript.hasLeftDoor = true;
+            leftRoomScript.hasRightDoor = true;
+
             newRoomScript.OpenDoor(Vector2Int.left);
             leftRoomScript.OpenDoor(Vector2Int.right);
         }
 
         if (x < gridSizeX - 1 && roomGrid[x + 1, y] != 0)
         {
+            newRoomScript.hasRightDoor = true;
+            rightRoomScript.hasLeftDoor = true;
+
             newRoomScript.OpenDoor(Vector2Int.right);
             rightRoomScript.OpenDoor(Vector2Int.left);
         }
 
         if (y > 0 && roomGrid[x, y - 1] != 0)
         {
+            newRoomScript.hasBottomDoor = true;
+            bottomRoomScript.hasTopDoor = true;
+
             newRoomScript.OpenDoor(Vector2Int.down);
             bottomRoomScript.OpenDoor(Vector2Int.up);
         }
 
         if (y < gridSizeY - 1 && roomGrid[x, y + 1] != 0)
         {
+            newRoomScript.hasTopDoor = true;
+            topRoomScript.hasBottomDoor = true;
+
             newRoomScript.OpenDoor(Vector2Int.up);
             topRoomScript.OpenDoor(Vector2Int.down);
         }
     }
+
 
     Room GetRoomScriptAt(Vector2Int index)
     {

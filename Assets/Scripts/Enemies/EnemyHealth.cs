@@ -17,11 +17,9 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
-        // Small Isaac-style hit stop
         if (HitStopController.instance != null)
             HitStopController.instance.Stop(0.03f);
 
         Destroy(gameObject);
     }
-
 }
