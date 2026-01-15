@@ -64,11 +64,17 @@ public class RoomManager : MonoBehaviour
         int y = roomIndex.y;
         roomGrid[x, y] = 1;
         roomCount++;
+
         var initialRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         initialRoom.name = $"Room-{roomCount}";
         initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
+
+        
+        initialRoom.GetComponent<Room>().isStartingRoom = true;
+
         roomObjects.Add(initialRoom);
     }
+
 
     private bool TryGenerateRoom(Vector2Int roomIndex)
     {
