@@ -2,27 +2,17 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [Header("Health")]
     public float maxHealth = 5f;
     private float currentHealth;
 
-   
+    [HideInInspector] public Room parentRoom;
 
-    void Awake()
-    {
-        currentHealth = maxHealth;
-    }
-
-   
+    void Awake() => currentHealth = maxHealth;
 
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-
-        if (currentHealth <= 0f)
-        {
-            Die();
-        }
+        if (currentHealth <= 0) Die();
     }
 
     void Die()
@@ -31,7 +21,7 @@ public class EnemyHealth : MonoBehaviour
         if (HitStopController.instance != null)
             HitStopController.instance.Stop(0.03f);
 
-
         Destroy(gameObject);
     }
+
 }
