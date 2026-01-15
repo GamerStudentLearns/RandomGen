@@ -95,7 +95,13 @@ public class Room : MonoBehaviour
         foreach (var obj in objectsToEnableOnClear)
             if (obj != null && ShouldAffectDoor(obj))
                 obj.SetActive(true);
+
+        // Try spawning a pickup
+        PickupSpawner spawner = GetComponent<PickupSpawner>();
+        if (spawner != null)
+            spawner.TrySpawnPickup();
     }
+
 
     private bool ShouldAffectDoor(GameObject obj)
     {
