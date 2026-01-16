@@ -7,6 +7,9 @@ public class RoomManager : MonoBehaviour
     [SerializeField] GameObject roomPrefab;
     [SerializeField] private int maxRooms = 15;
     [SerializeField] private int minRooms = 10;
+    public GameObject bossPrefab;
+    public GameObject bossHealthBarPrefab;
+
 
     int roomWidth = 30;
     int roomHeight = 12;
@@ -75,7 +78,18 @@ public class RoomManager : MonoBehaviour
 
             trapOpen.SetActive(false);
             trapClosed.SetActive(true);
+
+            // --- NEW: Spawn Boss ---
+            GameObject boss = Instantiate(bossPrefab, lastRoom.transform.position, Quaternion.identity);
+            boss.transform.SetParent(lastRoom.transform);
+
+            // --- NEW: Spawn Boss Health Bar ---
+            GameObject bossBar = Instantiate(bossHealthBarPrefab);
+            EnemyHealth bossHealth = boss.GetComponent<EnemyHealth>();
+            BossHealthBar barScript = bossBar.GetComponent<BossHealthBar>();
+            barScript.bossHealth = bossHealth;
         }
+
     }
 
     private void StartRoomGenerationFromRoom(Vector2Int roomIndex)

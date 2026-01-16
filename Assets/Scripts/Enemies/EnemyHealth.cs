@@ -3,17 +3,23 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public float maxHealth = 5f;
-    private float currentHealth;
+    [HideInInspector] public float CurrentHealth;
 
     [HideInInspector] public Room parentRoom;
 
-    void Awake() => currentHealth = maxHealth;
+    void Awake() => CurrentHealth = maxHealth;
+
+    public event System.Action<float, float> OnHealthChanged;
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        if (currentHealth <= 0) Die();
+        CurrentHealth -= damage;
+
+        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
+
+        if (CurrentHealth <= 0) Die();
     }
+
 
     void Die()
     {
