@@ -82,7 +82,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 1510344145
+  m_SortingLayerID: -442133741
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -5382798856197201280, guid: ebe438fb603b3934db1e722f2bc4013b, type: 3}
@@ -187,7 +187,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHearts: 6
+  deathEffect: {fileID: 1928436143237126930, guid: b3fdb08aa7de7634b846de6ea4ded03e, type: 3}
   invulnTime: 0.5
+  currentHearts: 0
+  heartUI: {fileID: 0}
 --- !u!70 &3978188527296000903
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

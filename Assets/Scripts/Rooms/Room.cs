@@ -19,12 +19,18 @@ public class Room : MonoBehaviour
     public GameObject leftClosedDoor;
     public GameObject rightClosedDoor;
 
+    [Header("Trapdoor Objects")]
+    public GameObject trapdoorOpen;
+    public GameObject trapdoorClosed;
 
     [Header("Door Existence Flags (set by RoomManager)")]
     public bool hasTopDoor;
     public bool hasBottomDoor;
     public bool hasLeftDoor;
     public bool hasRightDoor;
+
+    [Header("Trapdoor Exists? (set by RoomManager)")]
+    public bool hasTrapdoor;
 
     [Header("Room Settings")]
     public bool isStartingRoom = false;
@@ -46,8 +52,13 @@ public class Room : MonoBehaviour
     private List<GameObject> spawnedEnemies = new List<GameObject>();
     private bool roomActivated = false;
 
+    // Minimap
+    private MinimapManager minimap;
+    private MinimapIcon minimapIcon;
+
     private void Awake()
     {
+        // Setup trigger forwarding
         if (roomTrigger != null)
         {
             roomTrigger.isTrigger = true;
@@ -55,17 +66,34 @@ public class Room : MonoBehaviour
             RoomTriggerForwarder forwarder = roomTrigger.gameObject.AddComponent<RoomTriggerForwarder>();
             forwarder.parentRoom = this;
         }
-        else
-        {
-            Debug.LogWarning($"Room '{name}' has no trigger assigned!");
-        }
+
+        minimap = FindFirstObjectByType<MinimapManager>();
     }
 
-    // Called by trigger forwarder
+    private void Start()
+    {
+        minimapIcon = minimap.GetIcon(RoomIndex);
+
+        // Optional: spawn rocks if RockSpawner exists
+        RockSpawner rocks = GetComponent<RockSpawner>();
+        if (rocks != null)
+            rocks.TrySpawnRocks();
+    }
+
     public void PlayerEnteredRoom()
     {
         if (roomActivated) return;
         roomActivated = true;
+
+        // Reveal this room
+        if (minimapIcon != null)
+            minimapIcon.Reveal();
+
+        // Reveal adjacent rooms
+        RevealAdjacent(RoomIndex + Vector2Int.up);
+        RevealAdjacent(RoomIndex + Vector2Int.down);
+        RevealAdjacent(RoomIndex + Vector2Int.left);
+        RevealAdjacent(RoomIndex + Vector2Int.right);
 
         if (!isStartingRoom)
         {
@@ -73,6 +101,13 @@ public class Room : MonoBehaviour
             SpawnEnemies();
             StartCoroutine(CheckRoomClear());
         }
+    }
+
+    private void RevealAdjacent(Vector2Int index)
+    {
+        MinimapIcon icon = minimap.GetIcon(index);
+        if (icon != null)
+            icon.Reveal();
     }
 
     private void LockRoom()
@@ -84,6 +119,12 @@ public class Room : MonoBehaviour
         foreach (var obj in objectsToEnableOnLock)
             if (obj != null && ShouldAffectDoor(obj))
                 obj.SetActive(true);
+
+        if (hasTrapdoor)
+        {
+            if (trapdoorOpen != null) trapdoorOpen.SetActive(false);
+            if (trapdoorClosed != null) trapdoorClosed.SetActive(true);
+        }
     }
 
     private void ClearRoom()
@@ -96,12 +137,16 @@ public class Room : MonoBehaviour
             if (obj != null && ShouldAffectDoor(obj))
                 obj.SetActive(true);
 
-        // Try spawning a pickup
+        if (hasTrapdoor)
+        {
+            if (trapdoorClosed != null) trapdoorClosed.SetActive(false);
+            if (trapdoorOpen != null) trapdoorOpen.SetActive(true);
+        }
+
         PickupSpawner spawner = GetComponent<PickupSpawner>();
         if (spawner != null)
             spawner.TrySpawnPickup();
     }
-
 
     private bool ShouldAffectDoor(GameObject obj)
     {
@@ -110,10 +155,10 @@ public class Room : MonoBehaviour
         if ((obj == leftDoor || obj == leftClosedDoor) && !hasLeftDoor) return false;
         if ((obj == rightDoor || obj == rightClosedDoor) && !hasRightDoor) return false;
 
+        if ((obj == trapdoorOpen || obj == trapdoorClosed) && !hasTrapdoor) return false;
+
         return true;
     }
-
-
 
     private void SpawnEnemies()
     {

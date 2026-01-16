@@ -600,6 +600,7 @@ GameObject:
   - component: {fileID: 1176755238943750891}
   - component: {fileID: 5059618231054332150}
   - component: {fileID: 2464337549381250685}
+  - component: {fileID: 6129733547684101986}
   m_Layer: 0
   m_Name: RoomBLRT
   m_TagString: Untagged
@@ -629,6 +630,7 @@ Transform:
   - {fileID: 4385455002041481842}
   - {fileID: 5968355406672697251}
   - {fileID: 709897951028808991}
+  - {fileID: 1869619162156453614}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &5059618231054332150
@@ -698,10 +700,13 @@ MonoBehaviour:
   bottomClosedDoor: {fileID: 499520144706122446}
   leftClosedDoor: {fileID: 1726109261614443678}
   rightClosedDoor: {fileID: 5280231145841621676}
+  trapdoorOpen: {fileID: 3574237843649389023, guid: fa8a6b1b0e148944fb1877a97780fbc7, type: 3}
+  trapdoorClosed: {fileID: 8461104843292654948, guid: efca7a7b4d25bf24b8fece2c6c59ccb0, type: 3}
   hasTopDoor: 0
   hasBottomDoor: 0
   hasLeftDoor: 0
   hasRightDoor: 0
+  hasTrapdoor: 0
   isStartingRoom: 0
   objectsToDisableOnLock:
   - {fileID: 945393661851996283}
@@ -732,6 +737,22 @@ MonoBehaviour:
   - {fileID: 7563917189872993814, guid: bdd33c93c38e971429c8bc2b7b31e812, type: 3}
   - {fileID: 7781515359145245184, guid: 5e4f80b804de19d48baffb1e40091488, type: 3}
   - {fileID: 5943560660893687625, guid: 66154ad21e92ba041a78dee5d75cf1c2, type: 3}
+--- !u!114 &6129733547684101986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801275898305777272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 634bb25d7fef22449988eacefbf233de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupSpawner
+  spawnChance: 0.25
+  possiblePickups:
+  - {fileID: 2922129042847442260, guid: 8967a4e9cd7a7e24aa1f6fe27144c508, type: 3}
+  spawnPoint: {fileID: 1869619162156453614}
 --- !u!1 &2514847184782693719
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,7 +840,7 @@ Transform:
   m_GameObject: {fileID: 3234821604490675533}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.73, y: 0.15, z: 0}
+  m_LocalPosition: {x: -8.24, y: 0.15, z: 0}
   m_LocalScale: {x: 0.557538, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -838,7 +859,7 @@ GameObject:
   - component: {fileID: 2185776484465335150}
   m_Layer: 0
   m_Name: BottomWall
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -987,7 +1008,7 @@ Transform:
   m_GameObject: {fileID: 3548168336841762823}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.31, y: 0.11, z: 0}
+  m_LocalPosition: {x: -11.98, y: 0.11, z: 0}
   m_LocalScale: {x: 0.557538, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1227,7 +1248,7 @@ GameObject:
   - component: {fileID: 7732018496968171306}
   m_Layer: 0
   m_Name: TopWall
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1395,7 +1416,7 @@ GameObject:
   - component: {fileID: 1590397812917532149}
   m_Layer: 0
   m_Name: Right wall
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1904,6 +1925,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3031562043040631856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7090737361422982601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1869619162156453614}
+  m_Layer: 0
+  m_Name: PickUpSpawer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1869619162156453614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7090737361422982601}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1176755238943750891}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7249155038499471176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,7 +1969,7 @@ GameObject:
   - component: {fileID: 8296562163231148016}
   m_Layer: 0
   m_Name: LftWall
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2234,7 +2286,7 @@ Transform:
   m_GameObject: {fileID: 7630301630586616744}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.73, y: -0.04, z: 0}
+  m_LocalPosition: {x: 7.92, y: -0.04, z: 0}
   m_LocalScale: {x: 0.557538, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2420,7 +2472,7 @@ Transform:
   m_GameObject: {fileID: 8213872771815671886}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.31, y: 0.2, z: 0}
+  m_LocalPosition: {x: 11.83, y: 0.2, z: 0}
   m_LocalScale: {x: 0.557538, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

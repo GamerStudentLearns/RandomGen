@@ -8,11 +8,15 @@ public class PlayerHealth : MonoBehaviour
     [Header("Health Settings")]
     public int maxHearts = 6;
 
-    
+    public GameObject deathEffect;
+
+
     public float invulnTime = 1f;
 
     [HideInInspector] public int currentHearts;
     private bool invulnerable;
+
+    public string SceneToLoad;
 
     [Header("UI")]
     public HeartUI heartUI;
@@ -50,12 +54,20 @@ public class PlayerHealth : MonoBehaviour
         invulnerable = false;
     }
 
-    void Die()
+    private void Die()
     {
-        Debug.Log("Player Dead");
-        Destroy(gameObject);
-        SceneManager.LoadScene("GameOverScene");
+        if (deathEffect != null)
+        {
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+        }
+
+        // Disable or destroy the player
+        gameObject.SetActive(false);
+        SceneManager.LoadScene(SceneToLoad);
+
+        // TODO: Trigger respawn or game over
     }
+
 
     // --------------------
     // HEALING
