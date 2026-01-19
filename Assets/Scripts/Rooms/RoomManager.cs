@@ -7,14 +7,11 @@ public class RoomManager : MonoBehaviour
     [SerializeField] GameObject roomPrefab;
     [SerializeField] private int maxRooms = 15;
     [SerializeField] private int minRooms = 10;
-    public GameObject bossPrefab;
-    public GameObject bossHealthBarPrefab;
-
 
     int roomWidth = 30;
     int roomHeight = 12;
 
-   [SerializeField] int gridSizeX = 10;
+    [SerializeField] int gridSizeX = 10;
     [SerializeField] int gridSizeY = 10;
 
     private List<GameObject> roomObjects = new List<GameObject>();
@@ -34,12 +31,11 @@ public class RoomManager : MonoBehaviour
         roomGrid = new int[gridSizeX, gridSizeY];
         roomQueue = new Queue<Vector2Int>();
 
-        minimap.Initialize(gridSizeX, gridSizeY); // <-- NEW
+        minimap.Initialize(gridSizeX, gridSizeY);
 
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
         StartRoomGenerationFromRoom(initialRoomIndex);
     }
-
 
     private void Update()
     {
@@ -62,6 +58,7 @@ public class RoomManager : MonoBehaviour
         {
             generationComplete = true;
 
+            // FINAL ROOM GETS A TRAPDOOR
             GameObject lastRoom = roomObjects.Last();
             Room lastRoomScript = lastRoom.GetComponent<Room>();
 
@@ -78,18 +75,7 @@ public class RoomManager : MonoBehaviour
 
             trapOpen.SetActive(false);
             trapClosed.SetActive(true);
-
-            // --- NEW: Spawn Boss ---
-            GameObject boss = Instantiate(bossPrefab, lastRoom.transform.position, Quaternion.identity);
-            boss.transform.SetParent(lastRoom.transform);
-
-            // --- NEW: Spawn Boss Health Bar ---
-            GameObject bossBar = Instantiate(bossHealthBarPrefab);
-            EnemyHealth bossHealth = boss.GetComponent<EnemyHealth>();
-            BossHealthBar barScript = bossBar.GetComponent<BossHealthBar>();
-            barScript.bossHealth = bossHealth;
         }
-
     }
 
     private void StartRoomGenerationFromRoom(Vector2Int roomIndex)
@@ -100,11 +86,11 @@ public class RoomManager : MonoBehaviour
 
         var initialRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         initialRoom.name = $"Room-{roomCount}";
-        initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
-        initialRoom.GetComponent<Room>().isStartingRoom = true;
+        Room roomScript = initialRoom.GetComponent<Room>();
+        roomScript.RoomIndex = roomIndex;
+        roomScript.isStartingRoom = true;
 
         roomObjects.Add(initialRoom);
-
         minimap.RegisterRoom(roomIndex);
     }
 
@@ -113,10 +99,24 @@ public class RoomManager : MonoBehaviour
         int x = roomIndex.x;
         int y = roomIndex.y;
 
-        if (roomCount >= maxRooms) return false;
-        if (Random.value > 0.5f && roomIndex != Vector2Int.zero) return false;
-        if (CountAdjacentRooms(roomIndex) > 1) return false;
+        // Prevent out-of-bounds
+        if (x < 0 || x >= gridSizeX || y < 0 || y >= gridSizeY)
+            return false;
 
+        // Already exists?
+        if (roomGrid[x, y] != 0)
+            return false;
+
+        if (roomCount >= maxRooms)
+            return false;
+
+        if (Random.value > 0.5f && roomIndex != Vector2Int.zero)
+            return false;
+
+        if (CountAdjacentRooms(roomIndex) > 1)
+            return false;
+
+        // VALID ROOM
         roomQueue.Enqueue(roomIndex);
         roomGrid[x, y] = 1;
         roomCount++;
@@ -153,45 +153,60 @@ public class RoomManager : MonoBehaviour
     {
         Room newRoomScript = room.GetComponent<Room>();
 
-        Room leftRoomScript = GetRoomScriptAt(new Vector2Int(x - 1, y));
-        Room rightRoomScript = GetRoomScriptAt(new Vector2Int(x + 1, y));
-        Room topRoomScript = GetRoomScriptAt(new Vector2Int(x, y + 1));
-        Room bottomRoomScript = GetRoomScriptAt(new Vector2Int(x, y - 1));
-
+        // LEFT
         if (x > 0 && roomGrid[x - 1, y] != 0)
         {
-            newRoomScript.hasLeftDoor = true;
-            leftRoomScript.hasRightDoor = true;
+            Room leftRoomScript = GetRoomScriptAt(new Vector2Int(x - 1, y));
+            if (leftRoomScript != null)
+            {
+                newRoomScript.hasLeftDoor = true;
+                leftRoomScript.hasRightDoor = true;
 
-            newRoomScript.OpenDoor(Vector2Int.left);
-            leftRoomScript.OpenDoor(Vector2Int.right);
+                newRoomScript.OpenDoor(Vector2Int.left);
+                leftRoomScript.OpenDoor(Vector2Int.right);
+            }
         }
 
+        // RIGHT
         if (x < gridSizeX - 1 && roomGrid[x + 1, y] != 0)
         {
-            newRoomScript.hasRightDoor = true;
-            rightRoomScript.hasLeftDoor = true;
+            Room rightRoomScript = GetRoomScriptAt(new Vector2Int(x + 1, y));
+            if (rightRoomScript != null)
+            {
+                newRoomScript.hasRightDoor = true;
+                rightRoomScript.hasLeftDoor = true;
 
-            newRoomScript.OpenDoor(Vector2Int.right);
-            rightRoomScript.OpenDoor(Vector2Int.left);
+                newRoomScript.OpenDoor(Vector2Int.right);
+                rightRoomScript.OpenDoor(Vector2Int.left);
+            }
         }
 
+        // DOWN
         if (y > 0 && roomGrid[x, y - 1] != 0)
         {
-            newRoomScript.hasBottomDoor = true;
-            bottomRoomScript.hasTopDoor = true;
+            Room bottomRoomScript = GetRoomScriptAt(new Vector2Int(x, y - 1));
+            if (bottomRoomScript != null)
+            {
+                newRoomScript.hasBottomDoor = true;
+                bottomRoomScript.hasTopDoor = true;
 
-            newRoomScript.OpenDoor(Vector2Int.down);
-            bottomRoomScript.OpenDoor(Vector2Int.up);
+                newRoomScript.OpenDoor(Vector2Int.down);
+                bottomRoomScript.OpenDoor(Vector2Int.up);
+            }
         }
 
+        // UP
         if (y < gridSizeY - 1 && roomGrid[x, y + 1] != 0)
         {
-            newRoomScript.hasTopDoor = true;
-            topRoomScript.hasBottomDoor = true;
+            Room topRoomScript = GetRoomScriptAt(new Vector2Int(x, y + 1));
+            if (topRoomScript != null)
+            {
+                newRoomScript.hasTopDoor = true;
+                topRoomScript.hasBottomDoor = true;
 
-            newRoomScript.OpenDoor(Vector2Int.up);
-            topRoomScript.OpenDoor(Vector2Int.down);
+                newRoomScript.OpenDoor(Vector2Int.up);
+                topRoomScript.OpenDoor(Vector2Int.down);
+            }
         }
     }
 
@@ -209,10 +224,10 @@ public class RoomManager : MonoBehaviour
         int y = roomIndex.y;
         int count = 0;
 
-        if (x > 0 && roomGrid[x - 1, y] != 0) count++;
-        if (x < gridSizeX - 1 && roomGrid[x + 1, y] != 0) count++;
-        if (y > 0 && roomGrid[x, y - 1] != 0) count++;
-        if (y < gridSizeY - 1 && roomGrid[x, y + 1] != 0) count++;
+        if (x - 1 >= 0 && roomGrid[x - 1, y] != 0) count++;
+        if (x + 1 < gridSizeX && roomGrid[x + 1, y] != 0) count++;
+        if (y - 1 >= 0 && roomGrid[x, y - 1] != 0) count++;
+        if (y + 1 < gridSizeY && roomGrid[x, y + 1] != 0) count++;
 
         return count;
     }
@@ -223,34 +238,4 @@ public class RoomManager : MonoBehaviour
         int gridY = gridIndex.y;
         return new Vector3(roomWidth * (gridX - gridSizeX / 2), roomHeight * (gridY - gridSizeY / 2));
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-
-        // Draw wireframes for all generated rooms (only works in play mode)
-        if (roomObjects != null)
-        {
-            foreach (var room in roomObjects)
-            {
-                if (room != null)
-                {
-                    Gizmos.DrawWireCube(
-                        room.transform.position,
-                        new Vector3(roomWidth, roomHeight, 0.1f)
-                    );
-                }
-            }
-        }
-
-        // Draw the grid center (useful for minimap alignment)
-        Gizmos.color = Color.cyan;
-        Vector3 centerPos = new Vector3(
-            roomWidth * (gridSizeX / 2 - gridSizeX / 2),
-            roomHeight * (gridSizeY / 2 - gridSizeY / 2),
-            0
-        );
-        Gizmos.DrawSphere(centerPos, 0.5f);
-    }
-
 }

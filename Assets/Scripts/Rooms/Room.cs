@@ -22,15 +22,13 @@ public class Room : MonoBehaviour
     [Header("Trapdoor Objects")]
     public GameObject trapdoorOpen;
     public GameObject trapdoorClosed;
+    public bool hasTrapdoor;
 
     [Header("Door Existence Flags (set by RoomManager)")]
     public bool hasTopDoor;
     public bool hasBottomDoor;
     public bool hasLeftDoor;
     public bool hasRightDoor;
-
-    [Header("Trapdoor Exists? (set by RoomManager)")]
-    public bool hasTrapdoor;
 
     [Header("Room Settings")]
     public bool isStartingRoom = false;
@@ -52,13 +50,11 @@ public class Room : MonoBehaviour
     private List<GameObject> spawnedEnemies = new List<GameObject>();
     private bool roomActivated = false;
 
-    // Minimap
     private MinimapManager minimap;
     private MinimapIcon minimapIcon;
 
     private void Awake()
     {
-        // Setup trigger forwarding
         if (roomTrigger != null)
         {
             roomTrigger.isTrigger = true;
@@ -74,7 +70,6 @@ public class Room : MonoBehaviour
     {
         minimapIcon = minimap.GetIcon(RoomIndex);
 
-        // Optional: spawn rocks if RockSpawner exists
         RockSpawner rocks = GetComponent<RockSpawner>();
         if (rocks != null)
             rocks.TrySpawnRocks();
@@ -85,22 +80,21 @@ public class Room : MonoBehaviour
         if (roomActivated) return;
         roomActivated = true;
 
-        // Reveal this room
         if (minimapIcon != null)
             minimapIcon.Reveal();
 
-        // Reveal adjacent rooms
         RevealAdjacent(RoomIndex + Vector2Int.up);
         RevealAdjacent(RoomIndex + Vector2Int.down);
         RevealAdjacent(RoomIndex + Vector2Int.left);
         RevealAdjacent(RoomIndex + Vector2Int.right);
 
-        if (!isStartingRoom)
-        {
-            LockRoom();
-            SpawnEnemies();
-            StartCoroutine(CheckRoomClear());
-        }
+        if (isStartingRoom)
+            return;
+
+        LockRoom();
+
+        SpawnEnemies();
+        StartCoroutine(CheckRoomClear());
     }
 
     private void RevealAdjacent(Vector2Int index)
@@ -162,6 +156,9 @@ public class Room : MonoBehaviour
 
     private void SpawnEnemies()
     {
+        if (isStartingRoom)
+            return;
+
         if (enemyPrefabs.Count == 0 || enemySpawnPoints.Count == 0)
             return;
 
