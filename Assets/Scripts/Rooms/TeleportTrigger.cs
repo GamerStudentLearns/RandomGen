@@ -30,14 +30,16 @@ public class TeleportTrigger : MonoBehaviour
             // Disable the trigger so it doesn't fire again immediately
             triggerCollider.enabled = false;
 
-            // Re-enable after a short delay
-            StartCoroutine(ReenableTrigger());
+            // Re-enable after a short delay (use a persistent runner so coroutine can run even if this GameObject
+            // is later deactivated)
+            CoroutineRunner.Instance.StartCoroutine(ReenableTrigger());
         }
     }
 
     private System.Collections.IEnumerator ReenableTrigger()
     {
         yield return new WaitForSeconds(reenableDelay);
-        triggerCollider.enabled = true;
+        if (this != null) // guard in case object was destroyed
+            triggerCollider.enabled = true;
     }
 }

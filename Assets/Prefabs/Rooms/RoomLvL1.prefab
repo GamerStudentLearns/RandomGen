@@ -258,6 +258,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.75, y: 0.94}
   m_EdgeRadius: 0
+--- !u!1 &873136475793506013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8517288905288219489}
+  m_Layer: 0
+  m_Name: EnemySpawner (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8517288905288219489
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873136475793506013}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.65, y: 0.86, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1176755238943750891}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &945393661851996283
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,7 +633,7 @@ GameObject:
   - component: {fileID: 2464337549381250685}
   - component: {fileID: 6129733547684101986}
   m_Layer: 0
-  m_Name: RoomBLRT
+  m_Name: RoomLvL1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -623,9 +654,10 @@ Transform:
   m_Children:
   - {fileID: 7759601080768916305}
   - {fileID: 4567239554254533199}
-  - {fileID: 6501483421883770641}
   - {fileID: 2374972731245432929}
   - {fileID: 8598668325986049679}
+  - {fileID: 7113605732027806352}
+  - {fileID: 8517288905288219489}
   - {fileID: 3286006255270504519}
   - {fileID: 4385455002041481842}
   - {fileID: 5968355406672697251}
@@ -702,15 +734,12 @@ MonoBehaviour:
   rightClosedDoor: {fileID: 5280231145841621676}
   trapdoorOpen: {fileID: 3574237843649389023, guid: fa8a6b1b0e148944fb1877a97780fbc7, type: 3}
   trapdoorClosed: {fileID: 8461104843292654948, guid: efca7a7b4d25bf24b8fece2c6c59ccb0, type: 3}
+  hasTrapdoor: 0
   hasTopDoor: 0
   hasBottomDoor: 0
   hasLeftDoor: 0
   hasRightDoor: 0
-  hasTrapdoor: 0
   isStartingRoom: 0
-  isBossRoom: 0
-  bossPrefab: {fileID: 4444932732556064226, guid: e3415590c49b93d4ebdde2caa594e636, type: 3}
-  bossHealthBarPrefab: {fileID: 3384382860892613625, guid: b1d0646336e44c8419f7997e85cedf6b, type: 3}
   objectsToDisableOnLock:
   - {fileID: 945393661851996283}
   - {fileID: 3981732816718584222}
@@ -733,13 +762,13 @@ MonoBehaviour:
   - {fileID: 5326470113199317412}
   enemySpawnPoints:
   - {fileID: 4567239554254533199}
-  - {fileID: 6501483421883770641}
   - {fileID: 2374972731245432929}
   - {fileID: 8598668325986049679}
+  - {fileID: 7113605732027806352}
+  - {fileID: 8517288905288219489}
   enemyPrefabs:
   - {fileID: 7563917189872993814, guid: bdd33c93c38e971429c8bc2b7b31e812, type: 3}
   - {fileID: 7781515359145245184, guid: 5e4f80b804de19d48baffb1e40091488, type: 3}
-  - {fileID: 5943560660893687625, guid: 66154ad21e92ba041a78dee5d75cf1c2, type: 3}
 --- !u!114 &6129733547684101986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,7 +810,7 @@ Transform:
   m_GameObject: {fileID: 2514847184782693719}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.23, y: -1.88, z: 0}
+  m_LocalPosition: {x: -7.4, y: -2.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1077,7 +1106,7 @@ Transform:
   m_GameObject: {fileID: 3862745080213731106}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.21, y: -2.77, z: 0}
+  m_LocalPosition: {x: 6.28, y: -2.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1238,6 +1267,37 @@ MonoBehaviour:
   playerDestination: {fileID: 8367139591541515291}
   cameraDestination: {fileID: 6974397906533095186}
   reenableDelay: 0.5
+--- !u!1 &4241966183346904439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7113605732027806352}
+  m_Layer: 0
+  m_Name: EnemySpawner (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7113605732027806352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4241966183346904439}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.1, y: 0.86, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1176755238943750891}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4279881589313062012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,37 +1435,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &4490267239583306682
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6501483421883770641}
-  m_Layer: 0
-  m_Name: EnemySpawner (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &6501483421883770641
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4490267239583306682}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.37, y: 1.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1176755238943750891}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4518310934793148357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2121,7 +2150,7 @@ Transform:
   m_GameObject: {fileID: 7269950658453546881}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.6, y: 2.26, z: 0}
+  m_LocalPosition: {x: -7.6, y: 3.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
