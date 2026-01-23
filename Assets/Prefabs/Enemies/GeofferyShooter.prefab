@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTurretShooter
   detectionRange: 7
-  fireRate: 1.5
+  fireRate: 2
   projectilePrefab: {fileID: 3715812023786578678, guid: 30e01a24cc3463d4fb6d01286212152f, type: 3}
   firePoint: {fileID: 1865552750086736693}
   spriteRenderer: {fileID: 8927604356531475610}

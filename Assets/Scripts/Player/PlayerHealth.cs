@@ -21,6 +21,13 @@ public class PlayerHealth : MonoBehaviour
 
     void Awake()
     {
+        // Ensure a RunManager exists so RunManager.instance is never null
+        if (RunManager.instance == null)
+        {
+            var rmGo = new GameObject("RunManager");
+            rmGo.AddComponent<RunManager>();
+        }
+
         // If this is the first scene, initialize run data
         if (RunManager.instance.currentHearts == 0)
         {
@@ -32,8 +39,19 @@ public class PlayerHealth : MonoBehaviour
         maxHearts = RunManager.instance.maxHearts;
         currentHearts = RunManager.instance.currentHearts;
 
-        heartUI.Initialize(maxHearts);
-        heartUI.UpdateHearts(currentHearts);
+        // Try to resolve HeartUI if not assigned in inspector
+        if (heartUI == null)
+            heartUI = FindObjectOfType<HeartUI>();
+
+        if (heartUI != null)
+        {
+            heartUI.Initialize(maxHearts);
+            heartUI.UpdateHearts(currentHearts);
+        }
+        else
+        {
+            Debug.LogWarning("[PlayerHealth] HeartUI is not assigned and none was found in the scene.");
+        }
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -55,7 +73,8 @@ public class PlayerHealth : MonoBehaviour
 
         RunManager.instance.currentHearts = currentHearts;
 
-        heartUI.UpdateHearts(currentHearts);
+        if (heartUI != null)
+            heartUI.UpdateHearts(currentHearts);
 
         HitStopController.instance.Stop(0.05f);
         StartCoroutine(Invulnerability());
@@ -64,7 +83,6 @@ public class PlayerHealth : MonoBehaviour
             Die();
     }
 
-   
 
 
     IEnumerator Invulnerability()
@@ -104,6 +122,7 @@ public class PlayerHealth : MonoBehaviour
 
         RunManager.instance.currentHearts = currentHearts;
 
-        heartUI.UpdateHearts(currentHearts);
+        if (heartUI != null)
+            heartUI.UpdateHearts(currentHearts);
     }
 }

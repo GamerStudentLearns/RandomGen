@@ -605,6 +605,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f44d980e13eb2546bf7443a60c86aca, type: 3}
+--- !u!1001 &2085353868
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 710955612871149234, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
+      propertyPath: m_Name
+      value: Small rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481698697251657586, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
+      propertyPath: duration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2639197486754475558, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.4646022
+      objectReference: {fileID: 0}
+    - target: {fileID: 2639197486754475558, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.2825203
+      objectReference: {fileID: 0}
+    - target: {fileID: 2639197486754475558, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2639197486754475558, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2639197486754475558, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2639197486754475558, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2639197486754475558, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2639197486754475558, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2639197486754475558, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2639197486754475558, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
 --- !u!1001 &1999105983603132669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -613,6 +674,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2275382240691277754, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6703027690410907990, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -696,6 +761,14 @@ PrefabInstance:
     - target: {fileID: 7961516714964839133, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096868997678936161, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096868997678936161, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -805,6 +878,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 2405803781747939958, guid: cd0aaf0eec0326c49b1675cd0af71c4d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -823,3 +900,4 @@ SceneRoots:
   - {fileID: 1336926358}
   - {fileID: 6830031970396518030}
   - {fileID: 1329929671}
+  - {fileID: 2085353868}
