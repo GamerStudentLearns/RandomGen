@@ -11,13 +11,9 @@ public class MinimapManager : MonoBehaviour
     [Header("Spacing")]
     public float iconSpacing = 20f;
 
-    // Auto-calculated center of the grid
     private Vector2Int gridCenter;
-
-    // Stores icons by room index
     private Dictionary<Vector2Int, MinimapIcon> icons = new Dictionary<Vector2Int, MinimapIcon>();
 
-    // Called by RoomManager after gridSizeX/Y are known
     public void Initialize(int gridSizeX, int gridSizeY)
     {
         gridCenter = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
@@ -25,7 +21,6 @@ public class MinimapManager : MonoBehaviour
 
     public void RegisterRoom(Vector2Int roomIndex)
     {
-        // Prevent duplicate icons
         if (icons.ContainsKey(roomIndex))
             return;
 
@@ -34,7 +29,6 @@ public class MinimapManager : MonoBehaviour
 
         RectTransform rt = iconObj.GetComponent<RectTransform>();
 
-        // Offset so the minimap is centered
         Vector2Int offsetIndex = roomIndex - gridCenter;
 
         rt.anchoredPosition = new Vector2(
@@ -45,6 +39,16 @@ public class MinimapManager : MonoBehaviour
         MinimapIcon icon = iconObj.GetComponent<MinimapIcon>();
         icons.Add(roomIndex, icon);
     }
+
+    public void SetCurrentRoom(Vector2Int roomIndex)
+    {
+        foreach (var kvp in icons)
+            kvp.Value.SetAsCurrentRoom(false);
+
+        if (icons.ContainsKey(roomIndex))
+            icons[roomIndex].SetAsCurrentRoom(true);
+    }
+
 
     public MinimapIcon GetIcon(Vector2Int index)
     {

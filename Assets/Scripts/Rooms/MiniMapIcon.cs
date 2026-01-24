@@ -3,7 +3,11 @@ using UnityEngine.UI;
 
 public class MinimapIcon : MonoBehaviour
 {
-    private Image img;
+    public Image img;
+
+    [Header("Sprites")]
+    public Sprite normalSprite;
+    public Sprite currentRoomSprite;
 
     private void Awake()
     {
@@ -21,5 +25,12 @@ public class MinimapIcon : MonoBehaviour
     {
         if (img != null)
             img.enabled = true;
+    }
+
+    public void SetAsCurrentRoom(bool isCurrent)
+    {
+        if (img == null) return;
+
+        img.sprite = isCurrent ? currentRoomSprite : normalSprite;
     }
 }

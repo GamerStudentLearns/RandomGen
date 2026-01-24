@@ -4,7 +4,14 @@ using System.Linq;
 
 public class RoomManager : MonoBehaviour
 {
+    [Header("Room Prefabs")]
     [SerializeField] GameObject roomPrefab;
+
+    [Header("Item Room Settings")]
+    public GameObject[] itemPrefabs;        // Array of possible items
+    public GameObject itemRoomMarker;       // Optional: golden door / floor decal
+
+    [Header("Generation Settings")]
     [SerializeField] private int maxRooms = 15;
     [SerializeField] private int minRooms = 10;
 
@@ -21,6 +28,7 @@ public class RoomManager : MonoBehaviour
     private int roomCount;
     private bool generationComplete = false;
 
+    [Header("Trapdoor Prefabs")]
     public GameObject trapdoorOpenPrefab;
     public GameObject trapdoorClosedPrefab;
 
@@ -58,6 +66,9 @@ public class RoomManager : MonoBehaviour
         {
             generationComplete = true;
 
+            // Choose guaranteed item room BEFORE placing trapdoor
+            AssignGuaranteedItemRoom();
+
             // FINAL ROOM GETS A TRAPDOOR
             GameObject lastRoom = roomObjects.Last();
             Room lastRoomScript = lastRoom.GetComponent<Room>();
@@ -92,6 +103,14 @@ public class RoomManager : MonoBehaviour
 
         roomObjects.Add(initialRoom);
         minimap.RegisterRoom(roomIndex);
+
+        // Reveal + highlight starting room
+        MinimapIcon startIcon = minimap.GetIcon(roomIndex);
+        if (startIcon != null)
+        {
+            startIcon.Reveal();
+            minimap.SetCurrentRoom(roomIndex);
+        }
     }
 
     private bool TryGenerateRoom(Vector2Int roomIndex)
@@ -122,7 +141,8 @@ public class RoomManager : MonoBehaviour
         roomCount++;
 
         var newRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
-        newRoom.GetComponent<Room>().RoomIndex = roomIndex;
+        Room roomScript = newRoom.GetComponent<Room>();
+        roomScript.RoomIndex = roomIndex;
         newRoom.name = $"Room-{roomCount}";
         roomObjects.Add(newRoom);
 
@@ -131,6 +151,73 @@ public class RoomManager : MonoBehaviour
         OpenDoors(newRoom, x, y);
 
         return true;
+    }
+
+    private void AssignGuaranteedItemRoom()
+    {
+        List<GameObject> deadEndRooms = new List<GameObject>();
+
+        // Recalculate dead-end rooms AFTER generation is complete
+        foreach (var roomObj in roomObjects)
+        {
+            Room r = roomObj.GetComponent<Room>();
+
+            // Skip starting room
+            if (r.isStartingRoom)
+                continue;
+
+            // Skip final room (trapdoor room)
+            if (roomObj == roomObjects.Last())
+                continue;
+
+            // Count doors
+            int adjacent = CountAdjacentRooms(r.RoomIndex);
+
+            if (adjacent == 1)
+                deadEndRooms.Add(roomObj);
+        }
+
+        if (deadEndRooms.Count == 0)
+        {
+            Debug.LogWarning("No valid dead-end rooms found for item room!");
+            return;
+        }
+
+        // Choose random dead-end room
+        GameObject chosenRoom = deadEndRooms[Random.Range(0, deadEndRooms.Count)];
+        Vector3 pos = chosenRoom.transform.position;
+
+        // Filter item list to only items NOT yet acquired
+        List<GameObject> availableItems = new List<GameObject>();
+
+        foreach (var itemPrefab in itemPrefabs)
+        {
+            ItemData data = itemPrefab.GetComponent<ItemPickup>().item;
+
+            if (!RunManager.instance.acquiredItems.Contains(data))
+                availableItems.Add(itemPrefab);
+        }
+
+        if (availableItems.Count == 0)
+        {
+            Debug.LogWarning("All items already acquired this run!");
+            return;
+        }
+
+        // Spawn random item from remaining pool
+        GameObject chosenItem = availableItems[Random.Range(0, availableItems.Count)];
+
+        GameObject spawned = Instantiate(chosenItem, pos, Quaternion.identity, chosenRoom.transform);
+
+        // Add to acquired list so it never spawns again
+        ItemData spawnedData = spawned.GetComponent<ItemPickup>().item;
+        RunManager.instance.acquiredItems.Add(spawnedData);
+
+        // Optional: marker (golden door, decal, etc.)
+        if (itemRoomMarker != null)
+            Instantiate(itemRoomMarker, pos, Quaternion.identity, chosenRoom.transform);
+
+        Debug.Log("Guaranteed item room at: " + chosenRoom.GetComponent<Room>().RoomIndex);
     }
 
     private void RegenerateRooms()

@@ -77,25 +77,34 @@ public class Room : MonoBehaviour
 
     public void PlayerEnteredRoom()
     {
-        if (roomActivated) return;
-        roomActivated = true;
+        // Always update minimap highlight
+        minimap.SetCurrentRoom(RoomIndex);
 
+        // Reveal this room if not already revealed
         if (minimapIcon != null)
             minimapIcon.Reveal();
 
+        // Reveal adjacent rooms
         RevealAdjacent(RoomIndex + Vector2Int.up);
         RevealAdjacent(RoomIndex + Vector2Int.down);
         RevealAdjacent(RoomIndex + Vector2Int.left);
         RevealAdjacent(RoomIndex + Vector2Int.right);
 
+        // Prevent re-activating the room logic
+        if (roomActivated)
+            return;
+
+        roomActivated = true;
+
         if (isStartingRoom)
             return;
 
         LockRoom();
-
         SpawnEnemies();
         StartCoroutine(CheckRoomClear());
     }
+
+
 
     private void RevealAdjacent(Vector2Int index)
     {

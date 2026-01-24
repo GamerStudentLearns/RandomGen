@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RunManager : MonoBehaviour
@@ -6,6 +7,8 @@ public class RunManager : MonoBehaviour
 
     public int currentHearts;
     public int maxHearts;
+
+    public List<ItemData> acquiredItems = new List<ItemData>();
 
     private void Awake()
     {
@@ -17,5 +20,12 @@ public class RunManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void ResetRun()
+    {
+        acquiredItems.Clear();
+        currentHearts = maxHearts;
+        Debug.Log("Run reset — item pool restored.");
     }
 }
