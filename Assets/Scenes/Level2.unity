@@ -725,7 +725,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75de6622f806d84aa0aa82960cc5c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomManager
+  floorNumber: 1
   roomPrefab: {fileID: 1801275898305777272, guid: 95314a826edb06a47bb947505bbe5c90, type: 3}
+  itemPrefabs:
+  - {fileID: 710955612871149234, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
+  itemRoomMarker: {fileID: 0}
   maxRooms: 20
   minRooms: 15
   gridSizeX: 20

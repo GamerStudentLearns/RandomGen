@@ -223,4 +223,6 @@ public class Room : MonoBehaviour
         if (direction == Vector2Int.right && rightDoor != null)
             rightDoor.SetActive(true);
     }
+   
+
 }
