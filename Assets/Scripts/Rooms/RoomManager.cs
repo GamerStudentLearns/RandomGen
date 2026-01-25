@@ -39,6 +39,9 @@ public class RoomManager : MonoBehaviour
 
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
         StartRoomGenerationFromRoom(initialRoomIndex);
+
+        // ⭐ Generate the first wave of rooms immediately (still random)
+        GenerateInitialNeighbors();
     }
 
     private void Update()
@@ -62,7 +65,6 @@ public class RoomManager : MonoBehaviour
         {
             generationComplete = true;
 
-            // FINAL ROOM GETS A TRAPDOOR
             GameObject lastRoom = roomObjects.Last();
             Room lastRoomScript = lastRoom.GetComponent<Room>();
 
@@ -82,6 +84,21 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+    // ⭐ NEW: Generate the first wave of neighbors but DO NOT reveal them
+    private void GenerateInitialNeighbors()
+    {
+        if (roomQueue.Count == 0) return;
+
+        Vector2Int start = roomQueue.Peek();
+        int x = start.x;
+        int y = start.y;
+
+        TryGenerateRoom(new Vector2Int(x + 1, y));
+        TryGenerateRoom(new Vector2Int(x - 1, y));
+        TryGenerateRoom(new Vector2Int(x, y + 1));
+        TryGenerateRoom(new Vector2Int(x, y - 1));
+    }
+
     private void StartRoomGenerationFromRoom(Vector2Int roomIndex)
     {
         roomQueue.Enqueue(roomIndex);
@@ -97,6 +114,7 @@ public class RoomManager : MonoBehaviour
         roomObjects.Add(initialRoom);
         minimap.RegisterRoom(roomIndex);
 
+        // ⭐ Starting room is revealed
         MinimapIcon startIcon = minimap.GetIcon(roomIndex);
         if (startIcon != null)
         {
@@ -119,7 +137,8 @@ public class RoomManager : MonoBehaviour
         if (roomCount >= maxRooms)
             return false;
 
-        if (Random.value > 0.5f && roomIndex != Vector2Int.zero)
+        // ⭐ Randomness preserved
+        if (Random.value > 0.5f)
             return false;
 
         if (CountAdjacentRooms(roomIndex) > 1)
@@ -136,6 +155,11 @@ public class RoomManager : MonoBehaviour
         roomObjects.Add(newRoom);
 
         minimap.RegisterRoom(roomIndex);
+
+        // ⭐ Keep fog-of-war: DO NOT reveal
+        MinimapIcon icon = minimap.GetIcon(roomIndex);
+        if (icon != null)
+            icon.Hide();
 
         OpenDoors(newRoom, x, y);
 
@@ -156,6 +180,9 @@ public class RoomManager : MonoBehaviour
 
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
         StartRoomGenerationFromRoom(initialRoomIndex);
+
+        // ⭐ First wave again
+        GenerateInitialNeighbors();
     }
 
     void OpenDoors(GameObject room, int x, int y)
