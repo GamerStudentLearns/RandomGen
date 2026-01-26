@@ -89,5 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinimapIcon
   img: {fileID: 7920921090805183547}
-  normalSprite: {fileID: 2627979144855170581, guid: 613d06a82cb68fe4ea17a7947ed5711e, type: 3}
+  unvisitedSprite: {fileID: 2627979144855170581, guid: 613d06a82cb68fe4ea17a7947ed5711e, type: 3}
+  visitedSprite: {fileID: -72103715794935710, guid: 52cd32dd46f916d4da343b187d85e29d, type: 3}
   currentRoomSprite: {fileID: -2753143917993950086, guid: 32ab4d41dc615654ebfeb7bed4935c61, type: 3}

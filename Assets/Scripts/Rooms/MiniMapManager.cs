@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class MinimapManager : MonoBehaviour
@@ -13,6 +12,7 @@ public class MinimapManager : MonoBehaviour
 
     private Vector2Int gridCenter;
     private Dictionary<Vector2Int, MinimapIcon> icons = new Dictionary<Vector2Int, MinimapIcon>();
+    private HashSet<Vector2Int> visitedRooms = new HashSet<Vector2Int>();
 
     public void Initialize(int gridSizeX, int gridSizeY)
     {
@@ -37,18 +37,33 @@ public class MinimapManager : MonoBehaviour
         );
 
         MinimapIcon icon = iconObj.GetComponent<MinimapIcon>();
+        icon.SetUnvisited();   // logical state only; still hidden until Reveal()
+
         icons.Add(roomIndex, icon);
     }
 
     public void SetCurrentRoom(Vector2Int roomIndex)
     {
+        visitedRooms.Add(roomIndex);
+
         foreach (var kvp in icons)
-            kvp.Value.SetAsCurrentRoom(false);
+        {
+            Vector2Int index = kvp.Key;
+            MinimapIcon icon = kvp.Value;
 
-        if (icons.ContainsKey(roomIndex))
-            icons[roomIndex].SetAsCurrentRoom(true);
+            if (index == roomIndex)
+            {
+                icon.SetAsCurrentRoom(true);
+            }
+            else
+            {
+                if (visitedRooms.Contains(index))
+                    icon.SetVisited();
+                else
+                    icon.SetUnvisited(); // only changes sprite, not visibility
+            }
+        }
     }
-
 
     public MinimapIcon GetIcon(Vector2Int index)
     {
@@ -57,12 +72,25 @@ public class MinimapManager : MonoBehaviour
 
         return null;
     }
+    public bool IsVisited(Vector2Int index)
+    {
+        return visitedRooms.Contains(index);
+    }
 
     public void ClearIcons()
     {
         foreach (var icon in icons.Values)
-            Destroy(icon.gameObject);
+            Object.Destroy(icon.gameObject);
 
         icons.Clear();
+        visitedRooms.Clear();
     }
+    public void MarkVisited(Vector2Int index)
+    {
+        visitedRooms.Add(index);
+
+        if (icons.ContainsKey(index))
+            icons[index].SetVisited();
+    }
+
 }

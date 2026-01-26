@@ -32,7 +32,6 @@ public class RoomManager : MonoBehaviour
     [Header("Special Room Prefabs")]
     [SerializeField] private GameObject[] specialRoomPrefabs;
 
-    // Tracks which items have spawned this run
     private static HashSet<GameObject> spawnedItemsThisRun = new HashSet<GameObject>();
 
     public MinimapManager minimap;
@@ -94,12 +93,8 @@ public class RoomManager : MonoBehaviour
 
     private System.Collections.IEnumerator FinalizeGeneration()
     {
-        // Wait one frame so all doors finish opening
         yield return null;
 
-        // -------------------------
-        // Assign trapdoor to last room
-        // -------------------------
         GameObject lastRoom = roomObjects.Last();
         Room lastRoomScript = lastRoom.GetComponent<Room>();
 
@@ -117,10 +112,6 @@ public class RoomManager : MonoBehaviour
         trapOpen.SetActive(false);
         trapClosed.SetActive(true);
 
-        // -------------------------
-        // Find all rooms with exactly ONE door
-        // Excluding: first room + last room
-        // -------------------------
         List<GameObject> oneDoorRooms = new List<GameObject>();
 
         foreach (var roomObj in roomObjects)
@@ -134,17 +125,9 @@ public class RoomManager : MonoBehaviour
                 oneDoorRooms.Add(roomObj);
         }
 
-        Debug.Log("One-door rooms found: " + oneDoorRooms.Count);
-
-        // -------------------------
-        // Spawn a random prefab in a random valid room
-        // Only if it hasn't spawned this run
-        // -------------------------
         var availablePrefabs = specialRoomPrefabs
             .Where(p => !spawnedItemsThisRun.Contains(p))
             .ToList();
-
-        Debug.Log("Special prefabs available: " + availablePrefabs.Count);
 
         if (oneDoorRooms.Count > 0 && availablePrefabs.Count > 0)
         {
@@ -155,9 +138,38 @@ public class RoomManager : MonoBehaviour
 
             spawnedItemsThisRun.Add(chosenPrefab);
 
-            Debug.Log("Spawned item: " + chosenPrefab.name + " in " + chosenRoom.name);
+            // --- TREASURE ROOM DOORS ---
+            Room chosenRoomScript = chosenRoom.GetComponent<Room>();
+            ConvertTreasureRoomDoors(chosenRoomScript);
         }
     }
+
+    // --- TREASURE ROOM DOOR LOGIC ---
+    private void ConvertTreasureRoomDoors(Room treasureRoom)
+    {
+        Vector2Int index = treasureRoom.RoomIndex;
+
+        // Convert treasure room's own doors
+        if (treasureRoom.hasLeftDoor) treasureRoom.SetTreasureDoor(Vector2Int.left);
+        if (treasureRoom.hasRightDoor) treasureRoom.SetTreasureDoor(Vector2Int.right);
+        if (treasureRoom.hasTopDoor) treasureRoom.SetTreasureDoor(Vector2Int.up);
+        if (treasureRoom.hasBottomDoor) treasureRoom.SetTreasureDoor(Vector2Int.down);
+
+        // Convert ONLY the connecting door in each neighbor
+        TryConvertNeighborDoor(index + Vector2Int.left, Vector2Int.right);
+        TryConvertNeighborDoor(index + Vector2Int.right, Vector2Int.left);
+        TryConvertNeighborDoor(index + Vector2Int.up, Vector2Int.down);
+        TryConvertNeighborDoor(index + Vector2Int.down, Vector2Int.up);
+    }
+
+    private void TryConvertNeighborDoor(Vector2Int neighborIndex, Vector2Int directionTowardTreasure)
+    {
+        Room neighbor = GetRoomScriptAt(neighborIndex);
+        if (neighbor == null) return;
+
+        neighbor.SetTreasureDoor(directionTowardTreasure);
+    }
+    // --- END TREASURE ROOM DOOR LOGIC ---
 
     private void GenerateInitialNeighbors()
     {
