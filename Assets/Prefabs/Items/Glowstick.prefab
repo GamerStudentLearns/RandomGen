@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeActivator
   targetObject: {fileID: 1725159235767433469}
-  duration: 2
+  duration: 4
   triggerTag: Player
 --- !u!1 &8190388870500635490
 GameObject:
