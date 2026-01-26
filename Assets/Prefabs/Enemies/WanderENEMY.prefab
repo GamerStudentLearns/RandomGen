@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743970bf71ef438479e30ee5648e2cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWanderShooter
+  startDelay: 1
   moveSpeed: 2
   wanderRadius: 3
   wanderInterval: 2

@@ -18,5 +18,7 @@ public class TimedSceneSwitcher : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(sceneName);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

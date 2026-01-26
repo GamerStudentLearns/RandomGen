@@ -118,4 +118,10 @@ public class MenuController : MonoBehaviour
             comfirmationPrompt.SetActive(false);
         }
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Game Quit");
+    }
 }
