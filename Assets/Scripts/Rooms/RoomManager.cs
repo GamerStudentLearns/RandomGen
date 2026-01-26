@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoBehaviour
 {
@@ -28,7 +29,31 @@ public class RoomManager : MonoBehaviour
     public GameObject trapdoorOpenPrefab;
     public GameObject trapdoorClosedPrefab;
 
+    [Header("Special Room Prefabs")]
+    [SerializeField] private GameObject[] specialRoomPrefabs;
+
+    // Tracks which items have spawned this run
+    private static HashSet<GameObject> spawnedItemsThisRun = new HashSet<GameObject>();
+
     public MinimapManager minimap;
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Level1")
+        {
+            spawnedItemsThisRun.Clear();
+        }
+    }
 
     private void Start()
     {
@@ -40,7 +65,6 @@ public class RoomManager : MonoBehaviour
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
         StartRoomGenerationFromRoom(initialRoomIndex);
 
-        // ⭐ Generate the first wave of rooms immediately (still random)
         GenerateInitialNeighbors();
     }
 
@@ -64,27 +88,77 @@ public class RoomManager : MonoBehaviour
         else if (!generationComplete)
         {
             generationComplete = true;
-
-            GameObject lastRoom = roomObjects.Last();
-            Room lastRoomScript = lastRoom.GetComponent<Room>();
-
-            lastRoomScript.hasTrapdoor = true;
-
-            GameObject trapOpen = Instantiate(trapdoorOpenPrefab, lastRoom.transform.position, Quaternion.identity);
-            GameObject trapClosed = Instantiate(trapdoorClosedPrefab, lastRoom.transform.position, Quaternion.identity);
-
-            trapOpen.transform.SetParent(lastRoom.transform);
-            trapClosed.transform.SetParent(lastRoom.transform);
-
-            lastRoomScript.trapdoorOpen = trapOpen;
-            lastRoomScript.trapdoorClosed = trapClosed;
-
-            trapOpen.SetActive(false);
-            trapClosed.SetActive(true);
+            StartCoroutine(FinalizeGeneration());
         }
     }
 
-    // ⭐ NEW: Generate the first wave of neighbors but DO NOT reveal them
+    private System.Collections.IEnumerator FinalizeGeneration()
+    {
+        // Wait one frame so all doors finish opening
+        yield return null;
+
+        // -------------------------
+        // Assign trapdoor to last room
+        // -------------------------
+        GameObject lastRoom = roomObjects.Last();
+        Room lastRoomScript = lastRoom.GetComponent<Room>();
+
+        lastRoomScript.hasTrapdoor = true;
+
+        GameObject trapOpen = Instantiate(trapdoorOpenPrefab, lastRoom.transform.position, Quaternion.identity);
+        GameObject trapClosed = Instantiate(trapdoorClosedPrefab, lastRoom.transform.position, Quaternion.identity);
+
+        trapOpen.transform.SetParent(lastRoom.transform);
+        trapClosed.transform.SetParent(lastRoom.transform);
+
+        lastRoomScript.trapdoorOpen = trapOpen;
+        lastRoomScript.trapdoorClosed = trapClosed;
+
+        trapOpen.SetActive(false);
+        trapClosed.SetActive(true);
+
+        // -------------------------
+        // Find all rooms with exactly ONE door
+        // Excluding: first room + last room
+        // -------------------------
+        List<GameObject> oneDoorRooms = new List<GameObject>();
+
+        foreach (var roomObj in roomObjects)
+        {
+            Room room = roomObj.GetComponent<Room>();
+
+            if (room.isStartingRoom) continue;
+            if (roomObj == lastRoom) continue;
+
+            if (CountDoors(room) == 1)
+                oneDoorRooms.Add(roomObj);
+        }
+
+        Debug.Log("One-door rooms found: " + oneDoorRooms.Count);
+
+        // -------------------------
+        // Spawn a random prefab in a random valid room
+        // Only if it hasn't spawned this run
+        // -------------------------
+        var availablePrefabs = specialRoomPrefabs
+            .Where(p => !spawnedItemsThisRun.Contains(p))
+            .ToList();
+
+        Debug.Log("Special prefabs available: " + availablePrefabs.Count);
+
+        if (oneDoorRooms.Count > 0 && availablePrefabs.Count > 0)
+        {
+            GameObject chosenRoom = oneDoorRooms[Random.Range(0, oneDoorRooms.Count)];
+            GameObject chosenPrefab = availablePrefabs[Random.Range(0, availablePrefabs.Count)];
+
+            Instantiate(chosenPrefab, chosenRoom.transform.position, Quaternion.identity, chosenRoom.transform);
+
+            spawnedItemsThisRun.Add(chosenPrefab);
+
+            Debug.Log("Spawned item: " + chosenPrefab.name + " in " + chosenRoom.name);
+        }
+    }
+
     private void GenerateInitialNeighbors()
     {
         if (roomQueue.Count == 0) return;
@@ -114,7 +188,6 @@ public class RoomManager : MonoBehaviour
         roomObjects.Add(initialRoom);
         minimap.RegisterRoom(roomIndex);
 
-        // ⭐ Starting room is revealed
         MinimapIcon startIcon = minimap.GetIcon(roomIndex);
         if (startIcon != null)
         {
@@ -137,7 +210,6 @@ public class RoomManager : MonoBehaviour
         if (roomCount >= maxRooms)
             return false;
 
-        // ⭐ Randomness preserved
         if (Random.value > 0.5f)
             return false;
 
@@ -156,7 +228,6 @@ public class RoomManager : MonoBehaviour
 
         minimap.RegisterRoom(roomIndex);
 
-        // ⭐ Keep fog-of-war: DO NOT reveal
         MinimapIcon icon = minimap.GetIcon(roomIndex);
         if (icon != null)
             icon.Hide();
@@ -181,7 +252,6 @@ public class RoomManager : MonoBehaviour
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
         StartRoomGenerationFromRoom(initialRoomIndex);
 
-        // ⭐ First wave again
         GenerateInitialNeighbors();
     }
 
@@ -262,6 +332,16 @@ public class RoomManager : MonoBehaviour
         if (y + 1 < gridSizeY && roomGrid[x, y + 1] != 0) count++;
 
         return count;
+    }
+
+    private int CountDoors(Room room)
+    {
+        int doors = 0;
+        if (room.hasLeftDoor) doors++;
+        if (room.hasRightDoor) doors++;
+        if (room.hasTopDoor) doors++;
+        if (room.hasBottomDoor) doors++;
+        return doors;
     }
 
     private Vector3 GetPositionFromGridIndex(Vector2Int gridIndex)

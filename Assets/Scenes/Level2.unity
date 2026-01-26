@@ -313,6 +313,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &300146751
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: minimap
+      value: 
+      objectReference: {fileID: 792634746}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: roomPrefab
+      value: 
+      objectReference: {fileID: 1801275898305777272, guid: 95314a826edb06a47bb947505bbe5c90, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: trapdoorOpenPrefab
+      value: 
+      objectReference: {fileID: 3574237843649389023, guid: 81efd50f89fc9ba489658fb55082a32a, type: 3}
+    - target: {fileID: 4057666898281785021, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.24305
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057666898281785021, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.5235
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057666898281785021, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057666898281785021, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057666898281785021, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057666898281785021, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057666898281785021, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057666898281785021, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057666898281785021, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057666898281785021, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6969747941256881805, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: m_Name
+      value: RoomManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
 --- !u!1 &381507309
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,11 +633,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa8a6b1b0e148944fb1877a97780fbc7, type: 3}
---- !u!1 &437526094 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3574237843649389023, guid: fa8a6b1b0e148944fb1877a97780fbc7, type: 3}
-  m_PrefabInstance: {fileID: 437526093}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &532546011 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3828824939447218306, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
@@ -696,62 +760,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6d8d3056f64da4ab1e5e0424a15f9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinimapManager
---- !u!1 &1093646115
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1093646117}
-  - component: {fileID: 1093646116}
-  m_Layer: 0
-  m_Name: RoomManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1093646116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1093646115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b75de6622f806d84aa0aa82960cc5c8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RoomManager
-  floorNumber: 1
-  roomPrefab: {fileID: 1801275898305777272, guid: 95314a826edb06a47bb947505bbe5c90, type: 3}
-  itemPrefabs:
-  - {fileID: 710955612871149234, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
-  itemRoomMarker: {fileID: 0}
-  maxRooms: 20
-  minRooms: 15
-  gridSizeX: 20
-  gridSizeY: 20
-  trapdoorOpenPrefab: {fileID: 437526094}
-  trapdoorClosedPrefab: {fileID: 8461104843292654948, guid: efca7a7b4d25bf24b8fece2c6c59ccb0, type: 3}
-  minimap: {fileID: 792634746}
---- !u!4 &1093646117
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1093646115}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 642.92615, y: 268.43002, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1821451046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -878,7 +886,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 272544004}
-  - {fileID: 1093646117}
   - {fileID: 792634745}
   - {fileID: 1821451046}
   - {fileID: 2019963426}
@@ -886,3 +893,4 @@ SceneRoots:
   - {fileID: 437526093}
   - {fileID: 261080727}
   - {fileID: 381507311}
+  - {fileID: 300146751}

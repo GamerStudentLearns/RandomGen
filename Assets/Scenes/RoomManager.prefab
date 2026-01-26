@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6969747941256881805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4057666898281785021}
+  - component: {fileID: 306790599566195303}
+  m_Layer: 0
+  m_Name: RoomManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4057666898281785021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969747941256881805}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.74274, y: 9.47867, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &306790599566195303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969747941256881805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75de6622f806d84aa0aa82960cc5c8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RoomManager
+  roomPrefab: {fileID: 1801275898305777272, guid: 469618d3c759dd74288d79944e519b29, type: 3}
+  maxRooms: 10
+  minRooms: 7
+  gridSizeX: 10
+  gridSizeY: 10
+  trapdoorOpenPrefab: {fileID: 3574237843649389023, guid: fa8a6b1b0e148944fb1877a97780fbc7, type: 3}
+  trapdoorClosedPrefab: {fileID: 8461104843292654948, guid: efca7a7b4d25bf24b8fece2c6c59ccb0, type: 3}
+  specialRoomPrefabs:
+  - {fileID: 7845500907461789919, guid: 4178eaf602372c44c90c944199625ebd, type: 3}
+  - {fileID: 710955612871149234, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
+  - {fileID: 2614294992299492173, guid: 66d597c667d4df446bea2e6b25d44534, type: 3}
+  - {fileID: 3961205921730265654, guid: e4b2e2cb78b1cb34fae525d0fa57a854, type: 3}
+  - {fileID: 3961205921730265654, guid: e4b2e2cb78b1cb34fae525d0fa57a854, type: 3}
+  - {fileID: 6791109777374069661, guid: 009994e1a8fcaf848a173a3ff896cc63, type: 3}
+  minimap: {fileID: 0}
