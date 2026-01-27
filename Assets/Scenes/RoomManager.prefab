@@ -58,4 +58,8 @@ MonoBehaviour:
   - {fileID: 3961205921730265654, guid: e4b2e2cb78b1cb34fae525d0fa57a854, type: 3}
   - {fileID: 3961205921730265654, guid: e4b2e2cb78b1cb34fae525d0fa57a854, type: 3}
   - {fileID: 6791109777374069661, guid: 009994e1a8fcaf848a173a3ff896cc63, type: 3}
+  - {fileID: 2054289848636134842, guid: 85e8a1932f034d441979084f5adef2a4, type: 3}
+  - {fileID: 2013861193685183575, guid: 67de6129376428b41a0c7e57dc115993, type: 3}
+  - {fileID: 1230291870050769683, guid: 1f345790226ecac4e9f6af198b94ff20, type: 3}
+  - {fileID: 5341125793629415399, guid: b4a461430db34824f8e4a2b8a832ca38, type: 3}
   minimap: {fileID: 0}

@@ -431,6 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RunManager
   currentHearts: 0
   maxHearts: 0
+  soulHearts: 0
   acquiredItems: []
 --- !u!4 &1329929671
 Transform:

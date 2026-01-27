@@ -9,8 +9,9 @@ public class PlayerStats : MonoBehaviour
     public float range = 8f;
     public float shotSpeed = 10f;
 
-    [Header("Health Stats")]
-    public int maxHeartsModifier = 0;   // Items can modify this
+    [Header("Health Modifiers")]
+    public int maxHeartsModifier = 0;
+    public int soulHeartsModifier = 0;
 
     public delegate void StatsChanged();
     public event StatsChanged OnStatsChanged;

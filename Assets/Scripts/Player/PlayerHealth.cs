@@ -13,44 +13,39 @@ public class PlayerHealth : MonoBehaviour
     [HideInInspector] public int currentHearts;
     private bool invulnerable;
 
+    [Header("Soul Hearts")]
+    public int soulHearts = 0;
+
     [Header("UI")]
     public HeartUI heartUI;
 
     [Header("Game Over UI")]
-    public GameObject gameOverUI;   // Assign in Inspector
+    public GameObject gameOverUI;   // ← Option 1 uses GameObject
+
+    private PlayerStats stats;
 
     void Awake()
     {
-        // Ensure a RunManager exists so RunManager.instance is never null
+        // Ensure RunManager exists
         if (RunManager.instance == null)
         {
             var rmGo = new GameObject("RunManager");
             rmGo.AddComponent<RunManager>();
         }
 
-        // If this is the first scene, initialize run data
-        if (RunManager.instance.currentHearts == 0)
-        {
-            RunManager.instance.maxHearts = maxHearts;
-            RunManager.instance.currentHearts = maxHearts;
-        }
-
-        // Apply stored health
+        // Load stored health
         maxHearts = RunManager.instance.maxHearts;
         currentHearts = RunManager.instance.currentHearts;
+        soulHearts = RunManager.instance.soulHearts;
 
-        // Try to resolve HeartUI if not assigned in inspector
+        // Find UI if not assigned
         if (heartUI == null)
-            heartUI = FindObjectOfType<HeartUI>();
+            heartUI = FindFirstObjectByType<HeartUI>();
 
         if (heartUI != null)
         {
-            heartUI.Initialize(maxHearts);
-            heartUI.UpdateHearts(currentHearts);
-        }
-        else
-        {
-            Debug.LogWarning("[PlayerHealth] HeartUI is not assigned and none was found in the scene.");
+            heartUI.Initialize(maxHearts, soulHearts);
+            heartUI.UpdateHearts(currentHearts, soulHearts);
         }
 
         Cursor.visible = false;
@@ -60,6 +55,11 @@ public class PlayerHealth : MonoBehaviour
             gameOverUI.SetActive(false);
     }
 
+    void Start()
+    {
+        stats = GetComponent<PlayerStats>();
+        stats.OnStatsChanged += RecalculateHearts;
+    }
 
     // --------------------
     // DAMAGE
@@ -68,13 +68,30 @@ public class PlayerHealth : MonoBehaviour
     {
         if (invulnerable) return;
 
-        currentHearts -= dmg;
+        // Soul hearts absorb first
+        if (soulHearts > 0)
+        {
+            soulHearts -= dmg;
+
+            if (soulHearts < 0)
+            {
+                currentHearts += soulHearts; // negative overflow
+                soulHearts = 0;
+            }
+        }
+        else
+        {
+            currentHearts -= dmg;
+        }
+
         currentHearts = Mathf.Max(currentHearts, 0);
 
+        // Save to RunManager
         RunManager.instance.currentHearts = currentHearts;
+        RunManager.instance.soulHearts = soulHearts;
 
         if (heartUI != null)
-            heartUI.UpdateHearts(currentHearts);
+            heartUI.UpdateHearts(currentHearts, soulHearts);
 
         HitStopController.instance.Stop(0.05f);
         StartCoroutine(Invulnerability());
@@ -83,7 +100,15 @@ public class PlayerHealth : MonoBehaviour
             Die();
     }
 
+    public void AddSoulHearts(int amount)
+    {
+        soulHearts += amount;
 
+        RunManager.instance.soulHearts = soulHearts;
+
+        if (heartUI != null)
+            heartUI.UpdateHearts(currentHearts, soulHearts);
+    }
 
     IEnumerator Invulnerability()
     {
@@ -97,17 +122,12 @@ public class PlayerHealth : MonoBehaviour
         if (deathEffect != null)
             Instantiate(deathEffect, transform.position, Quaternion.identity);
 
-        // Destroy player object (replaces SetActive(false))
         Destroy(gameObject);
-
-        // Freeze gameplay (same behavior as PauseMenu.Pause)
         Time.timeScale = 0f;
 
-        // Show Game Over UI
         if (gameOverUI != null)
             gameOverUI.SetActive(true);
 
-        // Show mouse cursor
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
@@ -123,30 +143,31 @@ public class PlayerHealth : MonoBehaviour
         RunManager.instance.currentHearts = currentHearts;
 
         if (heartUI != null)
-            heartUI.UpdateHearts(currentHearts);
-    }
-    private PlayerStats stats;
-
-    void Start()
-    {
-        stats = GetComponent<PlayerStats>();
-        stats.OnStatsChanged += RecalculateMaxHealth;
+            heartUI.UpdateHearts(currentHearts, soulHearts);
     }
 
-    private void RecalculateMaxHealth()
+    // --------------------
+    // STAT-DRIVEN HEART UPDATES
+    // --------------------
+    private void RecalculateHearts()
     {
         maxHearts = RunManager.instance.maxHearts + stats.maxHeartsModifier;
 
-        // Clamp current hearts
+        soulHearts += stats.soulHeartsModifier;
+        soulHearts = Mathf.Max(0, soulHearts);
+
+        stats.soulHeartsModifier = 0;
+
         currentHearts = Mathf.Min(currentHearts, maxHearts);
 
-        // Update UI
-        heartUI.Initialize(maxHearts);
-        heartUI.UpdateHearts(currentHearts);
-
-        // Save to run manager
         RunManager.instance.maxHearts = maxHearts;
         RunManager.instance.currentHearts = currentHearts;
-    }
+        RunManager.instance.soulHearts = soulHearts;
 
+        if (heartUI != null)
+        {
+            heartUI.Initialize(maxHearts, soulHearts);
+            heartUI.UpdateHearts(currentHearts, soulHearts);
+        }
+    }
 }

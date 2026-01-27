@@ -554,6 +554,7 @@ MonoBehaviour:
   heartPrefab: {fileID: 1073586102097028260, guid: 6dcf971c8ab78bd438d72fb8b1ec9983, type: 3}
   fullHeart: {fileID: -3561089279333883473, guid: 02ec5cf76287949418658c7658d70889, type: 3}
   emptyHeart: {fileID: -9065210935614796605, guid: 02ec5cf76287949418658c7658d70889, type: 3}
+  soulHeart: {fileID: -2482852393277088376, guid: 2a951312559e3bd4eaaa6a8a7d1afb28, type: 3}
 --- !u!1 &7961516714964839133
 GameObject:
   m_ObjectHideFlags: 0

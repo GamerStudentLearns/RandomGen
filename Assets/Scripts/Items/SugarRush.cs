@@ -8,9 +8,10 @@ public class SugarRush : ItemData
         stats.ModifyStat(s =>
         {
             s.shotSpeed += 3f;
-            s.moveSpeed += 1.5f;
-            s.fireRate -= 0.25f;
+            s.moveSpeed += 2f;
+            s.fireRate -= 0.15f;
             s.damage -= 2f;
+            s.soulHeartsModifier += 1;
         });
     }
 }
