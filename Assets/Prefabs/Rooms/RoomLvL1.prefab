@@ -733,13 +733,13 @@ MonoBehaviour:
   leftClosedDoor: {fileID: 1726109261614443678}
   rightClosedDoor: {fileID: 5280231145841621676}
   treasureTopOpen: {fileID: -835800628, guid: b2da2c0608e2080418928e725ceeb794, type: 3}
-  treasureTopClosed: {fileID: 0}
-  treasureBottomOpen: {fileID: 0}
-  treasureBottomClosed: {fileID: 0}
-  treasureLeftOpen: {fileID: 0}
-  treasureLeftClosed: {fileID: 0}
-  treasureRightOpen: {fileID: 0}
-  treasureRightClosed: {fileID: 0}
+  treasureTopClosed: {fileID: 4833140685973472038, guid: b56a5d5926ccf4c458481bc818ac48ca, type: 3}
+  treasureBottomOpen: {fileID: 1564481805, guid: b2da2c0608e2080418928e725ceeb794, type: 3}
+  treasureBottomClosed: {fileID: -1208357635317783955, guid: b56a5d5926ccf4c458481bc818ac48ca, type: 3}
+  treasureLeftOpen: {fileID: 332961617, guid: b2da2c0608e2080418928e725ceeb794, type: 3}
+  treasureLeftClosed: {fileID: 5806983940268626971, guid: b56a5d5926ccf4c458481bc818ac48ca, type: 3}
+  treasureRightOpen: {fileID: 1465091421, guid: b2da2c0608e2080418928e725ceeb794, type: 3}
+  treasureRightClosed: {fileID: 343740395129774910, guid: b56a5d5926ccf4c458481bc818ac48ca, type: 3}
   trapdoorOpen: {fileID: 3574237843649389023, guid: fa8a6b1b0e148944fb1877a97780fbc7, type: 3}
   trapdoorClosed: {fileID: 8461104843292654948, guid: efca7a7b4d25bf24b8fece2c6c59ccb0, type: 3}
   hasTrapdoor: 0

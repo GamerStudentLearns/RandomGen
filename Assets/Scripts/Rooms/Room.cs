@@ -19,17 +19,6 @@ public class Room : MonoBehaviour
     public GameObject leftClosedDoor;
     public GameObject rightClosedDoor;
 
-    // --- TREASURE DOORS ---
-    [Header("Treasure Door Sprites")]
-    public Sprite treasureTopOpen;
-    public Sprite treasureTopClosed;
-    public Sprite treasureBottomOpen;
-    public Sprite treasureBottomClosed;
-    public Sprite treasureLeftOpen;
-    public Sprite treasureLeftClosed;
-    public Sprite treasureRightOpen;
-    public Sprite treasureRightClosed;
-
     [Header("Trapdoor Objects")]
     public GameObject trapdoorOpen;
     public GameObject trapdoorClosed;
@@ -235,56 +224,5 @@ public class Room : MonoBehaviour
 
         if (direction == Vector2Int.right && rightDoor != null)
             rightDoor.SetActive(true);
-    }
-
-    // --- TREASURE DOORS ---
-    public void SetTreasureDoor(Vector2Int direction)
-    {
-        GameObject doorObj = null;
-        GameObject closedObj = null;
-        SpriteRenderer sr = null;
-
-        if (direction == Vector2Int.up)
-        {
-            doorObj = topDoor;
-            closedObj = topClosedDoor;
-        }
-        else if (direction == Vector2Int.down)
-        {
-            doorObj = bottomDoor;
-            closedObj = bottomClosedDoor;
-        }
-        else if (direction == Vector2Int.left)
-        {
-            doorObj = leftDoor;
-            closedObj = leftClosedDoor;
-        }
-        else if (direction == Vector2Int.right)
-        {
-            doorObj = rightDoor;
-            closedObj = rightClosedDoor;
-        }
-
-        if (doorObj != null)
-            sr = doorObj.GetComponent<SpriteRenderer>();
-        if (sr == null && closedObj != null)
-            sr = closedObj.GetComponent<SpriteRenderer>();
-        if (sr == null)
-            return;
-
-        bool isOpen =
-            (direction == Vector2Int.up && hasTopDoor) ||
-            (direction == Vector2Int.down && hasBottomDoor) ||
-            (direction == Vector2Int.left && hasLeftDoor) ||
-            (direction == Vector2Int.right && hasRightDoor);
-
-        if (direction == Vector2Int.up)
-            sr.sprite = isOpen ? treasureTopOpen : treasureTopClosed;
-        else if (direction == Vector2Int.down)
-            sr.sprite = isOpen ? treasureBottomOpen : treasureBottomClosed;
-        else if (direction == Vector2Int.left)
-            sr.sprite = isOpen ? treasureLeftOpen : treasureLeftClosed;
-        else if (direction == Vector2Int.right)
-            sr.sprite = isOpen ? treasureRightOpen : treasureRightClosed;
     }
 }

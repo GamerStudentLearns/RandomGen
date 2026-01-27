@@ -138,38 +138,9 @@ public class RoomManager : MonoBehaviour
 
             spawnedItemsThisRun.Add(chosenPrefab);
 
-            // --- TREASURE ROOM DOORS ---
-            Room chosenRoomScript = chosenRoom.GetComponent<Room>();
-            ConvertTreasureRoomDoors(chosenRoomScript);
+            // Treasure-door logic removed
         }
     }
-
-    // --- TREASURE ROOM DOOR LOGIC ---
-    private void ConvertTreasureRoomDoors(Room treasureRoom)
-    {
-        Vector2Int index = treasureRoom.RoomIndex;
-
-        // Convert treasure room's own doors
-        if (treasureRoom.hasLeftDoor) treasureRoom.SetTreasureDoor(Vector2Int.left);
-        if (treasureRoom.hasRightDoor) treasureRoom.SetTreasureDoor(Vector2Int.right);
-        if (treasureRoom.hasTopDoor) treasureRoom.SetTreasureDoor(Vector2Int.up);
-        if (treasureRoom.hasBottomDoor) treasureRoom.SetTreasureDoor(Vector2Int.down);
-
-        // Convert ONLY the connecting door in each neighbor
-        TryConvertNeighborDoor(index + Vector2Int.left, Vector2Int.right);
-        TryConvertNeighborDoor(index + Vector2Int.right, Vector2Int.left);
-        TryConvertNeighborDoor(index + Vector2Int.up, Vector2Int.down);
-        TryConvertNeighborDoor(index + Vector2Int.down, Vector2Int.up);
-    }
-
-    private void TryConvertNeighborDoor(Vector2Int neighborIndex, Vector2Int directionTowardTreasure)
-    {
-        Room neighbor = GetRoomScriptAt(neighborIndex);
-        if (neighbor == null) return;
-
-        neighbor.SetTreasureDoor(directionTowardTreasure);
-    }
-    // --- END TREASURE ROOM DOOR LOGIC ---
 
     private void GenerateInitialNeighbors()
     {
