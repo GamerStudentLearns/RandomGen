@@ -125,4 +125,28 @@ public class PlayerHealth : MonoBehaviour
         if (heartUI != null)
             heartUI.UpdateHearts(currentHearts);
     }
+    private PlayerStats stats;
+
+    void Start()
+    {
+        stats = GetComponent<PlayerStats>();
+        stats.OnStatsChanged += RecalculateMaxHealth;
+    }
+
+    private void RecalculateMaxHealth()
+    {
+        maxHearts = RunManager.instance.maxHearts + stats.maxHeartsModifier;
+
+        // Clamp current hearts
+        currentHearts = Mathf.Min(currentHearts, maxHearts);
+
+        // Update UI
+        heartUI.Initialize(maxHearts);
+        heartUI.UpdateHearts(currentHearts);
+
+        // Save to run manager
+        RunManager.instance.maxHearts = maxHearts;
+        RunManager.instance.currentHearts = currentHearts;
+    }
+
 }
