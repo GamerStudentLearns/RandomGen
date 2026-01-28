@@ -95,6 +95,9 @@ public class RoomManager : MonoBehaviour
     {
         yield return null;
 
+        // ---------------------------------------------------------
+        // 1. Assign trapdoor to the last generated room
+        // ---------------------------------------------------------
         GameObject lastRoom = roomObjects.Last();
         Room lastRoomScript = lastRoom.GetComponent<Room>();
 
@@ -112,6 +115,9 @@ public class RoomManager : MonoBehaviour
         trapOpen.SetActive(false);
         trapClosed.SetActive(true);
 
+        // ---------------------------------------------------------
+        // 2. Collect all one-door rooms (excluding start + last)
+        // ---------------------------------------------------------
         List<GameObject> oneDoorRooms = new List<GameObject>();
 
         foreach (var roomObj in roomObjects)
@@ -125,22 +131,103 @@ public class RoomManager : MonoBehaviour
                 oneDoorRooms.Add(roomObj);
         }
 
+        // ---------------------------------------------------------
+        // 3. Pick a special room prefab that hasn't been used
+        // ---------------------------------------------------------
         var availablePrefabs = specialRoomPrefabs
             .Where(p => !spawnedItemsThisRun.Contains(p))
             .ToList();
 
         if (oneDoorRooms.Count > 0 && availablePrefabs.Count > 0)
         {
+            // Choose the one-door room
             GameObject chosenRoom = oneDoorRooms[Random.Range(0, oneDoorRooms.Count)];
+            Room chosenRoomScript = chosenRoom.GetComponent<Room>();
+
+            // Choose the special prefab
             GameObject chosenPrefab = availablePrefabs[Random.Range(0, availablePrefabs.Count)];
 
+            // Spawn the special room content inside it
             Instantiate(chosenPrefab, chosenRoom.transform.position, Quaternion.identity, chosenRoom.transform);
 
             spawnedItemsThisRun.Add(chosenPrefab);
 
-            // Treasure-door logic removed
+            // ---------------------------------------------------------
+            // 4. Apply special door sprites to this room
+            // ---------------------------------------------------------
+            chosenRoomScript.ApplySpecialDoorSprites();
+
+            // ---------------------------------------------------------
+            // 5. Apply opposite-facing special sprites to the connecting room
+            // ---------------------------------------------------------
+            ApplySpecialSpritesToConnectingRoom(chosenRoomScript);
         }
     }
+
+    private void ApplySpecialSpritesToConnectingRoom(Room specialRoom)
+    {
+        Vector2Int index = specialRoom.RoomIndex;
+
+        // Special room has a TOP door → neighbor is above → neighbor gets BOTTOM special sprite
+        if (specialRoom.hasTopDoor)
+            ApplyOppositeSpecialSprite(index + Vector2Int.up, "Bottom");
+
+        // Special room has a BOTTOM door → neighbor is below → neighbor gets TOP special sprite
+        if (specialRoom.hasBottomDoor)
+            ApplyOppositeSpecialSprite(index + Vector2Int.down, "Top");
+
+        // Special room has a LEFT door → neighbor is left → neighbor gets RIGHT special sprite
+        if (specialRoom.hasLeftDoor)
+            ApplyOppositeSpecialSprite(index + Vector2Int.left, "Right");
+
+        // Special room has a RIGHT door → neighbor is right → neighbor gets LEFT special sprite
+        if (specialRoom.hasRightDoor)
+            ApplyOppositeSpecialSprite(index + Vector2Int.right, "Left");
+    }
+    private void ApplyOppositeSpecialSprite(Vector2Int neighborIndex, string oppositeDirection)
+    {
+        Room neighbor = GetRoomScriptAt(neighborIndex);
+        if (neighbor == null) return;
+
+        neighbor.useSpecialDoorSprites = true;
+
+        SpriteRenderer openRenderer = null;
+        SpriteRenderer closedRenderer = null;
+
+        switch (oppositeDirection)
+        {
+            case "Top":
+                openRenderer = neighbor.topDoor?.GetComponent<SpriteRenderer>();
+                closedRenderer = neighbor.topClosedDoor?.GetComponent<SpriteRenderer>();
+                if (openRenderer != null) openRenderer.sprite = neighbor.specialTopDoorSprite;
+                if (closedRenderer != null) closedRenderer.sprite = neighbor.specialTopClosedSprite;
+                break;
+
+            case "Bottom":
+                openRenderer = neighbor.bottomDoor?.GetComponent<SpriteRenderer>();
+                closedRenderer = neighbor.bottomClosedDoor?.GetComponent<SpriteRenderer>();
+                if (openRenderer != null) openRenderer.sprite = neighbor.specialBottomDoorSprite;
+                if (closedRenderer != null) closedRenderer.sprite = neighbor.specialBottomClosedSprite;
+                break;
+
+            case "Left":
+                openRenderer = neighbor.leftDoor?.GetComponent<SpriteRenderer>();
+                closedRenderer = neighbor.leftClosedDoor?.GetComponent<SpriteRenderer>();
+                if (openRenderer != null) openRenderer.sprite = neighbor.specialLeftDoorSprite;
+                if (closedRenderer != null) closedRenderer.sprite = neighbor.specialLeftClosedSprite;
+                break;
+
+            case "Right":
+                openRenderer = neighbor.rightDoor?.GetComponent<SpriteRenderer>();
+                closedRenderer = neighbor.rightClosedDoor?.GetComponent<SpriteRenderer>();
+                if (openRenderer != null) openRenderer.sprite = neighbor.specialRightDoorSprite;
+                if (closedRenderer != null) closedRenderer.sprite = neighbor.specialRightClosedSprite;
+                break;
+        }
+    }
+
+
+
 
     private void GenerateInitialNeighbors()
     {

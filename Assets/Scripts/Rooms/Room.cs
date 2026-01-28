@@ -19,6 +19,20 @@ public class Room : MonoBehaviour
     public GameObject leftClosedDoor;
     public GameObject rightClosedDoor;
 
+    [Header("Special Door Sprites (Optional)")]
+    public Sprite specialTopDoorSprite;
+    public Sprite specialBottomDoorSprite;
+    public Sprite specialLeftDoorSprite;
+    public Sprite specialRightDoorSprite;
+
+    public Sprite specialTopClosedSprite;
+    public Sprite specialBottomClosedSprite;
+    public Sprite specialLeftClosedSprite;
+    public Sprite specialRightClosedSprite;
+
+    public bool useSpecialDoorSprites = false;
+
+
     [Header("Trapdoor Objects")]
     public GameObject trapdoorOpen;
     public GameObject trapdoorClosed;
@@ -225,4 +239,35 @@ public class Room : MonoBehaviour
         if (direction == Vector2Int.right && rightDoor != null)
             rightDoor.SetActive(true);
     }
+
+    public void ApplySpecialDoorSprites()
+    {
+        useSpecialDoorSprites = true;
+
+        if (hasTopDoor && topDoor != null)
+            topDoor.GetComponent<SpriteRenderer>().sprite = specialTopDoorSprite;
+
+        if (hasBottomDoor && bottomDoor != null)
+            bottomDoor.GetComponent<SpriteRenderer>().sprite = specialBottomDoorSprite;
+
+        if (hasLeftDoor && leftDoor != null)
+            leftDoor.GetComponent<SpriteRenderer>().sprite = specialLeftDoorSprite;
+
+        if (hasRightDoor && rightDoor != null)
+            rightDoor.GetComponent<SpriteRenderer>().sprite = specialRightDoorSprite;
+
+        // Closed variants
+        if (hasTopDoor && topClosedDoor != null)
+            topClosedDoor.GetComponent<SpriteRenderer>().sprite = specialTopClosedSprite;
+
+        if (hasBottomDoor && bottomClosedDoor != null)
+            bottomClosedDoor.GetComponent<SpriteRenderer>().sprite = specialBottomClosedSprite;
+
+        if (hasLeftDoor && leftClosedDoor != null)
+            leftClosedDoor.GetComponent<SpriteRenderer>().sprite = specialLeftClosedSprite;
+
+        if (hasRightDoor && rightClosedDoor != null)
+            rightClosedDoor.GetComponent<SpriteRenderer>().sprite = specialRightClosedSprite;
+    }
+
 }
