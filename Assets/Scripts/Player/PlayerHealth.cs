@@ -26,9 +26,6 @@ public class PlayerHealth : MonoBehaviour
 
     void Awake()
     {
-
-        FindOrCreateHeartUI();
-
         // Ensure RunManager exists
         if (RunManager.instance == null)
         {
@@ -173,20 +170,4 @@ public class PlayerHealth : MonoBehaviour
             heartUI.UpdateHearts(currentHearts, soulHearts);
         }
     }
-
-    private void FindOrCreateHeartUI()
-    {
-        if (heartUI != null)
-            return;
-
-        heartUI = FindFirstObjectByType<HeartUI>();
-
-        if (heartUI == null)
-        {
-            GameObject prefab = Resources.Load<GameObject>("HeartUI");
-            GameObject ui = Instantiate(prefab);
-            heartUI = ui.GetComponent<HeartUI>();
-        }
-    }
-
 }

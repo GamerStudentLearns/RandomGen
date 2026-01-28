@@ -15,18 +15,6 @@ public class HeartUI : MonoBehaviour
     private int cachedMaxHearts;
     private int cachedSoulHearts;
 
-    void Awake()
-    {
-        if (FindObjectsOfType<HeartUI>().Length > 1)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        DontDestroyOnLoad(gameObject);
-    }
-
-
     public void Initialize(int maxHearts, int soulHearts = 0)
     {
         cachedMaxHearts = maxHearts;
