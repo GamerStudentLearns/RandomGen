@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public Sprite leftSprite;
     public Sprite rightSprite;
 
-    
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
