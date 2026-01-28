@@ -49,9 +49,7 @@ public class RoomManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "Level1")
-        {
             spawnedItemsThisRun.Clear();
-        }
     }
 
     private void Start()
@@ -138,8 +136,87 @@ public class RoomManager : MonoBehaviour
 
             spawnedItemsThisRun.Add(chosenPrefab);
 
-            // Treasure-door logic removed
+            Room itemRoom = chosenRoom.GetComponent<Room>();
+            itemRoom.isItemRoom = true;
+
+            itemRoom.SetItemRoomDoorState(true);
+
+            ApplyItemRoomDoorToAdjacent(itemRoom);
         }
+    }
+
+    private void ApplyItemRoomDoorToAdjacent(Room itemRoom)
+    {
+        Vector2Int index = itemRoom.RoomIndex;
+
+        TryApplyItemDoor(index, Vector2Int.up, itemRoom);
+        TryApplyItemDoor(index, Vector2Int.down, itemRoom);
+        TryApplyItemDoor(index, Vector2Int.left, itemRoom);
+        TryApplyItemDoor(index, Vector2Int.right, itemRoom);
+    }
+
+    private void TryApplyItemDoor(Vector2Int index, Vector2Int dir, Room itemRoom)
+    {
+        Room neighbor = GetRoomScriptAt(index + dir);
+        if (neighbor == null)
+            return;
+
+        // We want the neighbor to use the *opposite* side sprite
+
+        if (dir == Vector2Int.up && itemRoom.hasTopDoor)
+        {
+            // Item room uses TOP, neighbor uses BOTTOM with item BOTTOM sprite
+            if (neighbor.bottomDoorRenderer != null)
+                neighbor.bottomDoorRenderer.sprite = itemRoom.itemBottomDoorOpen;
+        }
+        else if (dir == Vector2Int.down && itemRoom.hasBottomDoor)
+        {
+            // Item room uses BOTTOM, neighbor uses TOP with item TOP sprite
+            if (neighbor.topDoorRenderer != null)
+                neighbor.topDoorRenderer.sprite = itemRoom.itemTopDoorOpen;
+        }
+        else if (dir == Vector2Int.left && itemRoom.hasLeftDoor)
+        {
+            // Item room uses LEFT, neighbor uses RIGHT with item RIGHT sprite
+            if (neighbor.rightDoorRenderer != null)
+                neighbor.rightDoorRenderer.sprite = itemRoom.itemRightDoorOpen;
+        }
+        else if (dir == Vector2Int.right && itemRoom.hasRightDoor)
+        {
+            // Item room uses RIGHT, neighbor uses LEFT with item LEFT sprite
+            if (neighbor.leftDoorRenderer != null)
+                neighbor.leftDoorRenderer.sprite = itemRoom.itemLeftDoorOpen;
+        }
+    }
+
+
+    public void OpenAdjacentItemRoomDoor(Room itemRoom)
+    {
+        Vector2Int index = itemRoom.RoomIndex;
+
+        TryOpenNeighborDoor(index, Vector2Int.up, itemRoom);
+        TryOpenNeighborDoor(index, Vector2Int.down, itemRoom);
+        TryOpenNeighborDoor(index, Vector2Int.left, itemRoom);
+        TryOpenNeighborDoor(index, Vector2Int.right, itemRoom);
+    }
+
+    private void TryOpenNeighborDoor(Vector2Int index, Vector2Int dir, Room itemRoom)
+    {
+        Room neighbor = GetRoomScriptAt(index + dir);
+        if (neighbor == null)
+            return;
+
+        if (dir == Vector2Int.up && itemRoom.hasTopDoor)
+            neighbor.bottomDoorRenderer.sprite = itemRoom.itemTopDoorOpen;
+
+        else if (dir == Vector2Int.down && itemRoom.hasBottomDoor)
+            neighbor.topDoorRenderer.sprite = itemRoom.itemBottomDoorOpen;
+
+        else if (dir == Vector2Int.left && itemRoom.hasLeftDoor)
+            neighbor.rightDoorRenderer.sprite = itemRoom.itemLeftDoorOpen;
+
+        else if (dir == Vector2Int.right && itemRoom.hasRightDoor)
+            neighbor.leftDoorRenderer.sprite = itemRoom.itemRightDoorOpen;
     }
 
     private void GenerateInitialNeighbors()

@@ -728,6 +728,19 @@ MonoBehaviour:
   bottomDoor: {fileID: 8054844295582698086}
   leftDoor: {fileID: 945393661851996283}
   rightDoor: {fileID: 3981732816718584222}
+  topDoorRenderer: {fileID: 2882050125092633547}
+  bottomDoorRenderer: {fileID: 7668516482470901453}
+  leftDoorRenderer: {fileID: 7957158075595317090}
+  rightDoorRenderer: {fileID: 2131990862253111905}
+  isItemRoom: 0
+  itemTopDoorOpen: {fileID: 5550249953640805330, guid: 75cc466f58429a74b8aa68b350dbdbf4, type: 3}
+  itemBottomDoorOpen: {fileID: -2225094691758587638, guid: 2f4dc703aebd6e24180237d9acc32ef3, type: 3}
+  itemLeftDoorOpen: {fileID: 2608060299976740556, guid: 628a5cfdd4a4d78498ed1c96a009d6ad, type: 3}
+  itemRightDoorOpen: {fileID: -488682778361576052, guid: fe756096ade7a184499ab16dc5266c8d, type: 3}
+  itemTopDoorClosed: {fileID: 2508918316564332103, guid: e0a71d4b1c004f44495523798e2f3808, type: 3}
+  itemBottomDoorClosed: {fileID: -4924391652897576981, guid: 7e62889176b7eb944b359675564a615d, type: 3}
+  itemLeftDoorClosed: {fileID: -3830567315048281865, guid: 005942e0016b33d438f511c447fcd45a, type: 3}
+  itemRightDoorClosed: {fileID: -5847058240967674575, guid: 09f399d2e4ddb704da812a7b08dfb54c, type: 3}
   topClosedDoor: {fileID: 7506537034136036995}
   bottomClosedDoor: {fileID: 499520144706122446}
   leftClosedDoor: {fileID: 1726109261614443678}

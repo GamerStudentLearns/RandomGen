@@ -13,6 +13,25 @@ public class Room : MonoBehaviour
     public GameObject leftDoor;
     public GameObject rightDoor;
 
+    [Header("Door Sprite Renderers")]
+    public SpriteRenderer topDoorRenderer;
+    public SpriteRenderer bottomDoorRenderer;
+    public SpriteRenderer leftDoorRenderer;
+    public SpriteRenderer rightDoorRenderer;
+
+    [Header("Item Room Door Sprites")]
+    public bool isItemRoom = false;
+
+    public Sprite itemTopDoorOpen;
+    public Sprite itemBottomDoorOpen;
+    public Sprite itemLeftDoorOpen;
+    public Sprite itemRightDoorOpen;
+
+    public Sprite itemTopDoorClosed;
+    public Sprite itemBottomDoorClosed;
+    public Sprite itemLeftDoorClosed;
+    public Sprite itemRightDoorClosed;
+
     [Header("Closed Door Sprites")]
     public GameObject topClosedDoor;
     public GameObject bottomClosedDoor;
@@ -130,6 +149,9 @@ public class Room : MonoBehaviour
             if (trapdoorOpen != null) trapdoorOpen.SetActive(false);
             if (trapdoorClosed != null) trapdoorClosed.SetActive(true);
         }
+
+        if (isItemRoom)
+            SetItemRoomDoorState(true);
     }
 
     private void ClearRoom()
@@ -151,6 +173,14 @@ public class Room : MonoBehaviour
         PickupSpawner spawner = GetComponent<PickupSpawner>();
         if (spawner != null)
             spawner.TrySpawnPickup();
+
+        if (isItemRoom)
+        {
+            SetItemRoomDoorState(false);
+
+            RoomManager manager = FindFirstObjectByType<RoomManager>();
+            manager.OpenAdjacentItemRoomDoor(this);
+        }
     }
 
     private bool ShouldAffectDoor(GameObject obj)
@@ -224,5 +254,23 @@ public class Room : MonoBehaviour
 
         if (direction == Vector2Int.right && rightDoor != null)
             rightDoor.SetActive(true);
+    }
+
+    public void SetItemRoomDoorState(bool locked)
+    {
+        if (!isItemRoom)
+            return;
+
+        if (hasTopDoor && topDoorRenderer != null)
+            topDoorRenderer.sprite = locked ? itemTopDoorClosed : itemTopDoorOpen;
+
+        if (hasBottomDoor && bottomDoorRenderer != null)
+            bottomDoorRenderer.sprite = locked ? itemBottomDoorClosed : itemBottomDoorOpen;
+
+        if (hasLeftDoor && leftDoorRenderer != null)
+            leftDoorRenderer.sprite = locked ? itemLeftDoorClosed : itemLeftDoorOpen;
+
+        if (hasRightDoor && rightDoorRenderer != null)
+            rightDoorRenderer.sprite = locked ? itemRightDoorClosed : itemRightDoorOpen;
     }
 }
