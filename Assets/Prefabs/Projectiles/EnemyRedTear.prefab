@@ -173,3 +173,4 @@ MonoBehaviour:
   lifeTime: 5
   damagesPlayer: 1
   damagesEnemies: 0
+  destroyEffect: {fileID: 3250461063860846938, guid: 94474cccdc18e194389b419b6dfc6148, type: 3}

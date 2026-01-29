@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: -5082762393845357561}
   - component: {fileID: 8039903080959999364}
   - component: {fileID: -5160319612548997225}
-  - component: {fileID: -8363929085885956455}
   m_Layer: 0
   m_Name: GeofferyShooter
   m_TagString: Enemy
@@ -189,21 +188,8 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1.5}
+  m_Size: {x: 0.78, y: 1.2}
   m_EdgeRadius: 0
---- !u!114 &-8363929085885956455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7781515359145245184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c42a32d91b741e34b8cb70949f9732be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyContact
-  contactDamage: 1
 --- !u!1 &9107708370782577360
 GameObject:
   m_ObjectHideFlags: 0

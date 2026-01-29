@@ -171,3 +171,4 @@ MonoBehaviour:
   damage: 0
   speed: 0
   range: 0
+  destroyEffect: {fileID: 3250461063860846938, guid: f2d4e3ddce7aa864c987659c12a329da, type: 3}
