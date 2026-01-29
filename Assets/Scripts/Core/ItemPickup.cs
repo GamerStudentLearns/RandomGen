@@ -40,8 +40,8 @@ public class ItemPickup : MonoBehaviour
                 return;
             }
 
-            // Apply effect immediately
-            item.Apply(stats);
+            // Apply effect immediately using new signature
+            item.Apply(stats, RunManager.instance);
 
             // Save item for future scenes
             RunManager.instance.acquiredItems.Add(item);

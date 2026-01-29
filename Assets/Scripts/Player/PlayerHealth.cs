@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
@@ -20,14 +19,14 @@ public class PlayerHealth : MonoBehaviour
     public HeartUI heartUI;
 
     [Header("Game Over UI")]
-    public GameObject gameOverUI;   // ← Option 1 uses GameObject
+    public GameObject gameOverUI;
 
     private PlayerStats stats;
 
     void Awake()
     {
-
         FindOrCreateHeartUI();
+
         // Ensure RunManager exists
         if (RunManager.instance == null)
         {
@@ -35,12 +34,11 @@ public class PlayerHealth : MonoBehaviour
             rmGo.AddComponent<RunManager>();
         }
 
-        // Load stored health
-        maxHearts = RunManager.instance.maxHearts;
+        // Load stored health from RunManager
+        maxHearts = RunManager.instance.MaxHearts;
         currentHearts = RunManager.instance.currentHearts;
         soulHearts = RunManager.instance.soulHearts;
 
-        // Find UI if not assigned
         if (heartUI == null)
             heartUI = FindFirstObjectByType<HeartUI>();
 
@@ -60,7 +58,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         stats = GetComponent<PlayerStats>();
-        stats.OnStatsChanged += RecalculateHearts;
+        // No more heart modifiers in PlayerStats, so no subscription needed
     }
 
     // --------------------
@@ -149,30 +147,8 @@ public class PlayerHealth : MonoBehaviour
     }
 
     // --------------------
-    // STAT-DRIVEN HEART UPDATES
+    // UI SETUP
     // --------------------
-    private void RecalculateHearts()
-    {
-        maxHearts = RunManager.instance.maxHearts + stats.maxHeartsModifier;
-
-        soulHearts += stats.soulHeartsModifier;
-        soulHearts = Mathf.Max(0, soulHearts);
-
-        stats.soulHeartsModifier = 0;
-
-        currentHearts = Mathf.Min(currentHearts, maxHearts);
-
-        RunManager.instance.maxHearts = maxHearts;
-        RunManager.instance.currentHearts = currentHearts;
-        RunManager.instance.soulHearts = soulHearts;
-
-        if (heartUI != null)
-        {
-            heartUI.Initialize(maxHearts, soulHearts);
-            heartUI.UpdateHearts(currentHearts, soulHearts);
-        }
-    }
-
     private void FindOrCreateHeartUI()
     {
         if (heartUI != null)
@@ -187,5 +163,4 @@ public class PlayerHealth : MonoBehaviour
             heartUI = ui.GetComponent<HeartUI>();
         }
     }
-
 }

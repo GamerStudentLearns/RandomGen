@@ -429,8 +429,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 722e07aa14fbb5748899a57396189c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RunManager
+  baseMaxHearts: 6
+  heartModifiers: 0
   currentHearts: 0
-  maxHearts: 0
   soulHearts: 0
   acquiredItems: []
 --- !u!4 &1329929671

@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Items/Small Rock")]
 public class SmallRock : ItemData
 {
-    public override void Apply(PlayerStats stats)
+    public override void Apply(PlayerStats stats, RunManager run)
     {
         stats.ModifyStat(s =>
         {

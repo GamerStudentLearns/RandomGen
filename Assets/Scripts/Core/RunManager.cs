@@ -6,11 +6,16 @@ public class RunManager : MonoBehaviour
 {
     public static RunManager instance;
 
+    [Header("Health")]
+    public int baseMaxHearts = 6;
+    public int heartModifiers = 0;   // Items add to this
     public int currentHearts;
-    public int maxHearts;
     public int soulHearts;
 
+    [Header("Run Data")]
     public List<ItemData> acquiredItems = new List<ItemData>();
+
+    public int MaxHearts => baseMaxHearts + heartModifiers;
 
     private void Awake()
     {
@@ -23,12 +28,9 @@ public class RunManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // 🔥 IMPORTANT FIX — ensure valid defaults
-        if (maxHearts <= 0)
-            maxHearts = 6;
-
+        // Ensure valid defaults
         if (currentHearts <= 0)
-            currentHearts = maxHearts;
+            currentHearts = MaxHearts;
 
         if (soulHearts < 0)
             soulHearts = 0;
@@ -38,41 +40,42 @@ public class RunManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Restore saved health on every scene
-        PlayerHealth player = FindFirstObjectByType<PlayerHealth>();
-        if (player != null)
-        {
-            player.maxHearts = maxHearts;
-            player.currentHearts = currentHearts;
-            player.soulHearts = soulHearts;
-
-            if (player.heartUI != null)
-            {
-                player.heartUI.Initialize(maxHearts, soulHearts);
-                player.heartUI.UpdateHearts(currentHearts, soulHearts);
-            }
-        }
-
-        // Only reset run on Level1
+        // Reset FIRST
         if (scene.name == "Level1")
         {
             ResetRun();
             HealPlayerOnStart();
         }
+
+        // THEN sync PlayerHealth
+        PlayerHealth player = FindFirstObjectByType<PlayerHealth>();
+        if (player != null)
+        {
+            player.maxHearts = MaxHearts;
+            player.currentHearts = currentHearts;
+            player.soulHearts = soulHearts;
+
+            if (player.heartUI != null)
+            {
+                player.heartUI.Initialize(MaxHearts, soulHearts);
+                player.heartUI.UpdateHearts(currentHearts, soulHearts);
+            }
+        }
     }
+
 
     public void ResetRun()
     {
         acquiredItems.Clear();
 
-        // Ensure valid values after reset
-        if (maxHearts <= 0)
-            maxHearts = 6;
+        // Reset modifiers
+        heartModifiers = 0;
 
-        currentHearts = maxHearts;
+        // Reset hearts
+        currentHearts = baseMaxHearts;
         soulHearts = 0;
 
-        Debug.Log("Run reset — hearts restored and item pool cleared.");
+        Debug.Log("Run reset — modifiers cleared, hearts restored, items cleared.");
     }
 
     private void HealPlayerOnStart()
@@ -84,14 +87,25 @@ public class RunManager : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < 6; i++)
-        {
-            if (player.currentHearts >= player.maxHearts)
-                break;
+        // Force max hearts to 6 at the start of Level1
+        player.maxHearts = 6;
+        RunManager.instance.currentHearts = 6;
 
-            player.Heal(1);
+        // Heal the player to full (6)
+        player.currentHearts = 6;
+
+        // Sync soul hearts
+        player.soulHearts = 0;
+        RunManager.instance.soulHearts = 0;
+
+        // Update UI
+        if (player.heartUI != null)
+        {
+            player.heartUI.Initialize(6, 0);
+            player.heartUI.UpdateHearts(6, 0);
         }
 
-        Debug.Log("Player healed for 6 on Level1 load.");
+        Debug.Log("Player healed to 6 hearts on Level1 load.");
     }
+
 }

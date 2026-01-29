@@ -783,6 +783,15 @@ MonoBehaviour:
   bottomClosedDoor: {fileID: 499520144706122446}
   leftClosedDoor: {fileID: 1726109261614443678}
   rightClosedDoor: {fileID: 5280231145841621676}
+  specialTopDoorSprite: {fileID: 5550249953640805330, guid: 75cc466f58429a74b8aa68b350dbdbf4, type: 3}
+  specialBottomDoorSprite: {fileID: -2225094691758587638, guid: 2f4dc703aebd6e24180237d9acc32ef3, type: 3}
+  specialLeftDoorSprite: {fileID: 2608060299976740556, guid: 628a5cfdd4a4d78498ed1c96a009d6ad, type: 3}
+  specialRightDoorSprite: {fileID: -488682778361576052, guid: fe756096ade7a184499ab16dc5266c8d, type: 3}
+  specialTopClosedSprite: {fileID: 2508918316564332103, guid: e0a71d4b1c004f44495523798e2f3808, type: 3}
+  specialBottomClosedSprite: {fileID: -4924391652897576981, guid: 7e62889176b7eb944b359675564a615d, type: 3}
+  specialLeftClosedSprite: {fileID: -3830567315048281865, guid: 005942e0016b33d438f511c447fcd45a, type: 3}
+  specialRightClosedSprite: {fileID: -5847058240967674575, guid: 09f399d2e4ddb704da812a7b08dfb54c, type: 3}
+  useSpecialDoorSprites: 0
   trapdoorOpen: {fileID: 3574237843649389023, guid: fa8a6b1b0e148944fb1877a97780fbc7, type: 3}
   trapdoorClosed: {fileID: 8461104843292654948, guid: efca7a7b4d25bf24b8fece2c6c59ccb0, type: 3}
   hasTrapdoor: 0
@@ -836,6 +845,7 @@ MonoBehaviour:
   spawnChance: 0.25
   possiblePickups:
   - {fileID: 2922129042847442260, guid: 8967a4e9cd7a7e24aa1f6fe27144c508, type: 3}
+  - {fileID: 3524703094827663392, guid: 9b92f92b661c0fa4698a94c037723b9c, type: 3}
   spawnPoint: {fileID: 1869619162156453614}
 --- !u!1 &2514847184782693719
 GameObject:
