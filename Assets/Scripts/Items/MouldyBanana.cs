@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Items/MouldyBanana")]
 public class MouldyBanana : ItemData
 {
-    public override void Apply(PlayerStats stats, RunManager run)
+    public override void ApplyPersistent(PlayerStats stats, RunManager run)
     {
         stats.ModifyStat(s =>
         {

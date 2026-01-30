@@ -40,10 +40,10 @@ public class ItemPickup : MonoBehaviour
                 return;
             }
 
-            // Apply effect immediately using new signature
-            item.Apply(stats, RunManager.instance);
+            // ONE-TIME pickup effect
+            item.OnPickup(stats, RunManager.instance);
 
-            // Save item for future scenes
+            // Save item for future floors
             RunManager.instance.acquiredItems.Add(item);
 
             BecomeEmptyPedestal();
