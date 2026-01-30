@@ -16,10 +16,10 @@ public class PlayerStats : MonoBehaviour
     {
         RunManager run = RunManager.instance;
 
+        // Reapply persistent effects on scene load
         foreach (var item in run.acquiredItems)
-            item.Apply(this, run);
+            item.ApplyPersistent(this, run);
     }
-
 
     public void ModifyStat(System.Action<PlayerStats> modifier)
     {
