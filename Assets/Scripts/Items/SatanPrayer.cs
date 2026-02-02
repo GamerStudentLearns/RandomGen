@@ -5,6 +5,12 @@ public class SatanPrayer : ItemData
 {
     public override void OnPickup(PlayerStats stats, RunManager run)
     {
+
+        stats.ModifyStat(s =>
+        {
+            s.damage += 4f;
+        });
+
         // One-time heart penalty
         run.heartModifiers -= 3;
 

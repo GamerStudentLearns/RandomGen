@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Items/Sugar Rush")]
-public class SugarRush : ItemData
+[CreateAssetMenu(menuName = "Items/GodRage")]
+public class GodRage : ItemData
 {
     // Runs ONCE when the player picks up the item
     public override void OnPickup(PlayerStats stats, RunManager run)
@@ -9,14 +9,15 @@ public class SugarRush : ItemData
 
         stats.ModifyStat(s =>
         {
-            s.shotSpeed += 3f;
-            s.moveSpeed += 2f;
-            s.fireRate -= 0.15f;
-            s.damage -= 2f;
+            s.shotSpeed -= 1f;
+            s.moveSpeed -= 1f;
+            s.fireRate += 0.15f;
+            s.damage -= 1f;
+            s.range -= 1f;
         });
 
         // Add ONE soul heart on pickup
-        run.soulHearts += 1;
+        run.soulHearts += 4;
 
         // Clamp current hearts
         run.currentHearts = Mathf.Min(run.currentHearts, run.MaxHearts);
@@ -36,15 +37,5 @@ public class SugarRush : ItemData
         }
     }
 
-    // Runs EVERY FLOOR
-    public override void ApplyPersistent(PlayerStats stats, RunManager run)
-    {
-        stats.ModifyStat(s =>
-        {
-            s.shotSpeed += 3f;
-            s.moveSpeed += 2f;
-            s.fireRate -= 0.15f;
-            s.damage -= 2f;
-        });
-    }
+
 }

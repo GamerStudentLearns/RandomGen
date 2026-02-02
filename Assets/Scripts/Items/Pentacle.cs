@@ -1,18 +1,12 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Items/MouldyBanana")]
-public class MouldyBanana : ItemData
+[CreateAssetMenu(menuName = "Items/Pentacle")]
+public class Pentacle : ItemData
 {
     public override void OnPickup(PlayerStats stats, RunManager run)
     {
-        stats.ModifyStat(s =>
-        {
-            s.range += 1f;
-            s.shotSpeed += 1f;
-            s.fireRate -= 0.1f;
-            s.damage += 1f;
-            s.moveSpeed += 1f;
-        });
+
+      
 
         // One-time heart penalty
         run.heartModifiers += 1;
@@ -36,15 +30,6 @@ public class MouldyBanana : ItemData
         }
     }
 
-    public override void ApplyPersistent(PlayerStats stats, RunManager run)
-    {
-        stats.ModifyStat(s =>
-        {
-            s.range += 1f;
-            s.shotSpeed += 1f;
-            s.fireRate -= 0.1f;
-            s.damage += 1f;
-            s.moveSpeed += 1f;
-        });
-    }
+   
 }
+
