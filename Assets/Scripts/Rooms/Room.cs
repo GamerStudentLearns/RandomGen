@@ -38,6 +38,10 @@ public class Room : MonoBehaviour
     public GameObject trapdoorClosed;
     public bool hasTrapdoor;
 
+    [Header("Boss")]
+    public GameObject bossObject;
+    public bool hasBoss = false;
+
     [Header("Door Existence Flags (set by RoomManager)")]
     public bool hasTopDoor;
     public bool hasBottomDoor;
@@ -213,9 +217,18 @@ public class Room : MonoBehaviour
     {
         while (true)
         {
+            // Remove dead enemies
             spawnedEnemies.RemoveAll(e => e == null);
 
-            if (spawnedEnemies.Count == 0)
+            bool bossDead = true;
+
+            if (hasBoss && bossObject != null)
+                bossDead = bossObject == null; // boss destroyed = dead
+
+            // Room is clear when:
+            // 1. All normal enemies are dead
+            // 2. Boss is dead (if present)
+            if (spawnedEnemies.Count == 0 && bossDead)
             {
                 ClearRoom();
                 yield break;
@@ -224,6 +237,7 @@ public class Room : MonoBehaviour
             yield return null;
         }
     }
+
 
     public void OpenDoor(Vector2Int direction)
     {

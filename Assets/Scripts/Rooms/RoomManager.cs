@@ -29,6 +29,9 @@ public class RoomManager : MonoBehaviour
     public GameObject trapdoorOpenPrefab;
     public GameObject trapdoorClosedPrefab;
 
+    [Header("Boss Prefab")]
+    public GameObject bossPrefab;
+
     [Header("Special Room Prefabs")]
     [SerializeField] private GameObject[] specialRoomPrefabs;
 
@@ -96,24 +99,45 @@ public class RoomManager : MonoBehaviour
         yield return null;
 
         // ---------------------------------------------------------
-        // 1. Assign trapdoor to the last generated room
+        // 1. Assign trapdoor + boss to the last generated room
         // ---------------------------------------------------------
         GameObject lastRoom = roomObjects.Last();
         Room lastRoomScript = lastRoom.GetComponent<Room>();
 
+        // Mark room as having a trapdoor
         lastRoomScript.hasTrapdoor = true;
 
-        GameObject trapOpen = Instantiate(trapdoorOpenPrefab, lastRoom.transform.position, Quaternion.identity);
-        GameObject trapClosed = Instantiate(trapdoorClosedPrefab, lastRoom.transform.position, Quaternion.identity);
-
-        trapOpen.transform.SetParent(lastRoom.transform);
-        trapClosed.transform.SetParent(lastRoom.transform);
+        // -------------------------
+        // Spawn trapdoor (open + closed)
+        // -------------------------
+        GameObject trapOpen = Instantiate(trapdoorOpenPrefab, lastRoom.transform.position, Quaternion.identity, lastRoom.transform);
+        GameObject trapClosed = Instantiate(trapdoorClosedPrefab, lastRoom.transform.position, Quaternion.identity, lastRoom.transform);
 
         lastRoomScript.trapdoorOpen = trapOpen;
         lastRoomScript.trapdoorClosed = trapClosed;
 
         trapOpen.SetActive(false);
         trapClosed.SetActive(true);
+
+        // -------------------------
+        // Spawn the boss
+        // -------------------------
+        if (bossPrefab != null)
+        {
+            // Offset so boss doesn't overlap trapdoor
+            Vector3 bossPos = lastRoom.transform.position + new Vector3(0, 2f, 0);
+
+            GameObject boss = Instantiate(bossPrefab, bossPos, Quaternion.identity, lastRoom.transform);
+
+            // Assign to room
+            lastRoomScript.bossObject = boss;
+            lastRoomScript.hasBoss = true;
+
+            // Optional: allow boss to notify room when it dies
+            EnemyHealth health = boss.GetComponent<EnemyHealth>();
+            if (health != null)
+                health.parentRoom = lastRoomScript;
+        }
 
         // ---------------------------------------------------------
         // 2. Collect all one-door rooms (excluding start + last)
@@ -163,6 +187,7 @@ public class RoomManager : MonoBehaviour
             ApplySpecialSpritesToConnectingRoom(chosenRoomScript);
         }
     }
+
 
     private void ApplySpecialSpritesToConnectingRoom(Room specialRoom)
     {

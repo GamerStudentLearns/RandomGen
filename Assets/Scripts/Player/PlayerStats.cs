@@ -16,7 +16,6 @@ public class PlayerStats : MonoBehaviour
     private const float MIN_SPEED = 0.3f;
     private const float MAX_SPEED = 15f;
 
-    // Fire rate is inverted (lower = faster)
     private const float MIN_FIRERATE = 0.1f;
     private const float MAX_FIRERATE = 5f;
 
@@ -29,15 +28,7 @@ public class PlayerStats : MonoBehaviour
     public delegate void StatsChanged();
     public event StatsChanged OnStatsChanged;
 
-    private void Start()
-    {
-        RunManager run = RunManager.instance;
-
-        foreach (var item in run.acquiredItems)
-            item.ApplyPersistent(this, run);
-
-        ClampAllStats();
-    }
+    // No Start() needed anymore
 
     public void ModifyStat(System.Action<PlayerStats> modifier)
     {

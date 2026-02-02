@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: -442133741
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1114792242182068627, guid: 43eccf055fc7d2e4b8fbc616a96164e9, type: 3}
+  m_Sprite: {fileID: 725859875440357613, guid: 9f2a57a77047bf846bd417714dc83e5d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -156,7 +156,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.34375
+  m_Radius: 0.43
 --- !u!114 &8839125548147281005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Burden
   maxHealth: 50
   moveSpeed: 0.5
-  gravityStrength: 8
+  gravityStrength: 15
   pullRadius: 12
   contactDamage: 1
   contactCooldown: 0.75

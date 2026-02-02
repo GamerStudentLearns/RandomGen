@@ -15,6 +15,9 @@ public class RunManager : MonoBehaviour
     [Header("Run Data")]
     public List<ItemData> acquiredItems = new List<ItemData>();
 
+    [Header("Floor Tracking")]
+    public int currentFloor = 1;
+
     public int MaxHearts => baseMaxHearts + heartModifiers;
 
     private void Awake()
@@ -42,8 +45,13 @@ public class RunManager : MonoBehaviour
         // Reset run on first level
         if (scene.name == "Level1")
         {
+            currentFloor = 1;   // Reset floor count
             ResetRun();
             HealPlayerOnStart();
+        }
+        else
+        {
+            currentFloor++;     // Every new level increments floor
         }
 
         // Reapply persistent item effects
