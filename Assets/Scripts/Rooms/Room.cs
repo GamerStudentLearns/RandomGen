@@ -32,13 +32,13 @@ public class Room : MonoBehaviour
 
     public bool useSpecialDoorSprites = false;
 
-
     [Header("Trapdoor Objects")]
     public GameObject trapdoorOpen;
     public GameObject trapdoorClosed;
     public bool hasTrapdoor;
 
-    [Header("Boss")]
+    [Header("Boss Room")]
+    public bool isBossRoom = false;
     public GameObject bossObject;
     public bool hasBoss = false;
 
@@ -115,7 +115,11 @@ public class Room : MonoBehaviour
             return;
 
         LockRoom();
-        SpawnEnemies();
+
+        // Prevent enemy spawning in boss room
+        if (!isBossRoom)
+            SpawnEnemies();
+
         StartCoroutine(CheckRoomClear());
     }
 
@@ -188,6 +192,9 @@ public class Room : MonoBehaviour
         if (isStartingRoom)
             return;
 
+        if (isBossRoom)
+            return; // Prevent enemies in boss room
+
         if (enemyPrefabs.Count == 0 || enemySpawnPoints.Count == 0)
             return;
 
@@ -217,17 +224,13 @@ public class Room : MonoBehaviour
     {
         while (true)
         {
-            // Remove dead enemies
             spawnedEnemies.RemoveAll(e => e == null);
 
             bool bossDead = true;
 
             if (hasBoss && bossObject != null)
-                bossDead = bossObject == null; // boss destroyed = dead
+                bossDead = bossObject == null;
 
-            // Room is clear when:
-            // 1. All normal enemies are dead
-            // 2. Boss is dead (if present)
             if (spawnedEnemies.Count == 0 && bossDead)
             {
                 ClearRoom();
@@ -237,7 +240,6 @@ public class Room : MonoBehaviour
             yield return null;
         }
     }
-
 
     public void OpenDoor(Vector2Int direction)
     {
@@ -270,7 +272,6 @@ public class Room : MonoBehaviour
         if (hasRightDoor && rightDoor != null)
             rightDoor.GetComponent<SpriteRenderer>().sprite = specialRightDoorSprite;
 
-        // Closed variants
         if (hasTopDoor && topClosedDoor != null)
             topClosedDoor.GetComponent<SpriteRenderer>().sprite = specialTopClosedSprite;
 
@@ -283,5 +284,4 @@ public class Room : MonoBehaviour
         if (hasRightDoor && rightClosedDoor != null)
             rightClosedDoor.GetComponent<SpriteRenderer>().sprite = specialRightClosedSprite;
     }
-
 }

@@ -51,6 +51,7 @@ MonoBehaviour:
   gridSizeY: 10
   trapdoorOpenPrefab: {fileID: 3574237843649389023, guid: fa8a6b1b0e148944fb1877a97780fbc7, type: 3}
   trapdoorClosedPrefab: {fileID: 8461104843292654948, guid: efca7a7b4d25bf24b8fece2c6c59ccb0, type: 3}
+  bossPrefab: {fileID: 0}
   specialRoomPrefabs:
   - {fileID: 7845500907461789919, guid: 4178eaf602372c44c90c944199625ebd, type: 3}
   - {fileID: 710955612871149234, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
@@ -65,4 +66,5 @@ MonoBehaviour:
   - {fileID: 3446994587677009910, guid: e31d54d547adb5e43ac3958e719526e4, type: 3}
   - {fileID: 2517428036949600514, guid: 48c52f69f7caab24581931304e776b79, type: 3}
   - {fileID: 8116734023158253103, guid: a9206c6533c466246a7187f92ed7daf7, type: 3}
+  - {fileID: 1799603073107082396, guid: b615b5cef6f56ac49b8ace1ea460a742, type: 3}
   minimap: {fileID: 0}
