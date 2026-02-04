@@ -702,6 +702,18 @@ PrefabInstance:
       propertyPath: bossPrefab
       value: 
       objectReference: {fileID: 4654390427696923661, guid: 67285d564a9ce034eab9eee3f61a9fe5, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: bossPrefab.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'bossPrefab.Array.data[0]'
+      value: 
+      objectReference: {fileID: 5798193429407882583, guid: b65bbe8382e57ae47b0c4aad9d7e1694, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'bossPrefab.Array.data[1]'
+      value: 
+      objectReference: {fileID: 4654390427696923661, guid: 67285d564a9ce034eab9eee3f61a9fe5, type: 3}
     - target: {fileID: 4057666898281785021, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.74274

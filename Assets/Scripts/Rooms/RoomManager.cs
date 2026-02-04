@@ -29,13 +29,16 @@ public class RoomManager : MonoBehaviour
     public GameObject trapdoorOpenPrefab;
     public GameObject trapdoorClosedPrefab;
 
-    [Header("Boss Prefab")]
-    public GameObject bossPrefab;
+    [Header("Boss Prefabs")]
+    public GameObject[] bossPrefab;
+
 
     [Header("Special Room Prefabs")]
     [SerializeField] private GameObject[] specialRoomPrefabs;
 
     private static HashSet<GameObject> spawnedItemsThisRun = new HashSet<GameObject>();
+    private static HashSet<GameObject> usedBossesThisRun = new HashSet<GameObject>();
+
 
     public MinimapManager minimap;
 
@@ -54,8 +57,10 @@ public class RoomManager : MonoBehaviour
         if (scene.name == "Level1")
         {
             spawnedItemsThisRun.Clear();
+            usedBossesThisRun.Clear();   // RESET BOSSES FOR NEW RUN
         }
     }
+
 
     private void Start()
     {
@@ -104,15 +109,51 @@ public class RoomManager : MonoBehaviour
         GameObject lastRoom = GetFurthestRoom();
         Room lastRoomScript = lastRoom.GetComponent<Room>();
 
-        // Mark as boss room
         lastRoomScript.isBossRoom = true;
         lastRoomScript.hasBoss = true;
 
         // ---------------------------------------------------------
-        // 2. Spawn trapdoor (closed by default)
+        // 2. Choose a boss prefab that hasn't been used this run
         // ---------------------------------------------------------
-        GameObject trapOpen = Instantiate(trapdoorOpenPrefab, lastRoom.transform.position, Quaternion.identity, lastRoom.transform);
-        GameObject trapClosed = Instantiate(trapdoorClosedPrefab, lastRoom.transform.position, Quaternion.identity, lastRoom.transform);
+        var availableBosses = bossPrefab
+            .Where(b => !usedBossesThisRun.Contains(b))
+            .ToList();
+
+        if (availableBosses.Count == 0)
+            availableBosses = bossPrefab.ToList();
+
+        GameObject chosenBoss = availableBosses[Random.Range(0, availableBosses.Count)];
+        usedBossesThisRun.Add(chosenBoss);
+
+        // ---------------------------------------------------------
+        // 3. Spawn boss and assign it to the room
+        // ---------------------------------------------------------
+        GameObject bossInstance = Instantiate(
+            chosenBoss,
+            lastRoom.transform.position + new Vector3(0, 2f, 0),
+            Quaternion.identity,
+            lastRoom.transform
+        );
+
+        lastRoomScript.bossObject = bossInstance;
+        lastRoomScript.hasBoss = true;
+
+        // ---------------------------------------------------------
+        // 4. Spawn trapdoor (closed by default)
+        // ---------------------------------------------------------
+        GameObject trapOpen = Instantiate(
+            trapdoorOpenPrefab,
+            lastRoom.transform.position,
+            Quaternion.identity,
+            lastRoom.transform
+        );
+
+        GameObject trapClosed = Instantiate(
+            trapdoorClosedPrefab,
+            lastRoom.transform.position,
+            Quaternion.identity,
+            lastRoom.transform
+        );
 
         lastRoomScript.trapdoorOpen = trapOpen;
         lastRoomScript.trapdoorClosed = trapClosed;
@@ -123,7 +164,7 @@ public class RoomManager : MonoBehaviour
         lastRoomScript.hasTrapdoor = true;
 
         // ---------------------------------------------------------
-        // 3. Collect all one-door rooms (excluding start + boss room)
+        // 5. Collect all one-door rooms (excluding start + boss room)
         // ---------------------------------------------------------
         List<GameObject> oneDoorRooms = new List<GameObject>();
 
@@ -139,7 +180,7 @@ public class RoomManager : MonoBehaviour
         }
 
         // ---------------------------------------------------------
-        // 4. Pick a special room prefab that hasn't been used
+        // 6. Pick a special room prefab that hasn't been used this run
         // ---------------------------------------------------------
         var availablePrefabs = specialRoomPrefabs
             .Where(p => !spawnedItemsThisRun.Contains(p))
@@ -156,13 +197,12 @@ public class RoomManager : MonoBehaviour
 
             spawnedItemsThisRun.Add(chosenPrefab);
 
-            // Apply special door sprites
             chosenRoomScript.ApplySpecialDoorSprites();
-
-            // Apply opposite-facing sprites to connecting room
             ApplySpecialSpritesToConnectingRoom(chosenRoomScript);
         }
     }
+
+
 
 
 

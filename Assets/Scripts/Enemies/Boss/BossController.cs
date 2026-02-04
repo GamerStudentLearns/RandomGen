@@ -10,13 +10,17 @@ public class BossController : MonoBehaviour
 
     public GameObject projectilePrefab;
 
+    // NEW — boss starts asleep
+    public bool isAwake = false;
+
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
     }
 
     private void Update()
     {
+        if (!isAwake) return;       // NEW — do nothing until awakened
         if (player == null) return;
 
         MoveTowardPlayer();
@@ -53,5 +57,12 @@ public class BossController : MonoBehaviour
             GameObject proj = Instantiate(projectilePrefab, transform.position, rot);
             proj.GetComponent<Rigidbody2D>().linearVelocity = rot * Vector2.right * 6f;
         }
+    }
+
+    // NEW — called by Room.cs when player enters
+    public void WakeUp()
+    {
+        isAwake = true;
+        attackTimer = attackCooldown; // reset attack timer so it doesn't fire instantly
     }
 }

@@ -1,0 +1,572 @@
+fileFormatVersion: 2
+guid: dd404f2bbf4f2144a89668004cc32752
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6145057964417655275
+    second: Craig_Sprite_Sheet_0
+  - first:
+      213: 3411839218912689589
+    second: Craig_Sprite_Sheet_1
+  - first:
+      213: -5653920940752604808
+    second: Craig_Sprite_Sheet_2
+  - first:
+      213: -4802953764301795265
+    second: Craig_Sprite_Sheet_3
+  - first:
+      213: -5786257686007027720
+    second: Craig_Sprite_Sheet_4
+  - first:
+      213: -1103152325594032348
+    second: Craig_Sprite_Sheet_5
+  - first:
+      213: 686595515448344150
+    second: Craig_Sprite_Sheet_6
+  - first:
+      213: -5524702042740318215
+    second: Craig_Sprite_Sheet_7
+  - first:
+      213: 7247576540721659961
+    second: Craig_Sprite_Sheet_8
+  - first:
+      213: -7923928247019075595
+    second: Craig_Sprite_Sheet_9
+  - first:
+      213: -8754124445527255615
+    second: Craig_Sprite_Sheet_10
+  - first:
+      213: 2272353632496098660
+    second: Craig_Sprite_Sheet_11
+  - first:
+      213: 1569359706270102988
+    second: Craig_Sprite_Sheet_12
+  - first:
+      213: 6602095104239073287
+    second: Craig_Sprite_Sheet_13
+  - first:
+      213: 804941805053826456
+    second: Craig_Sprite_Sheet_14
+  - first:
+      213: -3898767016032355335
+    second: Craig_Sprite_Sheet_15
+  - first:
+      213: -1381190448101945172
+    second: Craig_Sprite_Sheet_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 15
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be1ac4529a1a74550800000000000000
+      internalID: 6145057964417655275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 15
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bd790261b9495f20800000000000000
+      internalID: 3411839218912689589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 15
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8717c423cdc3981b0800000000000000
+      internalID: -5653920940752604808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 15
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f309a2e9ffa785db0800000000000000
+      internalID: -4802953764301795265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 15
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f76dae9a4513bfa0800000000000000
+      internalID: -5786257686007027720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 15
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42752dbfdc0d0b0f0800000000000000
+      internalID: -1103152325594032348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 15
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65ebcaacbf6478900800000000000000
+      internalID: 686595515448344150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 15
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ff969463c05453b0800000000000000
+      internalID: -5524702042740318215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 15
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9304b28e670949460800000000000000
+      internalID: 7247576540721659961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 15
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f78ebafd3d880290800000000000000
+      internalID: -7923928247019075595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 15
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c5d8c8b23a138680800000000000000
+      internalID: -8754124445527255615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 15
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46d9ffcd695098f10800000000000000
+      internalID: 2272353632496098660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 15
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc57a09865c77c510800000000000000
+      internalID: 1569359706270102988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 15
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 708f385948a5f9b50800000000000000
+      internalID: 6602095104239073287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 15
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89558139e4abb2b00800000000000000
+      internalID: 804941805053826456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 15
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fbb1633e0cc4e9c0800000000000000
+      internalID: -3898767016032355335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Craig_Sprite_Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1044
+        y: 15
+        width: 24
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca098b5fa9605dce0800000000000000
+      internalID: -1381190448101945172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Craig_Sprite_Sheet_0: 6145057964417655275
+      Craig_Sprite_Sheet_1: 3411839218912689589
+      Craig_Sprite_Sheet_10: -8754124445527255615
+      Craig_Sprite_Sheet_11: 2272353632496098660
+      Craig_Sprite_Sheet_12: 1569359706270102988
+      Craig_Sprite_Sheet_13: 6602095104239073287
+      Craig_Sprite_Sheet_14: 804941805053826456
+      Craig_Sprite_Sheet_15: -3898767016032355335
+      Craig_Sprite_Sheet_16: -1381190448101945172
+      Craig_Sprite_Sheet_2: -5653920940752604808
+      Craig_Sprite_Sheet_3: -4802953764301795265
+      Craig_Sprite_Sheet_4: -5786257686007027720
+      Craig_Sprite_Sheet_5: -1103152325594032348
+      Craig_Sprite_Sheet_6: 686595515448344150
+      Craig_Sprite_Sheet_7: -5524702042740318215
+      Craig_Sprite_Sheet_8: 7247576540721659961
+      Craig_Sprite_Sheet_9: -7923928247019075595
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

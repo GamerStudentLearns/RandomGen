@@ -39,7 +39,7 @@ public class Room : MonoBehaviour
 
     [Header("Boss Room")]
     public bool isBossRoom = false;
-    public GameObject bossObject;
+    public GameObject bossObject;   // Assigned by RoomManager
     public bool hasBoss = false;
 
     [Header("Door Existence Flags (set by RoomManager)")]
@@ -95,37 +95,58 @@ public class Room : MonoBehaviour
 
     public void PlayerEnteredRoom()
     {
+        // Reveal this room on the minimap
         if (minimapIcon != null)
             minimapIcon.Reveal();
 
         minimap.MarkVisited(RoomIndex);
         minimap.SetCurrentRoom(RoomIndex);
 
+        // Reveal adjacent rooms
         RevealAdjacent(RoomIndex + Vector2Int.up);
         RevealAdjacent(RoomIndex + Vector2Int.down);
         RevealAdjacent(RoomIndex + Vector2Int.left);
         RevealAdjacent(RoomIndex + Vector2Int.right);
 
+        // Prevent double activation
         if (roomActivated)
             return;
 
         roomActivated = true;
 
+        // Starting room never locks or spawns enemies
         if (isStartingRoom)
             return;
 
+        // Lock the room (doors close)
         LockRoom();
 
-        // Normal enemies only in non-boss rooms
+        // Spawn normal enemies only in non-boss rooms
         if (!isBossRoom)
             SpawnEnemies();
 
-        // Boss spawns ONLY when player enters
-        if (isBossRoom && bossObject == null)
-            SpawnBoss();
+        // Boss activation (RoomManager already spawned the boss)
+        if (isBossRoom && bossObject != null)
+        {
+            // Hook boss health to room + UI
+            EnemyHealth bossHealth = bossObject.GetComponent<EnemyHealth>();
+            if (bossHealth != null)
+            {
+                bossHealth.parentRoom = this;
+                BossHealthUI.instance.Show(bossHealth.maxHealth);
+            }
 
+            // Wake the boss AI
+            IBoss[] bosses = bossObject.GetComponents<IBoss>();
+            foreach (IBoss boss in bosses)
+                boss.WakeUp();
+
+        }
+
+        // Begin monitoring for room clear
         StartCoroutine(CheckRoomClear());
     }
+
 
     private void RevealAdjacent(Vector2Int index)
     {
@@ -224,27 +245,6 @@ public class Room : MonoBehaviour
         }
     }
 
-    private void SpawnBoss()
-    {
-        RoomManager rm = FindFirstObjectByType<RoomManager>();
-        if (rm == null || rm.bossPrefab == null)
-        {
-            Debug.LogError("RoomManager or bossPrefab missing!");
-            return;
-        }
-
-        Vector3 spawnPos = transform.position + new Vector3(0, 2f, 0);
-
-        bossObject = Instantiate(rm.bossPrefab, spawnPos, Quaternion.identity, transform);
-
-        EnemyHealth bossHealth = bossObject.GetComponent<EnemyHealth>();
-        if (bossHealth != null)
-        {
-            bossHealth.parentRoom = this;
-            BossHealthUI.instance.Show(bossHealth.maxHealth);
-        }
-    }
-
     private IEnumerator CheckRoomClear()
     {
         while (true)
@@ -253,8 +253,8 @@ public class Room : MonoBehaviour
 
             bool bossDead = true;
 
-            if (hasBoss && bossObject != null)
-                bossDead = bossObject == null;
+            if (hasBoss)
+                bossDead = (bossObject == null);
 
             if (spawnedEnemies.Count == 0 && bossDead)
             {
