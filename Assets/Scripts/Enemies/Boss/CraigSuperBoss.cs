@@ -10,7 +10,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         HushFan,
         RapidBarrage,
         TearRain,
-        DVDBounce,
         HolyBeams,
         MegaMaw,
         TunnelWorm,
@@ -29,18 +28,14 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
 
     [Header("Phase Switching")]
     public float normalPhaseDuration = 8f;
-    public float lowHPPhaseDuration = 2f;   // when below 10%
+    public float lowHPPhaseDuration = 2f;
     private float phaseTimer;
 
     private int phaseCount;
     public BossPhase currentPhase;
 
-    // Internal timers
     private float timerA;
     private float timerB;
-
-    // DVD Bounce
-    private Vector2 dvdDirection = new Vector2(1, 1);
 
     // EyeLord
     private GameObject leftEye;
@@ -81,14 +76,15 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         phaseTimer = normalPhaseDuration;
         phaseCount = System.Enum.GetValues(typeof(BossPhase)).Length;
 
-        dvdDirection = dvdDirection.normalized;
-
         spriteRenderer = GetComponent<SpriteRenderer>();
         col2D = GetComponent<Collider2D>();
 
-        // Create orbiting eyes for EyeLord phase, parented to boss
+        // Create orbiting eyes (hidden by default)
         leftEye = Instantiate(eyePrefab, transform.position, Quaternion.identity, transform);
         rightEye = Instantiate(eyePrefab, transform.position, Quaternion.identity, transform);
+
+        leftEye.GetComponent<SpriteRenderer>().enabled = false;
+        rightEye.GetComponent<SpriteRenderer>().enabled = false;
 
         timerA = 1f;
         timerB = 1f;
@@ -109,7 +105,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
             case BossPhase.HushFan: Phase_HushFan(); break;
             case BossPhase.RapidBarrage: Phase_RapidBarrage(); break;
             case BossPhase.TearRain: Phase_TearRain(); break;
-            case BossPhase.DVDBounce: Phase_DVDBounce(); break;
             case BossPhase.HolyBeams: Phase_HolyBeams(); break;
             case BossPhase.MegaMaw: Phase_MegaMaw(); break;
             case BossPhase.TunnelWorm: Phase_TunnelWorm(); break;
@@ -144,13 +139,18 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
 
         currentPhase = (BossPhase)next;
 
-        // ⭐ Reset phase timers so phases don't inherit broken values
+        // Reset timers so phases don't inherit broken values
         timerA = 1f;
         timerB = 1f;
+
+        // Hide eyes unless EyeLord is active
+        if (currentPhase != BossPhase.EyeLord)
+        {
+            leftEye.GetComponent<SpriteRenderer>().enabled = false;
+            rightEye.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
-
-    // Called by EnemyHealth.TakeDamage()
     public void OnDamaged(float current, float max)
     {
         float hpPercent = current / max;
@@ -163,7 +163,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
     // PHASES
     // ============================================================
 
-    // MONSTRO — Hop + Fan Shot (center aimed at player)
     private void Phase_Monstro()
     {
         timerA -= Time.deltaTime;
@@ -189,7 +188,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         }
     }
 
-    // CHUB — Slow move + Charge + Aimed shot
     private void Phase_Chub()
     {
         timerA -= Time.deltaTime;
@@ -202,8 +200,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
             {
                 chubCharging = false;
                 timerA = 1.5f;
-
-                // Fire one aimed shot after charge
                 FireAimed(7f);
             }
         }
@@ -221,7 +217,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         }
     }
 
-    // GURDY — Spawn + Fan Shot
     private void Phase_Gurdy()
     {
         timerA -= Time.deltaTime;
@@ -238,7 +233,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         }
     }
 
-    // HUSH FAN — Sweeping Bullet Hell (not aimed)
     private void Phase_HushFan()
     {
         timerA -= Time.deltaTime;
@@ -261,7 +255,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         }
     }
 
-    // RAPID BARRAGE — Fast Aimed Shots
     private void Phase_RapidBarrage()
     {
         timerA -= Time.deltaTime;
@@ -273,7 +266,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         }
     }
 
-    // TEAR RAIN — Random Bullet Hell
     private void Phase_TearRain()
     {
         timerA -= Time.deltaTime;
@@ -287,22 +279,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         }
     }
 
-    // DVD BOUNCE — Bouncing Movement
-    private void Phase_DVDBounce()
-    {
-        transform.position += (Vector3)(dvdDirection * 3f * Time.deltaTime);
-    }
-
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.collider.CompareTag("Wall"))
-        {
-            Vector2 normal = col.contacts[0].normal;
-            dvdDirection = Vector2.Reflect(dvdDirection, normal).normalized;
-        }
-    }
-
-    // HOLY BEAMS — Vertical/Horizontal Lines (not aimed)
     private void Phase_HolyBeams()
     {
         timerA -= Time.deltaTime;
@@ -325,7 +301,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         }
     }
 
-    // MEGA MAW — Rotating Bullet Hell
     private void Phase_MegaMaw()
     {
         mawAngle += 120f * Time.deltaTime;
@@ -338,7 +313,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         }
     }
 
-    // TUNNEL WORM — Burrow + Ring Burst (bullet hell)
     private void Phase_TunnelWorm()
     {
         timerA -= Time.deltaTime;
@@ -347,15 +321,14 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         {
             transform.position += wormDir * 6f * Time.deltaTime;
 
-            // Keep worm inside room even while burrowed
             ClampToRoom();
 
             if (timerA <= 0)
             {
                 wormBurrowed = false;
 
-                if (spriteRenderer != null) spriteRenderer.enabled = true;
-                if (col2D != null) col2D.enabled = true;
+                spriteRenderer.enabled = true;
+                col2D.enabled = true;
 
                 FireRing(12, 4f);
                 timerA = 2f;
@@ -368,43 +341,37 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
                 wormBurrowed = true;
                 wormDir = (player.position - transform.position).normalized;
 
-                if (spriteRenderer != null) spriteRenderer.enabled = false;
-                if (col2D != null) col2D.enabled = false;
+                spriteRenderer.enabled = false;
+                col2D.enabled = false;
 
                 timerA = 1.5f;
             }
         }
     }
 
-    // EYE LORD — Orbiting Eyes + Diagonal Shots (not aimed)
     private void Phase_EyeLord()
     {
+        // Eyes visible only during this phase
+        leftEye.GetComponent<SpriteRenderer>().enabled = true;
+        rightEye.GetComponent<SpriteRenderer>().enabled = true;
+
         float orbitSpeed = 90f;
         float radius = 2f;
 
         float t = Time.time * orbitSpeed * Mathf.Deg2Rad;
 
-        // Local positions so they follow the boss
-        if (leftEye != null)
-            leftEye.transform.localPosition = new Vector3(Mathf.Cos(t), Mathf.Sin(t)) * radius;
-
-        if (rightEye != null)
-            rightEye.transform.localPosition = new Vector3(Mathf.Cos(t + Mathf.PI), Mathf.Sin(t + Mathf.PI)) * radius;
+        leftEye.transform.localPosition = new Vector3(Mathf.Cos(t), Mathf.Sin(t)) * radius;
+        rightEye.transform.localPosition = new Vector3(Mathf.Cos(t + Mathf.PI), Mathf.Sin(t + Mathf.PI)) * radius;
 
         timerA -= Time.deltaTime;
         if (timerA <= 0)
         {
-            if (leftEye != null)
-                FireDiagonal(leftEye.transform.position);
-
-            if (rightEye != null)
-                FireDiagonal(rightEye.transform.position);
-
+            FireDiagonal(leftEye.transform.position);
+            FireDiagonal(rightEye.transform.position);
             timerA = 1.5f;
         }
     }
 
-    // FATTY — Vacuum + Fan Shot
     private void Phase_Fatty()
     {
         timerA -= Time.deltaTime;
@@ -423,7 +390,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
     // ATTACK HELPERS
     // ============================================================
 
-    // Aimed directly at player
     private void FireAimed(float speed)
     {
         Vector2 dir = (player.position - transform.position).normalized;
@@ -431,7 +397,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         t.GetComponent<Rigidbody2D>().linearVelocity = dir * speed;
     }
 
-    // Fan centered on player (middle shot aimed)
     private void FireFan(int count, float angleStep, float speed)
     {
         Vector2 dir = (player.position - transform.position).normalized;
@@ -445,7 +410,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         }
     }
 
-    // Free-angle shot (for bullet hell)
     private void FireAngle(float angle, float speed)
     {
         float rad = angle * Mathf.Deg2Rad;
@@ -484,7 +448,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         Instantiate(minionPrefab, transform.position + (Vector3)offset, Quaternion.identity);
     }
 
-    // IBoss
     public void WakeUp() => isAwake = true;
 
     // ============================================================
@@ -493,8 +456,8 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
 
     private void ClampToRoom()
     {
-        float halfWidth = 15f;   // 30 / 2
-        float halfHeight = 6f;   // 12 / 2
+        float halfWidth = 15f;
+        float halfHeight = 6f;
 
         Vector3 center = transform.parent != null ? transform.parent.position : Vector3.zero;
         Vector3 pos = transform.position;

@@ -889,6 +889,9 @@ MonoBehaviour:
   trapdoorOpen: {fileID: 3574237843649389023, guid: fa8a6b1b0e148944fb1877a97780fbc7, type: 3}
   trapdoorClosed: {fileID: 8461104843292654948, guid: efca7a7b4d25bf24b8fece2c6c59ccb0, type: 3}
   hasTrapdoor: 0
+  isBossRoom: 0
+  bossObject: {fileID: 0}
+  hasBoss: 0
   hasTopDoor: 0
   hasBottomDoor: 0
   hasLeftDoor: 0
@@ -1589,7 +1592,7 @@ Transform:
   m_GameObject: {fileID: 4050144371418764333}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.70710576, w: 0.70710784}
-  m_LocalPosition: {x: -0.0063, y: -5.12, z: 0}
+  m_LocalPosition: {x: -0.0063, y: -4.71, z: 0}
   m_LocalScale: {x: 0.91954666, y: 28.229591, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3732,7 +3735,7 @@ Transform:
   m_GameObject: {fileID: 8579800617857678328}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.03, y: 0.2085, z: 0}
+  m_LocalPosition: {x: -10.67, y: 0.2085, z: 0}
   m_LocalScale: {x: 1.4741114, y: 14.822529, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3810,7 +3813,7 @@ Transform:
   m_GameObject: {fileID: 8587574156905664696}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.70710576, w: 0.70710784}
-  m_LocalPosition: {x: 0.5001, y: 6, z: 0}
+  m_LocalPosition: {x: 0.5001, y: 5.79, z: 0}
   m_LocalScale: {x: 1, y: 26.839989, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3966,7 +3969,7 @@ Transform:
   m_GameObject: {fileID: 9116408727400912556}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.62, y: -0.3123, z: 0}
+  m_LocalPosition: {x: 10.28, y: -0.3123, z: 0}
   m_LocalScale: {x: 1.5436, y: 14.475098, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
