@@ -39,14 +39,24 @@ public class PileShooterBoss : MonoBehaviour, IBoss
 
     private void FireVolley()
     {
+        // Direction from boss to player
+        Vector2 toPlayer = (player.position - transform.position).normalized;
+
+        // Base angle pointing toward the player
+        float baseAngle = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
+
         for (int i = -2; i <= 2; i++)
         {
-            float angle = i * 10f;
+            float angle = baseAngle + (i * 10f); // spread around the player direction
             Quaternion rot = Quaternion.Euler(0, 0, angle);
+
             GameObject proj = Instantiate(projectilePrefab, transform.position, rot);
+
+            // Use the rotated direction instead of Vector2.right
             proj.GetComponent<Rigidbody2D>().linearVelocity = rot * Vector2.right * 5f;
         }
     }
+
 
     private void SpawnMinion()
     {

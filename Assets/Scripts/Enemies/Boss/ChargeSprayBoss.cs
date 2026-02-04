@@ -55,14 +55,23 @@ public class ChargeSprayBoss : MonoBehaviour, IBoss
 
     private void SprayCone()
     {
+        // Direction from boss to player
+        Vector2 dir = (player.position - transform.position).normalized;
+
+        // Convert direction to angle in degrees
+        float baseAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        // Fire 5 bullets centered on the player direction
         for (int i = -2; i <= 2; i++)
         {
-            float angle = i * 12f;
+            float angle = baseAngle + (i * 12f); // spread around the player
             Quaternion rot = Quaternion.Euler(0, 0, angle);
+
             GameObject proj = Instantiate(projectilePrefab, transform.position, rot);
             proj.GetComponent<Rigidbody2D>().linearVelocity = rot * Vector2.right * 6f;
         }
     }
+
 
     public void WakeUp() => isAwake = true;
 }

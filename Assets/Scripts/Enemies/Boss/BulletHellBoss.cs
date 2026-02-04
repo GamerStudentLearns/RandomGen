@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class BulletHellBoss : MonoBehaviour, IBoss
 {
+    [Header("Movement & Player")]
     public float moveSpeed = 1.2f;
     public Transform player;
 
+    [Header("Projectile")]
     public GameObject projectilePrefab;
 
+    [Header("Boss State")]
     public bool isAwake = false;
 
     [Header("Attack Timers")]
@@ -19,11 +22,25 @@ public class BulletHellBoss : MonoBehaviour, IBoss
     private int currentPattern = 0;
     private float angleOffset = 0f;
 
+    // ---------------------------------------------------------
+    // NEW — SPRITE FLAP ANIMATION
+    // ---------------------------------------------------------
+    [Header("Flap Animation")]
+    public Sprite idleSprite;
+    public Sprite flapSprite;
+    public float flapSpeed = 0.15f;
+
+    private SpriteRenderer sr;
+    private float flapTimer = 0f;
+    private bool flapState = false;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         patternTimer = patternSwitchTime;
         fireTimer = fireRate;
+
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -32,14 +49,33 @@ public class BulletHellBoss : MonoBehaviour, IBoss
 
         MoveTowardPlayer();
         HandlePatterns();
+        AnimateFlap();
     }
 
+    private void AnimateFlap()
+    {
+        flapTimer -= Time.deltaTime;
+
+        if (flapTimer <= 0f)
+        {
+            flapState = !flapState;
+            sr.sprite = flapState ? flapSprite : idleSprite;
+            flapTimer = flapSpeed;
+        }
+    }
+
+    // ---------------------------------------------------------
+    // MOVEMENT
+    // ---------------------------------------------------------
     private void MoveTowardPlayer()
     {
         Vector2 dir = (player.position - transform.position).normalized;
         transform.position += (Vector3)dir * moveSpeed * Time.deltaTime;
     }
 
+    // ---------------------------------------------------------
+    // PATTERN HANDLING
+    // ---------------------------------------------------------
     private void HandlePatterns()
     {
         patternTimer -= Time.deltaTime;
@@ -69,7 +105,7 @@ public class BulletHellBoss : MonoBehaviour, IBoss
     // ---------------------------------------------------------
     private void SpiralPattern()
     {
-        angleOffset += 10f; // rotates over time
+        angleOffset += 10f;
         float angle = angleOffset;
 
         Quaternion rot = Quaternion.Euler(0, 0, angle);
@@ -94,7 +130,7 @@ public class BulletHellBoss : MonoBehaviour, IBoss
             proj.GetComponent<Rigidbody2D>().linearVelocity = rot * Vector2.right * 4f;
         }
 
-        angleOffset += 15f; // rotates each ring slightly
+        angleOffset += 15f;
     }
 
     // ---------------------------------------------------------
@@ -105,7 +141,6 @@ public class BulletHellBoss : MonoBehaviour, IBoss
 
     private void SweepingArcPattern()
     {
-        // Sweep between -60 and +60 degrees
         if (sweepRight)
         {
             sweepAngle += 4f;

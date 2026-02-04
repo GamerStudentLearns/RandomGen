@@ -10,6 +10,7 @@ public class WideFanBoss : MonoBehaviour, IBoss
     public float sweepCooldown = 2f;
     private float sweepTimer;
 
+    // Sweep offset relative to the player-facing direction
     private float sweepAngle = -60f;
     private bool sweepingRight = true;
 
@@ -34,7 +35,7 @@ public class WideFanBoss : MonoBehaviour, IBoss
 
     private void FireSweep()
     {
-        // Sweep between -60 and +60 degrees
+        // Move sweep angle left/right
         if (sweepingRight)
         {
             sweepAngle += 8f;
@@ -46,9 +47,18 @@ public class WideFanBoss : MonoBehaviour, IBoss
             if (sweepAngle <= -60f) sweepingRight = true;
         }
 
-        Quaternion rot = Quaternion.Euler(0, 0, sweepAngle);
+        // Aim base direction at the player
+        Vector2 dir = player.position - transform.position;
+        float baseAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        // Add sweep offset
+        float finalAngle = baseAngle + sweepAngle;
+
+        Quaternion rot = Quaternion.Euler(0, 0, finalAngle);
+
         GameObject tear = Instantiate(tearPrefab, transform.position, rot);
-        tear.GetComponent<Rigidbody2D>().linearVelocity = rot * Vector2.right * 4f;
+        tear.GetComponent<Rigidbody2D>().linearVelocity =
+            rot * Vector2.right * 4f;
     }
 
     public void WakeUp() => isAwake = true;
