@@ -116,9 +116,13 @@ public class Room : MonoBehaviour
 
         LockRoom();
 
-        // Prevent enemy spawning in boss room
+        // Normal enemies only in non-boss rooms
         if (!isBossRoom)
             SpawnEnemies();
+
+        // Boss spawns ONLY when player enters
+        if (isBossRoom && bossObject == null)
+            SpawnBoss();
 
         StartCoroutine(CheckRoomClear());
     }
@@ -193,7 +197,7 @@ public class Room : MonoBehaviour
             return;
 
         if (isBossRoom)
-            return; // Prevent enemies in boss room
+            return;
 
         if (enemyPrefabs.Count == 0 || enemySpawnPoints.Count == 0)
             return;
@@ -217,6 +221,27 @@ public class Room : MonoBehaviour
                 health.parentRoom = this;
 
             spawnedEnemies.Add(enemy);
+        }
+    }
+
+    private void SpawnBoss()
+    {
+        RoomManager rm = FindFirstObjectByType<RoomManager>();
+        if (rm == null || rm.bossPrefab == null)
+        {
+            Debug.LogError("RoomManager or bossPrefab missing!");
+            return;
+        }
+
+        Vector3 spawnPos = transform.position + new Vector3(0, 2f, 0);
+
+        bossObject = Instantiate(rm.bossPrefab, spawnPos, Quaternion.identity, transform);
+
+        EnemyHealth bossHealth = bossObject.GetComponent<EnemyHealth>();
+        if (bossHealth != null)
+        {
+            bossHealth.parentRoom = this;
+            BossHealthUI.instance.Show(bossHealth.maxHealth);
         }
     }
 

@@ -99,17 +99,18 @@ public class RoomManager : MonoBehaviour
         yield return null;
 
         // ---------------------------------------------------------
-        // 1. Assign trapdoor + boss to the last generated room
+        // 1. Pick the REAL boss room (furthest from start)
         // ---------------------------------------------------------
-        GameObject lastRoom = roomObjects.Last();
+        GameObject lastRoom = GetFurthestRoom();
         Room lastRoomScript = lastRoom.GetComponent<Room>();
 
-        // Mark room as having a trapdoor
-        lastRoomScript.hasTrapdoor = true;
+        // Mark as boss room
+        lastRoomScript.isBossRoom = true;
+        lastRoomScript.hasBoss = true;
 
-        // -------------------------
-        // Spawn trapdoor (open + closed)
-        // -------------------------
+        // ---------------------------------------------------------
+        // 2. Spawn trapdoor (closed by default)
+        // ---------------------------------------------------------
         GameObject trapOpen = Instantiate(trapdoorOpenPrefab, lastRoom.transform.position, Quaternion.identity, lastRoom.transform);
         GameObject trapClosed = Instantiate(trapdoorClosedPrefab, lastRoom.transform.position, Quaternion.identity, lastRoom.transform);
 
@@ -119,28 +120,10 @@ public class RoomManager : MonoBehaviour
         trapOpen.SetActive(false);
         trapClosed.SetActive(true);
 
-        // -------------------------
-        // Spawn the boss
-        // -------------------------
-        if (bossPrefab != null)
-        {
-            // Offset so boss doesn't overlap trapdoor
-            Vector3 bossPos = lastRoom.transform.position + new Vector3(0, 2f, 0);
-
-            GameObject boss = Instantiate(bossPrefab, bossPos, Quaternion.identity, lastRoom.transform);
-
-            // Assign to room
-            lastRoomScript.bossObject = boss;
-            lastRoomScript.hasBoss = true;
-
-            // Optional: allow boss to notify room when it dies
-            EnemyHealth health = boss.GetComponent<EnemyHealth>();
-            if (health != null)
-                health.parentRoom = lastRoomScript;
-        }
+        lastRoomScript.hasTrapdoor = true;
 
         // ---------------------------------------------------------
-        // 2. Collect all one-door rooms (excluding start + last)
+        // 3. Collect all one-door rooms (excluding start + boss room)
         // ---------------------------------------------------------
         List<GameObject> oneDoorRooms = new List<GameObject>();
 
@@ -156,7 +139,7 @@ public class RoomManager : MonoBehaviour
         }
 
         // ---------------------------------------------------------
-        // 3. Pick a special room prefab that hasn't been used
+        // 4. Pick a special room prefab that hasn't been used
         // ---------------------------------------------------------
         var availablePrefabs = specialRoomPrefabs
             .Where(p => !spawnedItemsThisRun.Contains(p))
@@ -164,29 +147,24 @@ public class RoomManager : MonoBehaviour
 
         if (oneDoorRooms.Count > 0 && availablePrefabs.Count > 0)
         {
-            // Choose the one-door room
             GameObject chosenRoom = oneDoorRooms[Random.Range(0, oneDoorRooms.Count)];
             Room chosenRoomScript = chosenRoom.GetComponent<Room>();
 
-            // Choose the special prefab
             GameObject chosenPrefab = availablePrefabs[Random.Range(0, availablePrefabs.Count)];
 
-            // Spawn the special room content inside it
             Instantiate(chosenPrefab, chosenRoom.transform.position, Quaternion.identity, chosenRoom.transform);
 
             spawnedItemsThisRun.Add(chosenPrefab);
 
-            // ---------------------------------------------------------
-            // 4. Apply special door sprites to this room
-            // ---------------------------------------------------------
+            // Apply special door sprites
             chosenRoomScript.ApplySpecialDoorSprites();
 
-            // ---------------------------------------------------------
-            // 5. Apply opposite-facing special sprites to the connecting room
-            // ---------------------------------------------------------
+            // Apply opposite-facing sprites to connecting room
             ApplySpecialSpritesToConnectingRoom(chosenRoomScript);
         }
     }
+
+
 
 
     private void ApplySpecialSpritesToConnectingRoom(Room specialRoom)
@@ -445,4 +423,29 @@ public class RoomManager : MonoBehaviour
         int gridY = gridIndex.y;
         return new Vector3(roomWidth * (gridX - gridSizeX / 2), roomHeight * (gridY - gridSizeY / 2));
     }
+
+    private GameObject GetFurthestRoom()
+    {
+        Vector2Int start = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
+
+        GameObject furthest = null;
+        float maxDist = -1f;
+
+        foreach (var roomObj in roomObjects)
+        {
+            Room r = roomObj.GetComponent<Room>();
+            if (r.isStartingRoom) continue;
+
+            float dist = Vector2Int.Distance(r.RoomIndex, start);
+
+            if (dist > maxDist)
+            {
+                maxDist = dist;
+                furthest = roomObj;
+            }
+        }
+
+        return furthest;
+    }
+
 }

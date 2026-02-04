@@ -2,62 +2,56 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
-    [Header("References")]
-    public EnemyHealth health;
-    public Transform firePoint;
-    public GameObject projectilePrefab;
-    private Transform player;
-
-    [Header("Movement")]
     public float moveSpeed = 2f;
+    public Transform player;
 
-    [Header("Shooting")]
-    public float shootCooldown = 1.5f;
-    private float shootTimer;
+    public float attackCooldown = 2f;
+    private float attackTimer;
 
-    void Start()
+    public GameObject projectilePrefab;
+
+    private void Start()
     {
-        if (health == null)
-            health = GetComponent<EnemyHealth>();
-
-        // Auto-find player
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
-            player = playerObj.transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    void Update()
+    private void Update()
     {
         if (player == null) return;
 
         MoveTowardPlayer();
-        HandleShooting();
+        HandleAttacks();
     }
 
-    void MoveTowardPlayer()
+    private void MoveTowardPlayer()
     {
-        Vector3 dir = (player.position - transform.position).normalized;
-        transform.position += dir * moveSpeed * Time.deltaTime;
+        Vector2 dir = (player.position - transform.position).normalized;
+        transform.position += (Vector3)dir * moveSpeed * Time.deltaTime;
     }
 
-    void HandleShooting()
+    private void HandleAttacks()
     {
-        shootTimer -= Time.deltaTime;
-        if (shootTimer > 0) return;
+        attackTimer -= Time.deltaTime;
 
-        shootTimer = shootCooldown;
-        ShootAtPlayer();
+        if (attackTimer <= 0)
+        {
+            ShootRadial();
+            attackTimer = attackCooldown;
+        }
     }
 
-    void ShootAtPlayer()
+    private void ShootRadial()
     {
-        Vector2 dir = (player.position - firePoint.position).normalized;
+        int count = 8;
+        float angleStep = 360f / count;
 
-        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-        Projectile p = proj.GetComponent<Projectile>();
+        for (int i = 0; i < count; i++)
+        {
+            float angle = i * angleStep;
+            Quaternion rot = Quaternion.Euler(0, 0, angle);
 
-        p.damagesPlayer = true;
-        p.damagesEnemies = false;
-        p.SetDirection(dir);
+            GameObject proj = Instantiate(projectilePrefab, transform.position, rot);
+            proj.GetComponent<Rigidbody2D>().linearVelocity = rot * Vector2.right * 6f;
+        }
     }
 }

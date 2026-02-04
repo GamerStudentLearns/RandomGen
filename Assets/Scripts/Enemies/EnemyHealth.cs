@@ -27,15 +27,26 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth -= damage;
 
+        if (parentRoom != null && parentRoom.isBossRoom)
+            BossHealthUI.instance.UpdateHealth(currentHealth);
+
         if (currentHealth <= 0)
             Die();
     }
+
 
     void Die()
     {
         if (HitStopController.instance != null)
             HitStopController.instance.Stop(0.03f);
 
+        if (parentRoom != null && parentRoom.hasBoss)
+            parentRoom.bossObject = null;
+        if (parentRoom != null && parentRoom.isBossRoom)
+            BossHealthUI.instance.Hide();
+
+
         Destroy(gameObject);
     }
+
 }
