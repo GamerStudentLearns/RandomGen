@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BossController : MonoBehaviour
+public class BossController : MonoBehaviour, IBoss
 {
     public float moveSpeed = 2f;
     public Transform player;

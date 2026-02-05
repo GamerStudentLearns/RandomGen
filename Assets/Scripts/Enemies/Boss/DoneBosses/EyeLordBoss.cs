@@ -45,11 +45,15 @@ public class EyeLordBoss : MonoBehaviour, IBoss
 
     private void OrbitEyes()
     {
-        float t = Time.time * eyeOrbitSpeed;
+        float t = Time.time * eyeOrbitSpeed * Mathf.Deg2Rad;
 
-        leftEye.transform.position = transform.position + new Vector3(Mathf.Cos(t), Mathf.Sin(t), 0) * eyeOrbitRadius;
-        rightEye.transform.position = transform.position + new Vector3(Mathf.Cos(t + Mathf.PI), Mathf.Sin(t + Mathf.PI), 0) * eyeOrbitRadius;
+        leftEye.transform.position =
+            transform.position + new Vector3(Mathf.Cos(t), Mathf.Sin(t), 0) * eyeOrbitRadius;
+
+        rightEye.transform.position =
+            transform.position + new Vector3(Mathf.Cos(t + Mathf.PI), Mathf.Sin(t + Mathf.PI), 0) * eyeOrbitRadius;
     }
+
 
     private void HandleFire()
     {
@@ -79,4 +83,20 @@ public class EyeLordBoss : MonoBehaviour, IBoss
     }
 
     public void WakeUp() => isAwake = true;
+
+    // -------------------------
+    // DEATH HANDLER
+    // -------------------------
+    public void Die()
+    {
+        if (leftEye != null)
+            Destroy(leftEye);
+
+        if (rightEye != null)
+            Destroy(rightEye);
+
+        Destroy(gameObject);
+    }
+
+
 }
