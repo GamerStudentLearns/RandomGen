@@ -5,13 +5,11 @@ public class StaffOfHoma : ItemData
 {
     public override void ApplyPersistent(PlayerStats stats, RunManager run)
     {
-        // Calculate bonus damage based on current red hearts
-        float bonusDamage = run.currentHearts * 0.5f;
-
         stats.ModifyStat(s =>
         {
-            s.damage += bonusDamage;
+            s.damage += 3f;
         });
+      
     }
 }
 
