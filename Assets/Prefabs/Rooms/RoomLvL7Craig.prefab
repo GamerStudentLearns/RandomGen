@@ -788,14 +788,14 @@ MonoBehaviour:
   specialLeftClosedSprite: {fileID: -3830567315048281865, guid: 005942e0016b33d438f511c447fcd45a, type: 3}
   specialRightClosedSprite: {fileID: -5847058240967674575, guid: 09f399d2e4ddb704da812a7b08dfb54c, type: 3}
   useSpecialDoorSprites: 0
-  bossTopDoorSprite: {fileID: 0}
-  bossBottomDoorSprite: {fileID: 0}
-  bossLeftDoorSprite: {fileID: 0}
-  bossRightDoorSprite: {fileID: 0}
-  bossTopClosedSprite: {fileID: 0}
-  bossBottomClosedSprite: {fileID: 0}
-  bossLeftClosedSprite: {fileID: 0}
-  bossRightClosedSprite: {fileID: 0}
+  bossTopDoorSprite: {fileID: 4719909571043336011, guid: 6a36c6a2610f9634191fa07d024c6ba3, type: 3}
+  bossBottomDoorSprite: {fileID: -7037440123270917349, guid: 025d092f32be5a54794302335498c5b9, type: 3}
+  bossLeftDoorSprite: {fileID: 8865250736243852907, guid: 45593da0f04f42f40880b05c257684c3, type: 3}
+  bossRightDoorSprite: {fileID: -7997617757453557281, guid: c62145feeced6064d8f92630142eae5b, type: 3}
+  bossTopClosedSprite: {fileID: 6037988599432032369, guid: 0c5351c1a1de21541b1db1d2e30b2ddb, type: 3}
+  bossBottomClosedSprite: {fileID: -1589795461282958765, guid: 098cde43fb371ec4fa5bc47ed87e5b5f, type: 3}
+  bossLeftClosedSprite: {fileID: 9001921980073716129, guid: 2dd091e6913138f48904a0a5b9b88068, type: 3}
+  bossRightClosedSprite: {fileID: 3457958846390930966, guid: a6143fb2c6d65ce43a19664519975ed3, type: 3}
   useBossDoorSprites: 0
   trapdoorOpen: {fileID: 3574237843649389023, guid: fa8a6b1b0e148944fb1877a97780fbc7, type: 3}
   trapdoorClosed: {fileID: 8461104843292654948, guid: efca7a7b4d25bf24b8fece2c6c59ccb0, type: 3}
