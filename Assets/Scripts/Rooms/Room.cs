@@ -32,14 +32,32 @@ public class Room : MonoBehaviour
 
     public bool useSpecialDoorSprites = false;
 
+    [Header("Boss Door Sprites (Optional)")]
+    public Sprite bossTopDoorSprite;
+    public Sprite bossBottomDoorSprite;
+    public Sprite bossLeftDoorSprite;
+    public Sprite bossRightDoorSprite;
+
+    public Sprite bossTopClosedSprite;
+    public Sprite bossBottomClosedSprite;
+    public Sprite bossLeftClosedSprite;
+    public Sprite bossRightClosedSprite;
+
+    public bool useBossDoorSprites = false;
+
     [Header("Trapdoor Objects")]
     public GameObject trapdoorOpen;
     public GameObject trapdoorClosed;
     public bool hasTrapdoor;
 
+    [Header("Optional Exit")]
+    public GameObject optionalExitObject;
+    public bool hasOptionalExit = false;
+
+
     [Header("Boss Room")]
     public bool isBossRoom = false;
-    public GameObject bossObject;   // Assigned by RoomManager
+    public GameObject bossObject;
     public bool hasBoss = false;
 
     [Header("Door Existence Flags (set by RoomManager)")]
@@ -95,40 +113,32 @@ public class Room : MonoBehaviour
 
     public void PlayerEnteredRoom()
     {
-        // Reveal this room on the minimap
         if (minimapIcon != null)
             minimapIcon.Reveal();
 
         minimap.MarkVisited(RoomIndex);
         minimap.SetCurrentRoom(RoomIndex);
 
-        // Reveal adjacent rooms
         RevealAdjacent(RoomIndex + Vector2Int.up);
         RevealAdjacent(RoomIndex + Vector2Int.down);
         RevealAdjacent(RoomIndex + Vector2Int.left);
         RevealAdjacent(RoomIndex + Vector2Int.right);
 
-        // Prevent double activation
         if (roomActivated)
             return;
 
         roomActivated = true;
 
-        // Starting room never locks or spawns enemies
         if (isStartingRoom)
             return;
 
-        // Lock the room (doors close)
         LockRoom();
 
-        // Spawn normal enemies only in non-boss rooms
         if (!isBossRoom)
             SpawnEnemies();
 
-        // Boss activation (RoomManager already spawned the boss)
         if (isBossRoom && bossObject != null)
         {
-            // Hook boss health to room + UI
             EnemyHealth bossHealth = bossObject.GetComponent<EnemyHealth>();
             if (bossHealth != null)
             {
@@ -136,17 +146,13 @@ public class Room : MonoBehaviour
                 BossHealthUI.instance.Show(bossHealth.maxHealth);
             }
 
-            // Wake the boss AI
             IBoss[] bosses = bossObject.GetComponents<IBoss>();
             foreach (IBoss boss in bosses)
                 boss.WakeUp();
-
         }
 
-        // Begin monitoring for room clear
         StartCoroutine(CheckRoomClear());
     }
-
 
     private void RevealAdjacent(Vector2Int index)
     {
@@ -176,7 +182,12 @@ public class Room : MonoBehaviour
         {
             if (trapdoorOpen != null) trapdoorOpen.SetActive(false);
             if (trapdoorClosed != null) trapdoorClosed.SetActive(true);
+
         }
+
+        if (hasOptionalExit && optionalExitObject != null)
+            optionalExitObject.SetActive(false);
+
     }
 
     private void ClearRoom()
@@ -198,6 +209,10 @@ public class Room : MonoBehaviour
         PickupSpawner spawner = GetComponent<PickupSpawner>();
         if (spawner != null)
             spawner.TrySpawnPickup();
+
+        if (hasOptionalExit && optionalExitObject != null)
+            optionalExitObject.SetActive(true);
+
     }
 
     private bool ShouldAffectDoor(GameObject obj)
@@ -220,8 +235,10 @@ public class Room : MonoBehaviour
         if (isBossRoom)
             return;
 
-        if (enemyPrefabs.Count == 0 || enemySpawnPoints.Count == 0)
+        if (enemySpawnPoints.Count == 0)
             return;
+
+        bool spawnBosses = RoomManager.Instance.replaceEnemiesWithBosses;
 
         int maxPossible = enemySpawnPoints.Count;
         int enemyCount = Random.Range(0, maxPossible + 1);
@@ -234,7 +251,22 @@ public class Room : MonoBehaviour
             Transform spawn = availableSpawns[spawnIndex];
             availableSpawns.RemoveAt(spawnIndex);
 
-            GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
+            GameObject prefab;
+
+            if (spawnBosses)
+            {
+                prefab = RoomManager.Instance.miniBossPrefabs[
+                    Random.Range(0, RoomManager.Instance.miniBossPrefabs.Length)
+                ];
+            }
+            else
+            {
+                if (enemyPrefabs.Count == 0)
+                    return;
+
+                prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
+            }
+
             GameObject enemy = Instantiate(prefab, spawn.position, Quaternion.identity);
 
             EnemyHealth health = enemy.GetComponent<EnemyHealth>();
@@ -242,8 +274,15 @@ public class Room : MonoBehaviour
                 health.parentRoom = this;
 
             spawnedEnemies.Add(enemy);
+
+            // Wake bosses immediately
+            IBoss[] bosses = enemy.GetComponents<IBoss>();
+            foreach (IBoss boss in bosses)
+                boss.WakeUp();
         }
     }
+
+
 
     private IEnumerator CheckRoomClear()
     {
@@ -308,5 +347,34 @@ public class Room : MonoBehaviour
 
         if (hasRightDoor && rightClosedDoor != null)
             rightClosedDoor.GetComponent<SpriteRenderer>().sprite = specialRightClosedSprite;
+    }
+
+    public void ApplyBossDoorSprites()
+    {
+        useBossDoorSprites = true;
+
+        if (hasTopDoor && topDoor != null)
+            topDoor.GetComponent<SpriteRenderer>().sprite = bossTopDoorSprite;
+
+        if (hasBottomDoor && bottomDoor != null)
+            bottomDoor.GetComponent<SpriteRenderer>().sprite = bossBottomDoorSprite;
+
+        if (hasLeftDoor && leftDoor != null)
+            leftDoor.GetComponent<SpriteRenderer>().sprite = bossLeftDoorSprite;
+
+        if (hasRightDoor && rightDoor != null)
+            rightDoor.GetComponent<SpriteRenderer>().sprite = bossRightDoorSprite;
+
+        if (hasTopDoor && topClosedDoor != null)
+            topClosedDoor.GetComponent<SpriteRenderer>().sprite = bossTopClosedSprite;
+
+        if (hasBottomDoor && bottomClosedDoor != null)
+            bottomClosedDoor.GetComponent<SpriteRenderer>().sprite = bossBottomClosedSprite;
+
+        if (hasLeftDoor && leftClosedDoor != null)
+            leftClosedDoor.GetComponent<SpriteRenderer>().sprite = bossLeftClosedSprite;
+
+        if (hasRightDoor && rightClosedDoor != null)
+            rightClosedDoor.GetComponent<SpriteRenderer>().sprite = bossRightClosedSprite;
     }
 }

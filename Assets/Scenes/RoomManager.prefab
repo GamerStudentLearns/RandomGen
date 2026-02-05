@@ -51,6 +51,8 @@ MonoBehaviour:
   gridSizeY: 10
   trapdoorOpenPrefab: {fileID: 3574237843649389023, guid: fa8a6b1b0e148944fb1877a97780fbc7, type: 3}
   trapdoorClosedPrefab: {fileID: 8461104843292654948, guid: efca7a7b4d25bf24b8fece2c6c59ccb0, type: 3}
+  optionalExitPrefab: {fileID: 0}
+  spawnOptionalExit: 0
   bossPrefab:
   - {fileID: 4654390427696923661, guid: 67285d564a9ce034eab9eee3f61a9fe5, type: 3}
   - {fileID: 2366465209832687067, guid: c66e050dde3edd043a98d22eda4f48b0, type: 3}

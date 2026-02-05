@@ -482,6 +482,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1801275898305777272, guid: c2c3f7de1be88834887c92f974ecb6db, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: spawnOptionalExit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: optionalExitPrefab
+      value: 
+      objectReference: {fileID: 3574237843649389023, guid: bbdc7183fd928ef42934224fe833962e, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: trapdoorOpenPrefab
       value: 
       objectReference: {fileID: 3574237843649389023, guid: 302ee156ff1534e4d8ad3bcd6a75155d, type: 3}

@@ -519,9 +519,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 649002596}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: maxRooms
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: minRooms
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: bossPrefab
       value: 
       objectReference: {fileID: 4654390427696923661, guid: 67285d564a9ce034eab9eee3f61a9fe5, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: roomPrefab
+      value: 
+      objectReference: {fileID: 1801275898305777272, guid: 9a68fc9a2d4fa6f41b1eae84d7cacd67, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: trapdoorOpenPrefab
+      value: 
+      objectReference: {fileID: 3574237843649389023, guid: 302ee156ff1534e4d8ad3bcd6a75155d, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: trapdoorClosedPrefab
+      value: 
+      objectReference: {fileID: 8461104843292654948, guid: efca7a7b4d25bf24b8fece2c6c59ccb0, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: bossPrefab.Array.size
       value: 1
@@ -559,9 +579,61 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3350699373118113798, guid: 0354fbfc86c713c439b69f106be3e70f, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: replaceEnemiesWithBosses
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: miniBossPrefabs.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'miniBossPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4654390427696923661, guid: 67285d564a9ce034eab9eee3f61a9fe5, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'miniBossPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2366465209832687067, guid: c66e050dde3edd043a98d22eda4f48b0, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'miniBossPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2595856979895260827, guid: cd7713b01f5342b4da6f8bd25f0cdc25, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'miniBossPrefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1312889646596873854, guid: 616f2b98c5df34046a9c3aedd6597f7c, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'miniBossPrefabs.Array.data[4]'
+      value: 
+      objectReference: {fileID: 6247996673028339988, guid: 27c69c6fe61c720418951abb029387ec, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'miniBossPrefabs.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8807333807495253691, guid: 5cccf889a1d4db34c8918cd970d7ee07, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'miniBossPrefabs.Array.data[6]'
+      value: 
+      objectReference: {fileID: 3723570472689415439, guid: 87198bd904126f5409c277eae23b7b09, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'miniBossPrefabs.Array.data[7]'
+      value: 
+      objectReference: {fileID: 5597554475938657141, guid: fd3716fa7a92cb0468f826cd0d30f35f, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'miniBossPrefabs.Array.data[8]'
+      value: 
+      objectReference: {fileID: 1187591596815221310, guid: ef9a85ae428f33d4f8baf59bfce3b277, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'miniBossPrefabs.Array.data[9]'
+      value: 
+      objectReference: {fileID: 3350699373118113798, guid: 0354fbfc86c713c439b69f106be3e70f, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: specialRoomPrefabs.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'specialRoomPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6062145028840140729, guid: ddaeafdbaec3ec14a807ceb1ec17f2ca, type: 3}
     - target: {fileID: 4057666898281785021, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.74274

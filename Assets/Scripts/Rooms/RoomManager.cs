@@ -28,9 +28,20 @@ public class RoomManager : MonoBehaviour
     [Header("Trapdoor Prefabs")]
     public GameObject trapdoorOpenPrefab;
     public GameObject trapdoorClosedPrefab;
+    public static RoomManager Instance;
+
+
+    [Header("Optional Exit Prefab")]
+    public GameObject optionalExitPrefab;
+    public bool spawnOptionalExit = true;
+
 
     [Header("Boss Prefabs")]
     public GameObject[] bossPrefab;
+
+    [Header("Special Floor Settings")]
+    public bool replaceEnemiesWithBosses = false;
+    public GameObject[] miniBossPrefabs;
 
 
     [Header("Special Room Prefabs")]
@@ -39,8 +50,12 @@ public class RoomManager : MonoBehaviour
     private static HashSet<GameObject> spawnedItemsThisRun = new HashSet<GameObject>();
     private static HashSet<GameObject> usedBossesThisRun = new HashSet<GameObject>();
 
-
     public MinimapManager minimap;
+
+    public void Awake()
+    {
+        Instance = this;
+    }
 
     private void OnEnable()
     {
@@ -57,10 +72,9 @@ public class RoomManager : MonoBehaviour
         if (scene.name == "Level1")
         {
             spawnedItemsThisRun.Clear();
-            usedBossesThisRun.Clear();   // RESET BOSSES FOR NEW RUN
+            usedBossesThisRun.Clear();
         }
     }
-
 
     private void Start()
     {
@@ -136,7 +150,6 @@ public class RoomManager : MonoBehaviour
         );
 
         lastRoomScript.bossObject = bossInstance;
-        lastRoomScript.hasBoss = true;
 
         // ---------------------------------------------------------
         // 4. Spawn trapdoor (closed by default)
@@ -164,7 +177,31 @@ public class RoomManager : MonoBehaviour
         lastRoomScript.hasTrapdoor = true;
 
         // ---------------------------------------------------------
-        // 5. Collect all one-door rooms (excluding start + boss room)
+        // 5. Spawn optional exit (SECOND PATH)
+        // ---------------------------------------------------------
+        if (spawnOptionalExit && optionalExitPrefab != null)
+        {
+            GameObject optionalExit = Instantiate(
+                optionalExitPrefab,
+                lastRoom.transform.position + new Vector3(3f, 0, 0), // offset to the right
+                Quaternion.identity,
+                lastRoom.transform
+            );
+
+            optionalExit.SetActive(false); // locked until boss dies
+
+            lastRoomScript.optionalExitObject = optionalExit;
+            lastRoomScript.hasOptionalExit = true;
+        }
+
+        // ---------------------------------------------------------
+        // 6. Apply boss door sprites + neighbors
+        // ---------------------------------------------------------
+        lastRoomScript.ApplyBossDoorSprites();
+        ApplyBossSpritesToConnectingRooms(lastRoomScript);
+
+        // ---------------------------------------------------------
+        // 7. Collect all one-door rooms (excluding start + boss room)
         // ---------------------------------------------------------
         List<GameObject> oneDoorRooms = new List<GameObject>();
 
@@ -180,7 +217,7 @@ public class RoomManager : MonoBehaviour
         }
 
         // ---------------------------------------------------------
-        // 6. Pick a special room prefab that hasn't been used this run
+        // 8. Pick a special room prefab that hasn't been used this run
         // ---------------------------------------------------------
         var availablePrefabs = specialRoomPrefabs
             .Where(p => !spawnedItemsThisRun.Contains(p))
@@ -203,30 +240,90 @@ public class RoomManager : MonoBehaviour
     }
 
 
+    // ------------------------------
+    // BOSS DOOR NEIGHBOR PROPAGATION
+    // ------------------------------
 
+    private void ApplyBossSpritesToConnectingRooms(Room bossRoom)
+    {
+        Vector2Int index = bossRoom.RoomIndex;
 
+        if (bossRoom.hasTopDoor)
+            ApplyOppositeBossSprite(index + Vector2Int.up, "Bottom");
 
+        if (bossRoom.hasBottomDoor)
+            ApplyOppositeBossSprite(index + Vector2Int.down, "Top");
+
+        if (bossRoom.hasLeftDoor)
+            ApplyOppositeBossSprite(index + Vector2Int.left, "Right");
+
+        if (bossRoom.hasRightDoor)
+            ApplyOppositeBossSprite(index + Vector2Int.right, "Left");
+    }
+
+    private void ApplyOppositeBossSprite(Vector2Int neighborIndex, string oppositeDirection)
+    {
+        Room neighbor = GetRoomScriptAt(neighborIndex);
+        if (neighbor == null) return;
+
+        neighbor.useBossDoorSprites = true;
+
+        SpriteRenderer openRenderer = null;
+        SpriteRenderer closedRenderer = null;
+
+        switch (oppositeDirection)
+        {
+            case "Top":
+                openRenderer = neighbor.topDoor?.GetComponent<SpriteRenderer>();
+                closedRenderer = neighbor.topClosedDoor?.GetComponent<SpriteRenderer>();
+                if (openRenderer != null) openRenderer.sprite = neighbor.bossTopDoorSprite;
+                if (closedRenderer != null) closedRenderer.sprite = neighbor.bossTopClosedSprite;
+                break;
+
+            case "Bottom":
+                openRenderer = neighbor.bottomDoor?.GetComponent<SpriteRenderer>();
+                closedRenderer = neighbor.bottomClosedDoor?.GetComponent<SpriteRenderer>();
+                if (openRenderer != null) openRenderer.sprite = neighbor.bossBottomDoorSprite;
+                if (closedRenderer != null) closedRenderer.sprite = neighbor.bossBottomClosedSprite;
+                break;
+
+            case "Left":
+                openRenderer = neighbor.leftDoor?.GetComponent<SpriteRenderer>();
+                closedRenderer = neighbor.leftClosedDoor?.GetComponent<SpriteRenderer>();
+                if (openRenderer != null) openRenderer.sprite = neighbor.bossLeftDoorSprite;
+                if (closedRenderer != null) closedRenderer.sprite = neighbor.bossLeftClosedSprite;
+                break;
+
+            case "Right":
+                openRenderer = neighbor.rightDoor?.GetComponent<SpriteRenderer>();
+                closedRenderer = neighbor.rightClosedDoor?.GetComponent<SpriteRenderer>();
+                if (openRenderer != null) openRenderer.sprite = neighbor.bossRightDoorSprite;
+                if (closedRenderer != null) closedRenderer.sprite = neighbor.bossRightClosedSprite;
+                break;
+        }
+    }
+
+    // ------------------------------
+    // SPECIAL ROOM NEIGHBOR PROPAGATION
+    // ------------------------------
 
     private void ApplySpecialSpritesToConnectingRoom(Room specialRoom)
     {
         Vector2Int index = specialRoom.RoomIndex;
 
-        // Special room has a TOP door → neighbor is above → neighbor gets BOTTOM special sprite
         if (specialRoom.hasTopDoor)
             ApplyOppositeSpecialSprite(index + Vector2Int.up, "Bottom");
 
-        // Special room has a BOTTOM door → neighbor is below → neighbor gets TOP special sprite
         if (specialRoom.hasBottomDoor)
             ApplyOppositeSpecialSprite(index + Vector2Int.down, "Top");
 
-        // Special room has a LEFT door → neighbor is left → neighbor gets RIGHT special sprite
         if (specialRoom.hasLeftDoor)
             ApplyOppositeSpecialSprite(index + Vector2Int.left, "Right");
 
-        // Special room has a RIGHT door → neighbor is right → neighbor gets LEFT special sprite
         if (specialRoom.hasRightDoor)
             ApplyOppositeSpecialSprite(index + Vector2Int.right, "Left");
     }
+
     private void ApplyOppositeSpecialSprite(Vector2Int neighborIndex, string oppositeDirection)
     {
         Room neighbor = GetRoomScriptAt(neighborIndex);
@@ -269,8 +366,9 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-
-
+    // ------------------------------
+    // ROOM GENERATION LOGIC (unchanged)
+    // ------------------------------
 
     private void GenerateInitialNeighbors()
     {
@@ -487,5 +585,4 @@ public class RoomManager : MonoBehaviour
 
         return furthest;
     }
-
 }

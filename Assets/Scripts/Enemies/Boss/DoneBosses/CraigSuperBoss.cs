@@ -10,7 +10,7 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         HushFan,
         RapidBarrage,
         TearRain,
-        HolyBeams,
+        
         MegaMaw,
         TunnelWorm,
         EyeLord,
@@ -23,7 +23,7 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
 
     public GameObject tearPrefab;
     public GameObject minionPrefab;
-    public GameObject beamPrefab;
+    
     public GameObject eyePrefab;
 
     [Header("Phase Switching")]
@@ -63,8 +63,7 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
     // Mega Maw
     private float mawAngle = 0f;
 
-    // Holy Beams
-    private bool beamVertical = true;
+  
 
     private SpriteRenderer spriteRenderer;
     private Collider2D col2D;
@@ -105,7 +104,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
             case BossPhase.HushFan: Phase_HushFan(); break;
             case BossPhase.RapidBarrage: Phase_RapidBarrage(); break;
             case BossPhase.TearRain: Phase_TearRain(); break;
-            case BossPhase.HolyBeams: Phase_HolyBeams(); break;
             case BossPhase.MegaMaw: Phase_MegaMaw(); break;
             case BossPhase.TunnelWorm: Phase_TunnelWorm(); break;
             case BossPhase.EyeLord: Phase_EyeLord(); break;
@@ -279,27 +277,7 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         }
     }
 
-    private void Phase_HolyBeams()
-    {
-        timerA -= Time.deltaTime;
-
-        if (timerA <= 0)
-        {
-            if (beamVertical)
-            {
-                for (int i = -2; i <= 2; i++)
-                    Instantiate(beamPrefab, new Vector3(i * 2f, transform.position.y, 0), Quaternion.identity);
-            }
-            else
-            {
-                for (int i = -2; i <= 2; i++)
-                    Instantiate(beamPrefab, new Vector3(transform.position.x, i * 2f, 0), Quaternion.identity);
-            }
-
-            beamVertical = !beamVertical;
-            timerA = 3f;
-        }
-    }
+    
 
     private void Phase_MegaMaw()
     {
