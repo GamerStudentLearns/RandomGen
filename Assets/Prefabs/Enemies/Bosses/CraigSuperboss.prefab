@@ -106,8 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3d5b305dd210348abfc5f226af3b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 10000
+  maxHealth: 5000
   parentRoom: {fileID: 0}
+  flashDuration: 0.1
 --- !u!114 &9070856892073561336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,11 +125,13 @@ MonoBehaviour:
   player: {fileID: 0}
   tearPrefab: {fileID: 3715812023786578678, guid: 383c878bfb9512f4d88eb072f4f96235, type: 3}
   minionPrefab: {fileID: 7563917189872993814, guid: a7cd0b6b93eb7d6468e4b432255f5903, type: 3}
-  beamPrefab: {fileID: 4805573766123801708, guid: 46418ed8e49fc5c47a4d071f5728d353, type: 3}
   eyePrefab: {fileID: 2520425773590913960, guid: 4e47b50c3575ecf47bd443307d493671, type: 3}
   normalPhaseDuration: 10
   lowHPPhaseDuration: 4
   currentPhase: 0
+  itemDrops:
+  - {fileID: 3524703094827663392, guid: 9b92f92b661c0fa4698a94c037723b9c, type: 3}
+  - {fileID: 2922129042847442260, guid: 8967a4e9cd7a7e24aa1f6fe27144c508, type: 3}
 --- !u!61 &5885792537713583245
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -201,4 +204,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4

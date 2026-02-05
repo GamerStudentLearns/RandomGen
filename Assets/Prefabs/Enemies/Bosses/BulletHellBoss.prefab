@@ -83,7 +83,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &868988217560468237
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -192,3 +192,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 90
   parentRoom: {fileID: 0}
+  flashDuration: 0.1

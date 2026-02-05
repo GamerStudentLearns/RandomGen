@@ -30,11 +30,9 @@ public class RoomManager : MonoBehaviour
     public GameObject trapdoorClosedPrefab;
     public static RoomManager Instance;
 
-
     [Header("Optional Exit Prefab")]
     public GameObject optionalExitPrefab;
     public bool spawnOptionalExit = true;
-
 
     [Header("Boss Prefabs")]
     public GameObject[] bossPrefab;
@@ -42,7 +40,6 @@ public class RoomManager : MonoBehaviour
     [Header("Special Floor Settings")]
     public bool replaceEnemiesWithBosses = false;
     public GameObject[] miniBossPrefabs;
-
 
     [Header("Special Room Prefabs")]
     [SerializeField] private GameObject[] specialRoomPrefabs;
@@ -117,18 +114,14 @@ public class RoomManager : MonoBehaviour
     {
         yield return null;
 
-        // ---------------------------------------------------------
-        // 1. Pick the REAL boss room (furthest from start)
-        // ---------------------------------------------------------
-        GameObject lastRoom = GetFurthestRoom();
+        // 1. Pick the REAL boss room (furthest *1-door* room)
+        GameObject lastRoom = GetFurthestDeadEndRoom();
         Room lastRoomScript = lastRoom.GetComponent<Room>();
 
         lastRoomScript.isBossRoom = true;
         lastRoomScript.hasBoss = true;
 
-        // ---------------------------------------------------------
         // 2. Choose a boss prefab that hasn't been used this run
-        // ---------------------------------------------------------
         var availableBosses = bossPrefab
             .Where(b => !usedBossesThisRun.Contains(b))
             .ToList();
@@ -139,9 +132,7 @@ public class RoomManager : MonoBehaviour
         GameObject chosenBoss = availableBosses[Random.Range(0, availableBosses.Count)];
         usedBossesThisRun.Add(chosenBoss);
 
-        // ---------------------------------------------------------
-        // 3. Spawn boss and assign it to the room
-        // ---------------------------------------------------------
+        // 3. Spawn boss
         GameObject bossInstance = Instantiate(
             chosenBoss,
             lastRoom.transform.position + new Vector3(0, 2f, 0),
@@ -151,9 +142,7 @@ public class RoomManager : MonoBehaviour
 
         lastRoomScript.bossObject = bossInstance;
 
-        // ---------------------------------------------------------
-        // 4. Spawn trapdoor (closed by default)
-        // ---------------------------------------------------------
+        // 4. Spawn trapdoor
         GameObject trapOpen = Instantiate(
             trapdoorOpenPrefab,
             lastRoom.transform.position,
@@ -176,33 +165,27 @@ public class RoomManager : MonoBehaviour
 
         lastRoomScript.hasTrapdoor = true;
 
-        // ---------------------------------------------------------
-        // 5. Spawn optional exit (SECOND PATH)
-        // ---------------------------------------------------------
+        // 5. Optional exit
         if (spawnOptionalExit && optionalExitPrefab != null)
         {
             GameObject optionalExit = Instantiate(
                 optionalExitPrefab,
-                lastRoom.transform.position + new Vector3(3f, 0, 0), // offset to the right
+                lastRoom.transform.position + new Vector3(3f, 0, 0),
                 Quaternion.identity,
                 lastRoom.transform
             );
 
-            optionalExit.SetActive(false); // locked until boss dies
+            optionalExit.SetActive(false);
 
             lastRoomScript.optionalExitObject = optionalExit;
             lastRoomScript.hasOptionalExit = true;
         }
 
-        // ---------------------------------------------------------
-        // 6. Apply boss door sprites + neighbors
-        // ---------------------------------------------------------
+        // 6. Apply boss door sprites
         lastRoomScript.ApplyBossDoorSprites();
         ApplyBossSpritesToConnectingRooms(lastRoomScript);
 
-        // ---------------------------------------------------------
-        // 7. Collect all one-door rooms (excluding start + boss room)
-        // ---------------------------------------------------------
+        // 7. Collect all one-door rooms (excluding start + boss)
         List<GameObject> oneDoorRooms = new List<GameObject>();
 
         foreach (var roomObj in roomObjects)
@@ -216,9 +199,7 @@ public class RoomManager : MonoBehaviour
                 oneDoorRooms.Add(roomObj);
         }
 
-        // ---------------------------------------------------------
-        // 8. Pick a special room prefab that hasn't been used this run
-        // ---------------------------------------------------------
+        // 8. Spawn special room
         var availablePrefabs = specialRoomPrefabs
             .Where(p => !spawnedItemsThisRun.Contains(p))
             .ToList();
@@ -239,11 +220,65 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+    // ------------------------------
+    // NEW: Furthest 1-door room logic
+    // ------------------------------
+    private GameObject GetFurthestDeadEndRoom()
+    {
+        Vector2Int start = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
+
+        GameObject furthest = null;
+        float maxDist = -1f;
+
+        foreach (var roomObj in roomObjects)
+        {
+            Room r = roomObj.GetComponent<Room>();
+            if (r.isStartingRoom) continue;
+
+            if (CountDoors(r) != 1) continue;
+
+            float dist = Vector2Int.Distance(r.RoomIndex, start);
+
+            if (dist > maxDist)
+            {
+                maxDist = dist;
+                furthest = roomObj;
+            }
+        }
+
+        if (furthest != null)
+            return furthest;
+
+        return GetFurthestRoom();
+    }
+
+    private GameObject GetFurthestRoom()
+    {
+        Vector2Int start = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
+
+        GameObject furthest = null;
+        float maxDist = -1f;
+
+        foreach (var roomObj in roomObjects)
+        {
+            Room r = roomObj.GetComponent<Room>();
+            if (r.isStartingRoom) continue;
+
+            float dist = Vector2Int.Distance(r.RoomIndex, start);
+
+            if (dist > maxDist)
+            {
+                maxDist = dist;
+                furthest = roomObj;
+            }
+        }
+
+        return furthest;
+    }
 
     // ------------------------------
     // BOSS DOOR NEIGHBOR PROPAGATION
     // ------------------------------
-
     private void ApplyBossSpritesToConnectingRooms(Room bossRoom)
     {
         Vector2Int index = bossRoom.RoomIndex;
@@ -306,7 +341,6 @@ public class RoomManager : MonoBehaviour
     // ------------------------------
     // SPECIAL ROOM NEIGHBOR PROPAGATION
     // ------------------------------
-
     private void ApplySpecialSpritesToConnectingRoom(Room specialRoom)
     {
         Vector2Int index = specialRoom.RoomIndex;
@@ -367,9 +401,8 @@ public class RoomManager : MonoBehaviour
     }
 
     // ------------------------------
-    // ROOM GENERATION LOGIC (unchanged)
+    // ROOM GENERATION LOGIC
     // ------------------------------
-
     private void GenerateInitialNeighbors()
     {
         if (roomQueue.Count == 0) return;
@@ -530,7 +563,6 @@ public class RoomManager : MonoBehaviour
             return roomObject.GetComponent<Room>();
         return null;
     }
-
     private int CountAdjacentRooms(Vector2Int roomIndex)
     {
         int x = roomIndex.x;
@@ -562,27 +594,5 @@ public class RoomManager : MonoBehaviour
         return new Vector3(roomWidth * (gridX - gridSizeX / 2), roomHeight * (gridY - gridSizeY / 2));
     }
 
-    private GameObject GetFurthestRoom()
-    {
-        Vector2Int start = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
-
-        GameObject furthest = null;
-        float maxDist = -1f;
-
-        foreach (var roomObj in roomObjects)
-        {
-            Room r = roomObj.GetComponent<Room>();
-            if (r.isStartingRoom) continue;
-
-            float dist = Vector2Int.Distance(r.RoomIndex, start);
-
-            if (dist > maxDist)
-            {
-                maxDist = dist;
-                furthest = roomObj;
-            }
-        }
-
-        return furthest;
-    }
+    
 }

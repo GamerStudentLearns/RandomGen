@@ -23,6 +23,13 @@ public class PlayerHealth : MonoBehaviour
 
     private PlayerStats stats;
 
+    // --------------------
+    // FLASH FIELDS
+    // --------------------
+    private Renderer[] renderers;
+    private Color[] originalColors;
+    public float flashDuration = 0.1f;
+
     void Awake()
     {
         FindOrCreateHeartUI();
@@ -53,12 +60,22 @@ public class PlayerHealth : MonoBehaviour
 
         if (gameOverUI != null)
             gameOverUI.SetActive(false);
+
+        // --------------------
+        // CACHE RENDERERS FOR FLASH
+        // --------------------
+        renderers = GetComponentsInChildren<Renderer>();
+        originalColors = new Color[renderers.Length];
+
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            originalColors[i] = renderers[i].material.color;
+        }
     }
 
     void Start()
     {
         stats = GetComponent<PlayerStats>();
-        // No more heart modifiers in PlayerStats, so no subscription needed
     }
 
     // --------------------
@@ -93,7 +110,13 @@ public class PlayerHealth : MonoBehaviour
         if (heartUI != null)
             heartUI.UpdateHearts(currentHearts, soulHearts);
 
+        // Hitstop
         HitStopController.instance.Stop(0.05f);
+
+        // FLASH RED
+        StartCoroutine(FlashRed());
+
+        // Invulnerability frames
         StartCoroutine(Invulnerability());
 
         if (currentHearts <= 0)
@@ -115,6 +138,26 @@ public class PlayerHealth : MonoBehaviour
         invulnerable = true;
         yield return new WaitForSeconds(invulnTime);
         invulnerable = false;
+    }
+
+    // --------------------
+    // FLASH RED EFFECT
+    // --------------------
+    private IEnumerator FlashRed()
+    {
+        // Set all renderers to red
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].material.color = Color.red;
+        }
+
+        yield return new WaitForSeconds(flashDuration);
+
+        // Restore original colors
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].material.color = originalColors[i];
+        }
     }
 
     private void Die()

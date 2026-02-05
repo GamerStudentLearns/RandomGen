@@ -10,7 +10,7 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         HushFan,
         RapidBarrage,
         TearRain,
-        
+
         MegaMaw,
         TunnelWorm,
         EyeLord,
@@ -23,7 +23,7 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
 
     public GameObject tearPrefab;
     public GameObject minionPrefab;
-    
+
     public GameObject eyePrefab;
 
     [Header("Phase Switching")]
@@ -63,10 +63,17 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
     // Mega Maw
     private float mawAngle = 0f;
 
-  
-
     private SpriteRenderer spriteRenderer;
     private Collider2D col2D;
+
+    // ============================================================
+    // ITEM DROPS
+    // ============================================================
+
+    [Header("Item Drops")]
+    public GameObject[] itemDrops;   // assign in Inspector
+    private float dropTimer = 60f;   // drops every 60 seconds
+
 
     private void Start()
     {
@@ -94,6 +101,9 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         if (!isAwake || player == null)
             return;
 
+        // NEW: Handle item drops every 60 seconds
+        HandleItemDrops();
+
         HandlePhaseSwitching();
 
         switch (currentPhase)
@@ -111,6 +121,30 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         }
 
         ClampToRoom();
+    }
+
+    // ============================================================
+    // ITEM DROP LOGIC
+    // ============================================================
+
+    private void HandleItemDrops()
+    {
+        dropTimer -= Time.deltaTime;
+
+        if (dropTimer <= 0f)
+        {
+            DropRandomItem();
+            dropTimer = 60f; // reset for next minute
+        }
+    }
+
+    private void DropRandomItem()
+    {
+        if (itemDrops == null || itemDrops.Length == 0)
+            return;
+
+        int index = Random.Range(0, itemDrops.Length);
+        Instantiate(itemDrops[index], transform.position, Quaternion.identity);
     }
 
     // ============================================================
@@ -277,8 +311,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         }
     }
 
-    
-
     private void Phase_MegaMaw()
     {
         mawAngle += 120f * Time.deltaTime;
@@ -329,7 +361,6 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
 
     private void Phase_EyeLord()
     {
-        // Eyes visible only during this phase
         leftEye.GetComponent<SpriteRenderer>().enabled = true;
         rightEye.GetComponent<SpriteRenderer>().enabled = true;
 
