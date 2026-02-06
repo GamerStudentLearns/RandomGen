@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4057666898281785021}
   - component: {fileID: 306790599566195303}
+  - component: {fileID: 3364303229295932409}
   m_Layer: 0
   m_Name: RoomManager
   m_TagString: Untagged
@@ -62,6 +63,8 @@ MonoBehaviour:
   - {fileID: 5597554475938657141, guid: fd3716fa7a92cb0468f826cd0d30f35f, type: 3}
   - {fileID: 3350699373118113798, guid: 0354fbfc86c713c439b69f106be3e70f, type: 3}
   - {fileID: 6247996673028339988, guid: 27c69c6fe61c720418951abb029387ec, type: 3}
+  replaceEnemiesWithBosses: 0
+  miniBossPrefabs: []
   specialRoomPrefabs:
   - {fileID: 7845500907461789919, guid: 4178eaf602372c44c90c944199625ebd, type: 3}
   - {fileID: 710955612871149234, guid: 31465719e85cd944baeb61c02f35b762, type: 3}
@@ -78,3 +81,17 @@ MonoBehaviour:
   - {fileID: 8116734023158253103, guid: a9206c6533c466246a7187f92ed7daf7, type: 3}
   - {fileID: 1799603073107082396, guid: b615b5cef6f56ac49b8ace1ea460a742, type: 3}
   minimap: {fileID: 0}
+--- !u!114 &3364303229295932409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969747941256881805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6de0a8d7aeab2f4e811c92ff46b0ba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoldToReload
+  sceneToLoad: Level1
+  holdDuration: 2

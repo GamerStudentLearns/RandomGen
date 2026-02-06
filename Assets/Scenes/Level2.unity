@@ -340,7 +340,7 @@ PrefabInstance:
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: roomPrefab
       value: 
-      objectReference: {fileID: 1801275898305777272, guid: 95314a826edb06a47bb947505bbe5c90, type: 3}
+      objectReference: {fileID: 1801275898305777272, guid: 4cc393b3a65155640af8f1728069336f, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: trapdoorOpenPrefab
       value: 
