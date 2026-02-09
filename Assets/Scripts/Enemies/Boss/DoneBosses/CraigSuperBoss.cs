@@ -293,10 +293,16 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
 
         if (timerA <= 0)
         {
-            FireAimed(8f);
-            timerA = 0.12f;
+            float spread = Random.Range(-10f, 10f); // ±10° wobble
+            Vector2 dir = (player.position - transform.position).normalized;
+            float baseAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            float finalAngle = baseAngle + spread;
+
+            FireAngle(finalAngle, 5f);
+            timerA = 0.25f;
         }
     }
+
 
     private void Phase_TearRain()
     {

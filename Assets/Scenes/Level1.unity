@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &393666548 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7416409796714060356, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
-  m_PrefabInstance: {fileID: 1999105983603132669}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e6d8d3056f64da4ab1e5e0424a15f9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MinimapManager
 --- !u!1 &435865085
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,11 +686,27 @@ PrefabInstance:
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: minimap
       value: 
-      objectReference: {fileID: 393666548}
+      objectReference: {fileID: 1999105983603132671}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: maxRooms
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: minRooms
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: bossPrefab
       value: 
       objectReference: {fileID: 4654390427696923661, guid: 67285d564a9ce034eab9eee3f61a9fe5, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: roomPrefab
+      value: 
+      objectReference: {fileID: 1801275898305777272, guid: 469618d3c759dd74288d79944e519b29, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: trapdoorOpenPrefab
+      value: 
+      objectReference: {fileID: 3574237843649389023, guid: fa8a6b1b0e148944fb1877a97780fbc7, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: bossPrefab.Array.size
       value: 10
@@ -729,11 +734,11 @@ PrefabInstance:
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: 'bossPrefab.Array.data[5]'
       value: 
-      objectReference: {fileID: 8807333807495253691, guid: 5cccf889a1d4db34c8918cd970d7ee07, type: 3}
+      objectReference: {fileID: 3723570472689415439, guid: 87198bd904126f5409c277eae23b7b09, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: 'bossPrefab.Array.data[6]'
       value: 
-      objectReference: {fileID: 3723570472689415439, guid: 87198bd904126f5409c277eae23b7b09, type: 3}
+      objectReference: {fileID: 8807333807495253691, guid: 5cccf889a1d4db34c8918cd970d7ee07, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: 'bossPrefab.Array.data[7]'
       value: 
@@ -746,6 +751,38 @@ PrefabInstance:
       propertyPath: 'bossPrefab.Array.data[9]'
       value: 
       objectReference: {fileID: 3350699373118113798, guid: 0354fbfc86c713c439b69f106be3e70f, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: specialRoomPrefabs.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'specialRoomPrefabs.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1230291870050769683, guid: 1f345790226ecac4e9f6af198b94ff20, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'specialRoomPrefabs.Array.data[7]'
+      value: 
+      objectReference: {fileID: 3446994587677009910, guid: e31d54d547adb5e43ac3958e719526e4, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'specialRoomPrefabs.Array.data[8]'
+      value: 
+      objectReference: {fileID: 2013861193685183575, guid: 67de6129376428b41a0c7e57dc115993, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'specialRoomPrefabs.Array.data[9]'
+      value: 
+      objectReference: {fileID: 8116734023158253103, guid: a9206c6533c466246a7187f92ed7daf7, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'specialRoomPrefabs.Array.data[10]'
+      value: 
+      objectReference: {fileID: 2517428036949600514, guid: 48c52f69f7caab24581931304e776b79, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'specialRoomPrefabs.Array.data[11]'
+      value: 
+      objectReference: {fileID: 5341125793629415399, guid: b4a461430db34824f8e4a2b8a832ca38, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'specialRoomPrefabs.Array.data[12]'
+      value: 
+      objectReference: {fileID: 1799603073107082396, guid: b615b5cef6f56ac49b8ace1ea460a742, type: 3}
     - target: {fileID: 4057666898281785021, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.74274
@@ -925,6 +962,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 894877470670203412, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
   m_PrefabInstance: {fileID: 1999105983603132669}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1999105983603132671 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7416409796714060356, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
+  m_PrefabInstance: {fileID: 1999105983603132669}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e6d8d3056f64da4ab1e5e0424a15f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinimapManager
 --- !u!114 &5907812819756963771 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3828824939447218306, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
