@@ -699,6 +699,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8832600752935800222}
+  - {fileID: 4638136735604602785}
   - {fileID: 7759601080768916305}
   - {fileID: 4567239554254533199}
   - {fileID: 3286006255270504519}
@@ -709,7 +711,6 @@ Transform:
   - {fileID: 944323369165294243}
   - {fileID: 5968355406672697251}
   - {fileID: 709897951028808991}
-  - {fileID: 1869619162156453614}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &5059618231054332150
@@ -853,7 +854,8 @@ MonoBehaviour:
   possiblePickups:
   - {fileID: 2922129042847442260, guid: 8967a4e9cd7a7e24aa1f6fe27144c508, type: 3}
   - {fileID: 3524703094827663392, guid: 9b92f92b661c0fa4698a94c037723b9c, type: 3}
-  spawnPoint: {fileID: 1869619162156453614}
+  spawnPoint: {fileID: 8832600752935800222}
+  bossSpawnPoint: {fileID: 4638136735604602785}
 --- !u!1 &2648107813647267317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1980,6 +1982,37 @@ MonoBehaviour:
   playerDestination: {fileID: 7298272624680799139}
   cameraDestination: {fileID: 8263984999032145561}
   reenableDelay: 0.5
+--- !u!1 &5956370873803193598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8832600752935800222}
+  m_Layer: 0
+  m_Name: PickUpSpawer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8832600752935800222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5956370873803193598}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1176755238943750891}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5971994121385468796
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,37 +2122,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &7090737361422982601
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1869619162156453614}
-  m_Layer: 0
-  m_Name: PickUpSpawer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1869619162156453614
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7090737361422982601}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1176755238943750891}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7249155038499471176
 GameObject:
   m_ObjectHideFlags: 0
@@ -2425,6 +2427,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.75, y: 0.94}
   m_EdgeRadius: 0
+--- !u!1 &7609345229869932714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4638136735604602785}
+  m_Layer: 0
+  m_Name: PickUpSpawer (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4638136735604602785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7609345229869932714}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.6399994, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1176755238943750891}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7630301630586616744
 GameObject:
   m_ObjectHideFlags: 0

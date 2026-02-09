@@ -5,15 +5,28 @@ public class MinimapIcon : MonoBehaviour
 {
     public Image img;
 
-    [Header("Sprites")]
-    public Sprite unvisitedSprite;
-    public Sprite visitedSprite;
-    public Sprite currentRoomSprite;
+    public enum IconType { Normal, Boss, Item }
+    public IconType iconType = IconType.Normal;
+
+    [Header("Normal Room Sprites")]
+    public Sprite normalUnvisited;
+    public Sprite normalVisited;
+    public Sprite normalCurrent;
+
+    [Header("Boss Room Sprites")]
+    public Sprite bossUnvisited;
+    public Sprite bossVisited;
+    public Sprite bossCurrent;
+
+    [Header("Item Room Sprites")]
+    public Sprite itemUnvisited;
+    public Sprite itemVisited;
+    public Sprite itemCurrent;
 
     private void Awake()
     {
         img = GetComponent<Image>();
-        Hide(); // start hidden for fog-of-war
+        Hide();
     }
 
     public void Hide()
@@ -31,22 +44,42 @@ public class MinimapIcon : MonoBehaviour
     public void SetUnvisited()
     {
         if (img == null) return;
-        img.sprite = unvisitedSprite;
+
+        img.sprite = iconType switch
+        {
+            IconType.Boss => bossUnvisited,
+            IconType.Item => itemUnvisited,
+            _ => normalUnvisited
+        };
     }
 
     public void SetVisited()
     {
         if (img == null) return;
-        img.sprite = visitedSprite;
+
+        img.sprite = iconType switch
+        {
+            IconType.Boss => bossVisited,
+            IconType.Item => itemVisited,
+            _ => normalVisited
+        };
     }
 
     public void SetAsCurrentRoom(bool isCurrent)
     {
         if (img == null) return;
 
-        if (isCurrent)
-            img.sprite = currentRoomSprite;
-        else
-            img.sprite = visitedSprite;
+        if (!isCurrent)
+        {
+            SetVisited();
+            return;
+        }
+
+        img.sprite = iconType switch
+        {
+            IconType.Boss => bossCurrent,
+            IconType.Item => itemCurrent,
+            _ => normalCurrent
+        };
     }
 }

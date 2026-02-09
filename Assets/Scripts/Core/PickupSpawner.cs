@@ -4,31 +4,37 @@ public class PickupSpawner : MonoBehaviour
 {
     [Header("Pickup Settings")]
     [Range(0f, 1f)]
-    public float spawnChance = 0.25f;   // 25% chance by default
+    public float spawnChance = 0.25f;
 
-    public GameObject[] possiblePickups; // health, coins, keys, etc.
+    public GameObject[] possiblePickups;
 
-    [Header("Spawn Position")]
-    public Transform spawnPoint; // optional, defaults to room center
+    [Header("Spawn Positions")]
+    public Transform spawnPoint;          // normal rooms
+    public Transform bossSpawnPoint;      // top of room for boss rooms
 
     private bool hasSpawned = false;
 
-    public void TrySpawnPickup()
+    public void TrySpawnPickup(bool isBossRoom)
     {
-        if (hasSpawned) return; // only spawn once per room
+        if (hasSpawned) return;
         hasSpawned = true;
 
         if (possiblePickups.Length == 0) return;
 
         float roll = Random.value;
+        if (roll > spawnChance) return;
 
-        if (roll <= spawnChance)
-        {
-            GameObject pickup = possiblePickups[Random.Range(0, possiblePickups.Length)];
+        GameObject pickup = possiblePickups[Random.Range(0, possiblePickups.Length)];
 
-            Vector3 pos = spawnPoint != null ? spawnPoint.position : transform.position;
+        Vector3 pos;
 
-            Instantiate(pickup, pos, Quaternion.identity);
-        }
+        if (isBossRoom && bossSpawnPoint != null)
+            pos = bossSpawnPoint.position;
+        else if (spawnPoint != null)
+            pos = spawnPoint.position;
+        else
+            pos = transform.position;
+
+        Instantiate(pickup, pos, Quaternion.identity);
     }
 }

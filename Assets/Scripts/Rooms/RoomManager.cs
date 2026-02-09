@@ -120,6 +120,15 @@ public class RoomManager : MonoBehaviour
 
         lastRoomScript.isBossRoom = true;
         lastRoomScript.hasBoss = true;
+        lastRoomScript.roomType = Room.RoomType.Boss;
+
+        // *** UPDATE MINIMAP ICON ***
+        MinimapIcon bossIcon = minimap.GetIcon(lastRoomScript.RoomIndex);
+        if (bossIcon != null)
+        {
+            bossIcon.iconType = MinimapIcon.IconType.Boss;
+            bossIcon.SetUnvisited();
+        }
 
         // 2. Choose a boss prefab that hasn't been used this run
         var availableBosses = bossPrefab
@@ -217,8 +226,20 @@ public class RoomManager : MonoBehaviour
 
             chosenRoomScript.ApplySpecialDoorSprites();
             ApplySpecialSpritesToConnectingRoom(chosenRoomScript);
+
+            chosenRoomScript.roomType = Room.RoomType.Item;
+
+            // *** UPDATE MINIMAP ICON ***
+            MinimapIcon itemIcon = minimap.GetIcon(chosenRoomScript.RoomIndex);
+            if (itemIcon != null)
+            {
+                itemIcon.iconType = MinimapIcon.IconType.Item;
+                itemIcon.SetUnvisited();
+            }
         }
     }
+
+
 
     // ------------------------------
     // NEW: Furthest 1-door room logic
@@ -556,13 +577,14 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    Room GetRoomScriptAt(Vector2Int index)
+    public Room GetRoomScriptAt(Vector2Int index)
     {
         GameObject roomObject = roomObjects.Find(r => r.GetComponent<Room>().RoomIndex == index);
         if (roomObject != null)
             return roomObject.GetComponent<Room>();
         return null;
     }
+
     private int CountAdjacentRooms(Vector2Int roomIndex)
     {
         int x = roomIndex.x;

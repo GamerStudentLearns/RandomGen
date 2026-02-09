@@ -25,8 +25,23 @@ public class MinimapManager : MonoBehaviour
             return;
 
         GameObject iconObj = Instantiate(iconPrefab, minimapPanel);
-        iconObj.name = $"Icon-{roomIndex.x}-{roomIndex.y}";
+        MinimapIcon icon = iconObj.GetComponent<MinimapIcon>();
 
+        Room room = RoomManager.Instance.GetRoomScriptAt(roomIndex);
+        if (room != null)
+        {
+            icon.iconType = room.roomType switch
+            {
+                Room.RoomType.Boss => MinimapIcon.IconType.Boss,
+                Room.RoomType.Item => MinimapIcon.IconType.Item,
+                _ => MinimapIcon.IconType.Normal
+            };
+        }
+
+        icon.SetUnvisited();
+        icons.Add(roomIndex, icon);
+
+        // *** THIS PART WAS MISSING ***
         RectTransform rt = iconObj.GetComponent<RectTransform>();
 
         Vector2Int offsetIndex = roomIndex - gridCenter;
@@ -36,11 +51,11 @@ public class MinimapManager : MonoBehaviour
             offsetIndex.y * iconSpacing
         );
 
-        MinimapIcon icon = iconObj.GetComponent<MinimapIcon>();
-        icon.SetUnvisited();   // logical state only; still hidden until Reveal()
+        Debug.Log($"Room {roomIndex} type = {icon.iconType}");
 
-        icons.Add(roomIndex, icon);
     }
+
+
 
     public void SetCurrentRoom(Vector2Int roomIndex)
     {

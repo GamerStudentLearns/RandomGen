@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    public enum RoomType { Normal, Boss, Item }
+
+    [Header("Room Type")]
+    public RoomType roomType = RoomType.Normal;
+
     [Header("Room Trigger (assign manually)")]
     public Collider2D roomTrigger;
 
@@ -53,7 +58,6 @@ public class Room : MonoBehaviour
     [Header("Optional Exit")]
     public GameObject optionalExitObject;
     public bool hasOptionalExit = false;
-
 
     [Header("Boss Room")]
     public bool isBossRoom = false;
@@ -182,12 +186,10 @@ public class Room : MonoBehaviour
         {
             if (trapdoorOpen != null) trapdoorOpen.SetActive(false);
             if (trapdoorClosed != null) trapdoorClosed.SetActive(true);
-
         }
 
         if (hasOptionalExit && optionalExitObject != null)
             optionalExitObject.SetActive(false);
-
     }
 
     private void ClearRoom()
@@ -208,11 +210,10 @@ public class Room : MonoBehaviour
 
         PickupSpawner spawner = GetComponent<PickupSpawner>();
         if (spawner != null)
-            spawner.TrySpawnPickup();
+            spawner.TrySpawnPickup(isBossRoom);   // ← ONLY CHANGE
 
         if (hasOptionalExit && optionalExitObject != null)
             optionalExitObject.SetActive(true);
-
     }
 
     private bool ShouldAffectDoor(GameObject obj)
@@ -275,14 +276,11 @@ public class Room : MonoBehaviour
 
             spawnedEnemies.Add(enemy);
 
-            // Wake bosses immediately
             IBoss[] bosses = enemy.GetComponents<IBoss>();
             foreach (IBoss boss in bosses)
                 boss.WakeUp();
         }
     }
-
-
 
     private IEnumerator CheckRoomClear()
     {
