@@ -23,9 +23,6 @@ public class PlayerHealth : MonoBehaviour
 
     private PlayerStats stats;
 
-    // --------------------
-    // FLASH FIELDS
-    // --------------------
     private Renderer[] renderers;
     private Color[] originalColors;
     public float flashDuration = 0.1f;
@@ -34,14 +31,12 @@ public class PlayerHealth : MonoBehaviour
     {
         FindOrCreateHeartUI();
 
-        // Ensure RunManager exists
         if (RunManager.instance == null)
         {
             var rmGo = new GameObject("RunManager");
             rmGo.AddComponent<RunManager>();
         }
 
-        // Load stored health from RunManager
         maxHearts = RunManager.instance.MaxHearts;
         currentHearts = RunManager.instance.currentHearts;
         soulHearts = RunManager.instance.soulHearts;
@@ -61,9 +56,6 @@ public class PlayerHealth : MonoBehaviour
         if (gameOverUI != null)
             gameOverUI.SetActive(false);
 
-        // --------------------
-        // CACHE RENDERERS FOR FLASH
-        // --------------------
         renderers = GetComponentsInChildren<Renderer>();
         originalColors = new Color[renderers.Length];
 
@@ -76,23 +68,20 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         stats = GetComponent<PlayerStats>();
+        PlayerEvents.PlayerStatsRef = stats;   // EVENT HOOK
     }
 
-    // --------------------
-    // DAMAGE
-    // --------------------
     public void TakeDamage(int dmg)
     {
         if (invulnerable) return;
 
-        // Soul hearts absorb first
         if (soulHearts > 0)
         {
             soulHearts -= dmg;
 
             if (soulHearts < 0)
             {
-                currentHearts += soulHearts; // negative overflow
+                currentHearts += soulHearts;
                 soulHearts = 0;
             }
         }
@@ -103,21 +92,19 @@ public class PlayerHealth : MonoBehaviour
 
         currentHearts = Mathf.Max(currentHearts, 0);
 
-        // Save to RunManager
         RunManager.instance.currentHearts = currentHearts;
         RunManager.instance.soulHearts = soulHearts;
 
         if (heartUI != null)
             heartUI.UpdateHearts(currentHearts, soulHearts);
 
-        // Hitstop
         HitStopController.instance.Stop(0.05f);
 
-        // FLASH RED
         StartCoroutine(FlashRed());
 
-        // Invulnerability frames
         StartCoroutine(Invulnerability());
+
+        PlayerEvents.PlayerDamaged();   // EVENT HOOK
 
         if (currentHearts <= 0)
             Die();
@@ -140,24 +127,15 @@ public class PlayerHealth : MonoBehaviour
         invulnerable = false;
     }
 
-    // --------------------
-    // FLASH RED EFFECT
-    // --------------------
     private IEnumerator FlashRed()
     {
-        // Set all renderers to red
         for (int i = 0; i < renderers.Length; i++)
-        {
             renderers[i].material.color = Color.red;
-        }
 
         yield return new WaitForSeconds(flashDuration);
 
-        // Restore original colors
         for (int i = 0; i < renderers.Length; i++)
-        {
             renderers[i].material.color = originalColors[i];
-        }
     }
 
     private void Die()
@@ -175,9 +153,6 @@ public class PlayerHealth : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    // --------------------
-    // HEALING
-    // --------------------
     public void Heal(int amount)
     {
         currentHearts += amount;
@@ -189,9 +164,6 @@ public class PlayerHealth : MonoBehaviour
             heartUI.UpdateHearts(currentHearts, soulHearts);
     }
 
-    // --------------------
-    // UI SETUP
-    // --------------------
     private void FindOrCreateHeartUI()
     {
         if (heartUI != null)

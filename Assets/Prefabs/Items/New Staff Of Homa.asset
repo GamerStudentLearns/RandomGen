@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StaffOfHoma
   itemName: 
   description: 
+  icon: {fileID: -7503014270869459887, guid: cd4effe7bf79a8043bd8aa0616dd0886, type: 3}

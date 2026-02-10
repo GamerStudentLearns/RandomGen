@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BellaMuerteKey
   itemName: 
   description: 
+  icon: {fileID: -7986698371736124408, guid: 0a9b308a32f3bca4bacb4f6d4ab95709, type: 3}

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Pentacle
   itemName: 
   description: 
+  icon: {fileID: -6631981949662149711, guid: 42d6e7c5c2c573546a2815c70655f49a, type: 3}

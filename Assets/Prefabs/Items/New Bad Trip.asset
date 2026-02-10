@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8126762a129bc8a4dbc59e157d2e536e, type: 3}
+  m_Name: New Bad Trip
+  m_EditorClassIdentifier: Assembly-CSharp::BadTrip
+  itemName: 
+  description: 
+  icon: {fileID: 7471938752720923685, guid: 17433ed2dc82d704384631b755c4bd4b, type: 3}

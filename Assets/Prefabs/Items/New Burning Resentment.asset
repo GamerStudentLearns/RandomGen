@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BurningResentment
   itemName: 
   description: 
+  icon: {fileID: 6004102747382691941, guid: 24336e9ba5c2c734bb709e8bfee718f5, type: 3}

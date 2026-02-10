@@ -44,8 +44,16 @@ public class RoomManager : MonoBehaviour
     [Header("Special Room Prefabs")]
     [SerializeField] private GameObject[] specialRoomPrefabs;
 
+    [Header("Boss Reward Items")]
+    public GameObject[] bossRewardItemPrefabs;
+
+
+
+
     private static HashSet<GameObject> spawnedItemsThisRun = new HashSet<GameObject>();
     private static HashSet<GameObject> usedBossesThisRun = new HashSet<GameObject>();
+    public static HashSet<GameObject> bossRewardsUsedThisRun = new HashSet<GameObject>();
+
 
     public MinimapManager minimap;
 
@@ -70,8 +78,10 @@ public class RoomManager : MonoBehaviour
         {
             spawnedItemsThisRun.Clear();
             usedBossesThisRun.Clear();
+            bossRewardsUsedThisRun.Clear();   // NEW
         }
     }
+
 
     private void Start()
     {

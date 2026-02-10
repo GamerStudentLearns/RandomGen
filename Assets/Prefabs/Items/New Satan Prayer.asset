@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SatanPrayer
   itemName: 
   description: 
+  icon: {fileID: 6591728056116107309, guid: 4c179fc8db818d941b0b72c6e0121037, type: 3}

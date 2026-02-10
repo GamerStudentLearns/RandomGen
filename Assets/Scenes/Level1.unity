@@ -753,7 +753,11 @@ PrefabInstance:
       objectReference: {fileID: 3350699373118113798, guid: 0354fbfc86c713c439b69f106be3e70f, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: specialRoomPrefabs.Array.size
-      value: 13
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: bossRewardItemPrefabs.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: 'specialRoomPrefabs.Array.data[4]'
@@ -783,6 +787,26 @@ PrefabInstance:
       propertyPath: 'specialRoomPrefabs.Array.data[12]'
       value: 
       objectReference: {fileID: 1799603073107082396, guid: b615b5cef6f56ac49b8ace1ea460a742, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'specialRoomPrefabs.Array.data[13]'
+      value: 
+      objectReference: {fileID: 6044515794962086252, guid: fdaa46cbbe908c742aac259ddaeb0b6e, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'bossRewardItemPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8922317129688778209, guid: 7031cba616e542148a04a2eba483f41c, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'bossRewardItemPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7328399889544228691, guid: 19bc4146870359342b480ed527ce17b3, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'bossRewardItemPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2191419714883000679, guid: 51f4240fda551c44ebf3ad9ba6e41519, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'bossRewardItemPrefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 9165995521823599849, guid: 749521079f477e1469cbaadb47aa9e25, type: 3}
     - target: {fileID: 4057666898281785021, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.74274
@@ -855,6 +879,34 @@ PrefabInstance:
     - target: {fileID: 4551596201798798725, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953529580246052395, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953529580246052395, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953529580246052395, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953529580246052395, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953529580246052395, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953529580246052395, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6239546138713254691, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 18.900024
       objectReference: {fileID: 0}
     - target: {fileID: 6703027690410907990, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
       propertyPath: m_Pivot.x

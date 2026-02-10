@@ -81,6 +81,16 @@ MonoBehaviour:
   - {fileID: 8116734023158253103, guid: a9206c6533c466246a7187f92ed7daf7, type: 3}
   - {fileID: 1799603073107082396, guid: b615b5cef6f56ac49b8ace1ea460a742, type: 3}
   - {fileID: 6044515794962086252, guid: fdaa46cbbe908c742aac259ddaeb0b6e, type: 3}
+  bossRewardItemPrefabs:
+  - {fileID: 8922317129688778209, guid: 7031cba616e542148a04a2eba483f41c, type: 3}
+  - {fileID: 7328399889544228691, guid: 19bc4146870359342b480ed527ce17b3, type: 3}
+  - {fileID: 2191419714883000679, guid: 51f4240fda551c44ebf3ad9ba6e41519, type: 3}
+  - {fileID: 9165995521823599849, guid: 749521079f477e1469cbaadb47aa9e25, type: 3}
+  - {fileID: 1196295802507161881, guid: 2c146afa5f48224488086cb562068cdd, type: 3}
+  - {fileID: 9221546726739441429, guid: 7df362d78f4f4674a83ecef0619d74a8, type: 3}
+  - {fileID: 2834808518112970236, guid: 89c76a01386b46749b8b2c6ca7ced4e3, type: 3}
+  - {fileID: 7058895075712536209, guid: 7f3d0947de4e36e49a2017e5a01778c4, type: 3}
+  - {fileID: 5264943988591073765, guid: 65cb4276a06936d4ba17f5ee6f0e2c91, type: 3}
   minimap: {fileID: 0}
 --- !u!114 &3364303229295932409
 MonoBehaviour:

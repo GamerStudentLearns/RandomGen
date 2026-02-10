@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GodRage
   itemName: 
   description: 
+  icon: {fileID: 5715123185248911606, guid: a8a2f705f75ec8541a13dff56fb0b1a6, type: 3}

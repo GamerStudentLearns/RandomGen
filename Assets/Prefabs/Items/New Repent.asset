@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Repent
   itemName: 
   description: 
+  icon: {fileID: 7199428335472232780, guid: 91eab91f4e0d6e742a69d70e13e7779a, type: 3}

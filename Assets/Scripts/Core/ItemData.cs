@@ -4,6 +4,8 @@ public abstract class ItemData : ScriptableObject
 {
     public string itemName;
     [TextArea] public string description;
+    public Sprite icon;
+
 
     // Runs ONCE when the player picks up the item
     public virtual void OnPickup(PlayerStats stats, RunManager run) { }

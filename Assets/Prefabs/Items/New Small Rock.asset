@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SmallRock
   itemName: SmallRock
   description: Speed down, Damage Up
+  icon: {fileID: -3541775557916876623, guid: 1b8fc2583b045bb4bbd8add8deb11d12, type: 3}

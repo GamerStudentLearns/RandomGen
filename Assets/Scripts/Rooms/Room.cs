@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
 
 public class Room : MonoBehaviour
 {
@@ -73,6 +75,10 @@ public class Room : MonoBehaviour
     [Header("Room Settings")]
     public bool isStartingRoom = false;
 
+    [Header("Boss Reward Control")]
+    public bool bossRewardSpawned = false;
+
+
     [Header("Lock Behaviour")]
     public GameObject[] objectsToDisableOnLock;
     public GameObject[] objectsToEnableOnLock;
@@ -132,6 +138,8 @@ public class Room : MonoBehaviour
             return;
 
         roomActivated = true;
+
+        RoomEvents.RoomEntered(this);   // EVENT HOOK
 
         if (isStartingRoom)
             return;
@@ -194,6 +202,8 @@ public class Room : MonoBehaviour
 
     private void ClearRoom()
     {
+        RoomEvents.RoomCleared(this);
+
         foreach (var obj in objectsToDisableOnClear)
             if (obj != null && ShouldAffectDoor(obj))
                 obj.SetActive(false);
@@ -210,11 +220,19 @@ public class Room : MonoBehaviour
 
         PickupSpawner spawner = GetComponent<PickupSpawner>();
         if (spawner != null)
-            spawner.TrySpawnPickup(isBossRoom);   // ← ONLY CHANGE
+            spawner.TrySpawnPickup(isBossRoom);
 
         if (hasOptionalExit && optionalExitObject != null)
             optionalExitObject.SetActive(true);
+
+        if (isBossRoom && !bossRewardSpawned)
+        {
+            SpawnBossReward();
+            bossRewardSpawned = true;
+        }
     }
+
+
 
     private bool ShouldAffectDoor(GameObject obj)
     {
@@ -275,6 +293,8 @@ public class Room : MonoBehaviour
                 health.parentRoom = this;
 
             spawnedEnemies.Add(enemy);
+
+            EnemySpawnEvents.EnemySpawned(enemy);   // EVENT HOOK
 
             IBoss[] bosses = enemy.GetComponents<IBoss>();
             foreach (IBoss boss in bosses)
@@ -375,4 +395,41 @@ public class Room : MonoBehaviour
         if (hasRightDoor && rightClosedDoor != null)
             rightClosedDoor.GetComponent<SpriteRenderer>().sprite = bossRightClosedSprite;
     }
+
+    private void SpawnBossReward()
+    {
+        if (!isBossRoom)
+            return;
+
+        var rewards = RoomManager.Instance.bossRewardItemPrefabs;
+        if (rewards == null || rewards.Length == 0)
+            return;
+
+        // Filter out items already used this run
+        var available = rewards
+            .Where(r => !RoomManager.bossRewardsUsedThisRun.Contains(r))
+            .ToList();
+
+        // If no items left, stop — all collected this run
+        if (available.Count == 0)
+            return;
+
+        // Pick random unused reward
+        GameObject rewardPrefab = available[Random.Range(0, available.Count)];
+
+        // Base position = trapdoor
+        Vector3 basePos = trapdoorClosed != null
+            ? trapdoorClosed.transform.position
+            : transform.position;
+
+        // Move it down manually
+        Vector3 spawnPos = basePos + new Vector3(0f, -1.5f, 0f);
+
+        Instantiate(rewardPrefab, spawnPos, Quaternion.identity, transform);
+
+        // Mark as used this run
+        RoomManager.bossRewardsUsedThisRun.Add(rewardPrefab);
+    }
+
+
 }

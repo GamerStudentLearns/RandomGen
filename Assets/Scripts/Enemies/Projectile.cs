@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     public bool damagesEnemies;
 
     [Header("Effects")]
-    public ParticleSystem destroyEffect;   // Assign in Inspector
+    public ParticleSystem destroyEffect;
 
     private Vector2 direction;
 
@@ -33,7 +33,6 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Enemy bullet hits player
         if (damagesPlayer && other.CompareTag("Player"))
         {
             PlayerHealth player = other.GetComponent<PlayerHealth>();
@@ -44,18 +43,19 @@ public class Projectile : MonoBehaviour
             return;
         }
 
-        // Player bullet hits enemy
         if (damagesEnemies && other.CompareTag("Enemy"))
         {
             EnemyHealth enemy = other.GetComponent<EnemyHealth>();
             if (enemy != null)
+            {
                 enemy.TakeDamage(damage);
+                ProjectileEvents.PlayerProjectileHit(enemy);   // EVENT HOOK
+            }
 
             PlayDestroyEffectAndDie();
             return;
         }
 
-        // Destroy on walls
         if (other.CompareTag("Wall"))
         {
             PlayDestroyEffectAndDie();
@@ -65,9 +65,7 @@ public class Projectile : MonoBehaviour
     private void PlayDestroyEffectAndDie()
     {
         if (destroyEffect != null)
-        {
             Instantiate(destroyEffect, transform.position, Quaternion.identity);
-        }
 
         Destroy(gameObject);
     }

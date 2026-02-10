@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SugarRush
   itemName: 
   description: 
+  icon: {fileID: 5615069187222856334, guid: 46e005e29118cde469168ce448d280a5, type: 3}

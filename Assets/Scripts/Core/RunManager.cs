@@ -42,19 +42,18 @@ public class RunManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Reset run on first level
         if (scene.name == "Level1")
         {
-            currentFloor = 1;   // Reset floor count
+            currentFloor = 1;
             ResetRun();
             HealPlayerOnStart();
         }
         else
         {
-            currentFloor++;     // Every new level increments floor
+            currentFloor++;
+            RunEvents.FloorChanged?.Invoke();
         }
 
-        // Reapply persistent item effects
         PlayerStats stats = FindFirstObjectByType<PlayerStats>();
         if (stats != null)
         {
@@ -62,14 +61,24 @@ public class RunManager : MonoBehaviour
                 item.ApplyPersistent(stats, this);
         }
 
+        // IMPORTANT: tell UI to refresh after items are reapplied
+        RunEvents.OnItemAcquired?.Invoke();
+
         SyncPlayerHealthToRun();
     }
 
-    // Called when the player picks up an item
+    public static class RunEvents
+    {
+        public static System.Action OnItemAcquired;
+        public static System.Action FloorChanged;
+    }
+
     public void AcquireItem(ItemData item, PlayerStats stats)
     {
         acquiredItems.Add(item);
-        item.OnPickup(stats, this);   // One-time effects
+        item.OnPickup(stats, this);
+
+        RunEvents.OnItemAcquired?.Invoke();
     }
 
     public void ResetRun()
@@ -79,18 +88,13 @@ public class RunManager : MonoBehaviour
         heartModifiers = 0;
         currentHearts = baseMaxHearts;
         soulHearts = 0;
-
-        Debug.Log("Run reset — modifiers cleared, hearts restored, items cleared.");
     }
 
     private void HealPlayerOnStart()
     {
         PlayerHealth player = FindFirstObjectByType<PlayerHealth>();
         if (player == null)
-        {
-            Debug.LogWarning("No PlayerHealth found in scene.");
             return;
-        }
 
         player.maxHearts = baseMaxHearts;
         currentHearts = baseMaxHearts;
@@ -104,8 +108,6 @@ public class RunManager : MonoBehaviour
             player.heartUI.Initialize(baseMaxHearts, 0);
             player.heartUI.UpdateHearts(baseMaxHearts, 0);
         }
-
-        Debug.Log("Player healed to full on Level1 load.");
     }
 
     private void SyncPlayerHealthToRun()

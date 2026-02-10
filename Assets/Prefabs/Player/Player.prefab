@@ -190,8 +190,10 @@ MonoBehaviour:
   deathEffect: {fileID: 1928436143237126930, guid: b3fdb08aa7de7634b846de6ea4ded03e, type: 3}
   invulnTime: 0.5
   currentHearts: 0
+  soulHearts: 0
   heartUI: {fileID: 0}
   gameOverUI: {fileID: 0}
+  flashDuration: 0.1
 --- !u!70 &3978188527296000903
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
