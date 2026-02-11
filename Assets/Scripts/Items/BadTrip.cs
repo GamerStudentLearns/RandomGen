@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [CreateAssetMenu(menuName = "Items/Bad Trip")]
 public class BadTrip : ItemData
@@ -32,18 +33,26 @@ public class BadTrip : ItemData
         if (subscribed) return;
         subscribed = true;
 
-        RoomEvents.OnRoomEntered += (_) =>
+        RoomEvents.OnRoomEntered += (room) =>
         {
             float roll = Random.value;
 
-            stats.ModifyStat(s =>
+            // Delay one frame so StatDisplay exists
+            room.StartCoroutine(DelayedStatChange(stats, s =>
             {
-                if (roll < 0.33f) s.damage += 0.5f;
-                else if (roll < 0.66f) s.fireRate += 0.1f;
-                else s.shotSpeed += 1f;
-            });
+                if (roll < 0.33f)
+                    s.damage += 0.5f;
+                else if (roll < 0.66f)
+                    s.fireRate += 0.1f;
+                else
+                    s.shotSpeed += 1f;
+            }));
         };
+    }
 
-        
+    private IEnumerator DelayedStatChange(PlayerStats stats, System.Action<PlayerStats> change)
+    {
+        yield return null; // wait for UI to rebuild
+        stats.ModifyStat(change);
     }
 }

@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-
 [CreateAssetMenu(menuName = "Items/Euphoric Flash")]
 public class EuphoricFlash : ItemData
 {
@@ -34,16 +33,26 @@ public class EuphoricFlash : ItemData
         if (subscribed) return;
         subscribed = true;
 
-        RoomEvents.OnRoomEntered += (_) =>
+        RoomEvents.OnRoomEntered += (room) =>
         {
             PlayerStats stats = PlayerEvents.PlayerStatsRef;
-            stats.StartCoroutine(RoomBuff(stats));
+            if (stats != null)
+                room.StartCoroutine(DelayedStart(stats));
         };
+    }
+
+    private IEnumerator DelayedStart(PlayerStats stats)
+    {
+        // Wait one frame so UI exists
+        yield return null;
+
+        // Start the buff cycle
+        stats.StartCoroutine(RoomBuff(stats));
     }
 
     private IEnumerator RoomBuff(PlayerStats stats)
     {
-        // Big buff
+        // Euphoric high
         stats.ModifyStat(s =>
         {
             s.fireRate += 1.5f;
@@ -52,23 +61,23 @@ public class EuphoricFlash : ItemData
 
         yield return new WaitForSeconds(10f);
 
-        // Crash (temporary debuff)
+        // Crash
         stats.ModifyStat(s =>
         {
-            s.fireRate -= 1.5f; // fully undo fireRate buff
-            s.damage -= 2f;     // fully undo damage buff
-            s.fireRate += 1f;   // apply crash
+            s.fireRate -= 1.5f; // undo buff
+            s.damage -= 2f;     // undo buff
+
+            s.fireRate += 1f;   // crash penalty
             s.damage -= 1f;
         });
 
         yield return new WaitForSeconds(3f);
 
-        // Undo crash
+        // Recover from crash
         stats.ModifyStat(s =>
         {
             s.fireRate -= 1f;
             s.damage += 1f;
         });
     }
-
 }

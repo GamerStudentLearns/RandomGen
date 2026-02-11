@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [CreateAssetMenu(menuName = "Items/Moldy Harvest")]
 public class MoldyHarvest : ItemData
@@ -34,11 +35,12 @@ public class MoldyHarvest : ItemData
 
         ProjectileEvents.OnPlayerProjectileHitEnemy += (enemy) =>
         {
-            enemy.StartCoroutine(ApplyPoison(enemy));
+            if (enemy != null)
+                enemy.StartCoroutine(ApplyPoison(enemy));
         };
     }
 
-    private System.Collections.IEnumerator ApplyPoison(EnemyHealth enemy)
+    private IEnumerator ApplyPoison(EnemyHealth enemy)
     {
         float duration = 3f;
         float tick = 1f;
@@ -48,11 +50,10 @@ public class MoldyHarvest : ItemData
             if (enemy == null)
                 yield break;
 
-            enemy.TakeDamage(1f);   // guaranteed tick
+            enemy.TakeDamage(1f);   // guaranteed poison tick
             duration -= tick;
 
             yield return new WaitForSeconds(tick);
         }
     }
-
 }

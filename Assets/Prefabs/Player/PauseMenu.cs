@@ -74,4 +74,13 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
         Debug.Log("Quitting Game...");
     }
+
+    public void Restart()
+    {
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        SceneManager.LoadScene("Level1");
+        Debug.Log("Restarting...");
+    }
 }

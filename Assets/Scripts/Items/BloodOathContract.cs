@@ -46,7 +46,7 @@ public class BloodOathContract : ItemData
 
         PlayerEvents.OnPlayerDamaged += () =>
         {
-            stats.ModifyStat(s => s.damage -= 0.5f);
+            stats.StartCoroutine(DelayedPenalty(stats));
         };
     }
 
@@ -59,5 +59,11 @@ public class BloodOathContract : ItemData
             float bonus = enemiesThisRoom * 0.25f;
             stats.ModifyStat(s => s.damage += bonus);
         }
+    }
+
+    private IEnumerator DelayedPenalty(PlayerStats stats)
+    {
+        yield return null;
+        stats.ModifyStat(s => s.damage -= 0.5f);
     }
 }

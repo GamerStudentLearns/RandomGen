@@ -47,7 +47,6 @@ public class ForgottenName : ItemData
                 case 1: s.fireRate += 0.2f * direction; break;
                 case 2: s.moveSpeed += 0.1f * direction; break;
                 case 3: s.range += 1f * direction; break;
-                case 4: s.shotSpeed += 0.5f * direction; break;
             }
         });
     }
