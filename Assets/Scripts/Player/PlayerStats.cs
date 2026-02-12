@@ -16,7 +16,7 @@ public class PlayerStats : MonoBehaviour
     private const float MIN_SPEED = 0.3f;
     private const float MAX_SPEED = 15f;
 
-    private const float MIN_FIRERATE = 0.1f;
+    private const float MIN_FIRERATE = 0.01f;
     private const float MAX_FIRERATE = 5f;
 
     private const float MIN_RANGE = 2f;

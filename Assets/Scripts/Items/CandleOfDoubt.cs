@@ -24,20 +24,24 @@ public class CandleOfDoubt : ItemData
         EnemySpawnEvents.OnEnemySpawned += (enemy) =>
         {
             if (enemy == null) return;
-            var mod = enemy.AddComponent<EnemyDamageModifier>();
+            var mod = enemy.gameObject.AddComponent<EnemyDamageModifier>();
             mod.multiplier = 0.8f;
         };
 
         RoomEvents.OnRoomEntered += (room) =>
         {
             float roll = Random.Range(-0.1f, 0.1f);
-            room.StartCoroutine(DelayedChange(stats, roll));
+            stats.StartCoroutine(SafeStatChange(stats, s =>
+            {
+                s.damage += roll * s.damage;
+            }));
         };
     }
 
-    private IEnumerator DelayedChange(PlayerStats stats, float roll)
+    private IEnumerator SafeStatChange(PlayerStats stats, System.Action<PlayerStats> change)
     {
         yield return null;
-        stats.ModifyStat(s => s.damage += roll * s.damage);
+        yield return null;
+        stats.ModifyStat(change);
     }
 }

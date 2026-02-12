@@ -28,16 +28,20 @@ public class AbsorbentSponge : ItemData
             if (absorbed >= 5)
             {
                 absorbed = 0;
-                stats.StartCoroutine(DelayedBuff(stats));
+                stats.StartCoroutine(SafeStatChange(stats, s =>
+                {
+                    s.damage += 1f;
+                }));
             }
         };
 
         RoomEvents.OnRoomEntered += (_) => absorbed = 0;
     }
 
-    private IEnumerator DelayedBuff(PlayerStats stats)
+    private IEnumerator SafeStatChange(PlayerStats stats, System.Action<PlayerStats> change)
     {
         yield return null;
-        stats.ModifyStat(s => s.damage += 1f);
+        yield return null;
+        stats.ModifyStat(change);
     }
 }

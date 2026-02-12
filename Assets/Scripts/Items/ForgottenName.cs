@@ -23,12 +23,13 @@ public class ForgottenName : ItemData
 
         RunEvents.OnFloorChanged += () =>
         {
-            stats.StartCoroutine(ApplyChanges(stats));
+            stats.StartCoroutine(SafeFloorChange(stats));
         };
     }
 
-    private IEnumerator ApplyChanges(PlayerStats stats)
+    private IEnumerator SafeFloorChange(PlayerStats stats)
     {
+        yield return null;
         yield return null;
 
         ApplyRandom(stats, +1);
@@ -37,7 +38,7 @@ public class ForgottenName : ItemData
 
     private void ApplyRandom(PlayerStats stats, int direction)
     {
-        int roll = Random.Range(0, 5);
+        int roll = Random.Range(0, 4);
 
         stats.ModifyStat(s =>
         {
@@ -49,5 +50,12 @@ public class ForgottenName : ItemData
                 case 3: s.range += 1f * direction; break;
             }
         });
+    }
+
+    private IEnumerator SafeStatChange(PlayerStats stats, System.Action<PlayerStats> change)
+    {
+        yield return null;
+        yield return null;
+        stats.ModifyStat(change);
     }
 }

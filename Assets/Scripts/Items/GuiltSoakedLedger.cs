@@ -24,19 +24,21 @@ public class GuiltSoakedLedger : ItemData
         PlayerEvents.OnPlayerDamaged += () =>
         {
             if (stats != null)
-                stats.StartCoroutine(DelayedPenalty(stats));
+                stats.StartCoroutine(SafeStatChange(stats, s =>
+                {
+                    // STRONGER, VISIBLE PENALTIES
+                    s.damage -= 0.5f;
+                    s.fireRate -= 0.15f;
+                }));
         };
     }
 
-    private IEnumerator DelayedPenalty(PlayerStats stats)
+    private IEnumerator SafeStatChange(PlayerStats stats, System.Action<PlayerStats> change)
     {
-        // Wait one frame so StatDisplay is rebuilt
+        // Wait TWO frames so StatDisplay is fully rebuilt
+        yield return null;
         yield return null;
 
-        stats.ModifyStat(s =>
-        {
-            s.damage -= 0.2f;
-            s.fireRate -= 0.1f;
-        });
+        stats.ModifyStat(change);
     }
 }
