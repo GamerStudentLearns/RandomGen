@@ -87,6 +87,22 @@ public class Room : MonoBehaviour
     public GameObject[] objectsToDisableOnClear;
     public GameObject[] objectsToEnableOnClear;
 
+    [Header("Room Decor Points")]
+    public List<Transform> floorDecorPoints;
+    public List<Transform> topWallDecorPoints;
+    public List<Transform> bottomWallDecorPoints;
+    public List<Transform> leftWallDecorPoints;
+    public List<Transform> rightWallDecorPoints;
+
+    [Header("Room Decor Prefabs")]
+    public List<GameObject> floorDecorPrefabs;
+    public List<GameObject> topWallDecorPrefabs;
+    public List<GameObject> bottomWallDecorPrefabs;
+    public List<GameObject> leftWallDecorPrefabs;
+    public List<GameObject> rightWallDecorPrefabs;
+    // paintings, torches, banners
+
+
     [Header("Enemy Spawning")]
     public List<Transform> enemySpawnPoints;
     public List<GameObject> enemyPrefabs;
@@ -119,7 +135,10 @@ public class Room : MonoBehaviour
         RockSpawner rocks = GetComponent<RockSpawner>();
         if (rocks != null)
             rocks.TrySpawnRocks();
+
+        SpawnDecor(); // ← correct place
     }
+
 
     public void PlayerEnteredRoom()
     {
@@ -431,5 +450,28 @@ public class Room : MonoBehaviour
         RoomManager.bossRewardsUsedThisRun.Add(rewardPrefab);
     }
 
+    private void SpawnDecor()
+    {
+        SpawnDecorGroup(floorDecorPoints, floorDecorPrefabs, 0.45f);
+        SpawnDecorGroup(topWallDecorPoints, topWallDecorPrefabs, 0.30f);
+        SpawnDecorGroup(bottomWallDecorPoints, bottomWallDecorPrefabs, 0.30f);
+        SpawnDecorGroup(leftWallDecorPoints, leftWallDecorPrefabs, 0.30f);
+        SpawnDecorGroup(rightWallDecorPoints, rightWallDecorPrefabs, 0.30f);
+    }
+
+    private void SpawnDecorGroup(List<Transform> points, List<GameObject> prefabs, float chance)
+    {
+        if (points == null || prefabs == null || prefabs.Count == 0)
+            return;
+
+        foreach (Transform point in points)
+        {
+            if (Random.value < chance)
+            {
+                GameObject prefab = prefabs[Random.Range(0, prefabs.Count)];
+                Instantiate(prefab, point.position, Quaternion.identity, transform);
+            }
+        }
+    }
 
 }

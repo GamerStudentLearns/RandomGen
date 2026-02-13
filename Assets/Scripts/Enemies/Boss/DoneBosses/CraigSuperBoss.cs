@@ -17,6 +17,8 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
         Fatty
     }
 
+    private bool hushSkip = false;
+
     [Header("General")]
     public bool isAwake = false;
     public Transform player;
@@ -271,21 +273,39 @@ public class CraigSuperBoss : MonoBehaviour, IBoss
 
         if (timerA <= 0)
         {
+            // Aim at player
+            Vector2 dir = (player.position - transform.position).normalized;
+            float playerAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+            float sweepRange = 60f;
+            float sweepSpeed = 8f;
+
             if (hushRight)
             {
-                hushAngle += 8f;
-                if (hushAngle >= 60f) hushRight = false;
+                hushAngle += sweepSpeed;
+                if (hushAngle >= sweepRange) hushRight = false;
             }
             else
             {
-                hushAngle -= 8f;
-                if (hushAngle <= -60f) hushRight = true;
+                hushAngle -= sweepSpeed;
+                if (hushAngle <= -sweepRange) hushRight = true;
             }
 
-            FireAngle(hushAngle, 4f);
-            timerA = 0.1f;
+            float finalAngle = playerAngle + hushAngle;
+
+            // 🔥 Skip every other shot to create gaps
+            hushSkip = !hushSkip;
+            if (!hushSkip)
+            {
+                FireAngle(finalAngle, 4f);
+            }
+
+            timerA = 0.1f; // original speed
         }
     }
+
+
+
 
     private void Phase_RapidBarrage()
     {

@@ -22,8 +22,9 @@ public class EyeLordBoss : MonoBehaviour, IBoss
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-        leftEye = Instantiate(eyePrefab, transform.position, Quaternion.identity);
-        rightEye = Instantiate(eyePrefab, transform.position, Quaternion.identity);
+        // Parent the eyes to THIS boss so they get destroyed with it
+        leftEye = Instantiate(eyePrefab, transform.position, Quaternion.identity, transform);
+        rightEye = Instantiate(eyePrefab, transform.position, Quaternion.identity, transform);
 
         fireTimer = fireCooldown;
     }
@@ -53,7 +54,6 @@ public class EyeLordBoss : MonoBehaviour, IBoss
         rightEye.transform.position =
             transform.position + new Vector3(Mathf.Cos(t + Mathf.PI), Mathf.Sin(t + Mathf.PI), 0) * eyeOrbitRadius;
     }
-
 
     private void HandleFire()
     {
@@ -89,6 +89,7 @@ public class EyeLordBoss : MonoBehaviour, IBoss
     // -------------------------
     public void Die()
     {
+        // Eyes are children now, but we destroy them explicitly anyway
         if (leftEye != null)
             Destroy(leftEye);
 
@@ -97,6 +98,4 @@ public class EyeLordBoss : MonoBehaviour, IBoss
 
         Destroy(gameObject);
     }
-
-
 }
