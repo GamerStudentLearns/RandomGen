@@ -2048,4 +2048,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadingScreenController
   loadingCanvas: {fileID: 6625067762570947346}
-  duration: 10
+  duration: 4
