@@ -1302,7 +1302,24 @@ MonoBehaviour:
   - {fileID: 9002860000296483390, guid: a1eee548f425e814ea571cff779894b6, type: 3}
   - {fileID: 884684061187400578, guid: ddf5ded3f67ece84ea2cadebad0ba979, type: 3}
   - {fileID: 4218830667590039952, guid: 533a3a2387023444ba8f97be77dfd8f9, type: 3}
-  topWallDecorPrefabs: []
+  topWallDecorPrefabs:
+  - {fileID: 5492806519656066056, guid: 6be9dce6ef1e33c43ac8bf440329e6a4, type: 3}
+  - {fileID: 4571276563435652300, guid: eb5d7efdf03bf9d46a96f89713f6348b, type: 3}
+  - {fileID: 4484916526734293884, guid: 5d89600bbc9fef844b2d1b504e2b520c, type: 3}
+  - {fileID: 4903413734468662349, guid: ba8dd1a203dfd2941b9ac0fd02cee976, type: 3}
+  - {fileID: 8519638410363833428, guid: 51c11ab6c00339746851a2d59a487bd2, type: 3}
+  - {fileID: 8493440186336696095, guid: b8c4edfad5f38a647aca34cb72d67b0d, type: 3}
+  - {fileID: 8909203819696186604, guid: 6d0c99ab973df4d4999927ec3c5abcb4, type: 3}
+  - {fileID: 1487818309309709634, guid: 6e43b73fa6b53984e9a1e35b16422ca5, type: 3}
+  - {fileID: 6306297683024858878, guid: c6a494ff131be1e4c8bce21fe7cb2555, type: 3}
+  - {fileID: 698486912574194494, guid: eb8662a4bc81bd141a56c0ae2d2d759c, type: 3}
+  - {fileID: 4995393491515500839, guid: 62b920746786ab34a98914c1dd949c56, type: 3}
+  - {fileID: 7993273350314323631, guid: 0965f543c076f964a9e0c7cd51eba877, type: 3}
+  - {fileID: 3918471156448640003, guid: 40f8a3feaa365904182bdb7d7d3d546c, type: 3}
+  - {fileID: 301577413957587114, guid: cb42a833007c52749b1459da0a8fe847, type: 3}
+  - {fileID: 5197753769313697538, guid: a48f58358f29d5c428fa54340e4d3a9f, type: 3}
+  - {fileID: 3138419405802759354, guid: 6322a5f54ca2ee4478b5ce68dccafba9, type: 3}
+  - {fileID: 5776952687016269050, guid: ceff44d69e3b5d2419dad3df91df75c9, type: 3}
   bottomWallDecorPrefabs: []
   leftWallDecorPrefabs: []
   rightWallDecorPrefabs: []

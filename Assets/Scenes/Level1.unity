@@ -754,7 +754,7 @@ PrefabInstance:
       objectReference: {fileID: 3350699373118113798, guid: 0354fbfc86c713c439b69f106be3e70f, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: specialRoomPrefabs.Array.size
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: bossRewardItemPrefabs.Array.size
@@ -792,6 +792,10 @@ PrefabInstance:
       propertyPath: 'specialRoomPrefabs.Array.data[13]'
       value: 
       objectReference: {fileID: 6044515794962086252, guid: fdaa46cbbe908c742aac259ddaeb0b6e, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'specialRoomPrefabs.Array.data[14]'
+      value: 
+      objectReference: {fileID: 8150923098574093042, guid: cbe52a1b7d04bac4dbe8280ec41e5ff3, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: 'bossRewardItemPrefabs.Array.data[0]'
       value: 
