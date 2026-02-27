@@ -58,11 +58,14 @@ MonoBehaviour:
   - {fileID: 4654390427696923661, guid: 67285d564a9ce034eab9eee3f61a9fe5, type: 3}
   - {fileID: 2366465209832687067, guid: c66e050dde3edd043a98d22eda4f48b0, type: 3}
   - {fileID: 2595856979895260827, guid: cd7713b01f5342b4da6f8bd25f0cdc25, type: 3}
+  - {fileID: 1312889646596873854, guid: 616f2b98c5df34046a9c3aedd6597f7c, type: 3}
+  - {fileID: 6247996673028339988, guid: 27c69c6fe61c720418951abb029387ec, type: 3}
   - {fileID: 8807333807495253691, guid: 5cccf889a1d4db34c8918cd970d7ee07, type: 3}
   - {fileID: 3723570472689415439, guid: 87198bd904126f5409c277eae23b7b09, type: 3}
   - {fileID: 5597554475938657141, guid: fd3716fa7a92cb0468f826cd0d30f35f, type: 3}
+  - {fileID: 2499397574481298769, guid: 41dba9a7758d5ee4d89843e3a15b552f, type: 3}
+  - {fileID: 1187591596815221310, guid: ef9a85ae428f33d4f8baf59bfce3b277, type: 3}
   - {fileID: 3350699373118113798, guid: 0354fbfc86c713c439b69f106be3e70f, type: 3}
-  - {fileID: 6247996673028339988, guid: 27c69c6fe61c720418951abb029387ec, type: 3}
   replaceEnemiesWithBosses: 0
   miniBossPrefabs: []
   specialRoomPrefabs:
@@ -88,7 +91,6 @@ MonoBehaviour:
   - {fileID: 2191419714883000679, guid: 51f4240fda551c44ebf3ad9ba6e41519, type: 3}
   - {fileID: 9165995521823599849, guid: 749521079f477e1469cbaadb47aa9e25, type: 3}
   - {fileID: 1196295802507161881, guid: 2c146afa5f48224488086cb562068cdd, type: 3}
-  - {fileID: 9221546726739441429, guid: 7df362d78f4f4674a83ecef0619d74a8, type: 3}
   - {fileID: 2834808518112970236, guid: 89c76a01386b46749b8b2c6ca7ced4e3, type: 3}
   - {fileID: 7058895075712536209, guid: 7f3d0947de4e36e49a2017e5a01778c4, type: 3}
   - {fileID: 5264943988591073765, guid: 65cb4276a06936d4ba17f5ee6f0e2c91, type: 3}
