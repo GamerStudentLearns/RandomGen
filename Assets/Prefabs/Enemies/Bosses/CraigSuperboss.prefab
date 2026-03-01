@@ -38,6 +38,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2698322182166321830
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -83,6 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: -442133741
   m_SortingLayer: 4
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 6145057964417655275, guid: dd404f2bbf4f2144a89668004cc32752, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -92,7 +94,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &8614699494934197046
 MonoBehaviour:
@@ -128,7 +129,7 @@ MonoBehaviour:
   eyePrefab: {fileID: 2520425773590913960, guid: 4e47b50c3575ecf47bd443307d493671, type: 3}
   normalPhaseDuration: 10
   lowHPPhaseDuration: 4
-  currentPhase: 0
+  currentPhase: 3
   itemDrops:
   - {fileID: 3524703094827663392, guid: 9b92f92b661c0fa4698a94c037723b9c, type: 3}
   - {fileID: 2922129042847442260, guid: 8967a4e9cd7a7e24aa1f6fe27144c508, type: 3}
