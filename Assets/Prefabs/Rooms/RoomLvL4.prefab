@@ -1033,15 +1033,15 @@ MonoBehaviour:
   - {fileID: 8054844295582698086}
   - {fileID: 5326470113199317412}
   floorDecorPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 9030238975409361068}
+  - {fileID: 4106815037474082247}
+  - {fileID: 3667603653115600825}
+  - {fileID: 1867324476056963492}
+  - {fileID: 6030025886322446048}
+  - {fileID: 5557483265677667615}
+  - {fileID: 3317399970180139193}
+  - {fileID: 1333794573657963184}
+  - {fileID: 761729884621353683}
   topWallDecorPoints:
   - {fileID: 6846096738672856791}
   - {fileID: 6092134698303068299}
@@ -1136,6 +1136,7 @@ MonoBehaviour:
   - {fileID: 5943560660893687625, guid: 66154ad21e92ba041a78dee5d75cf1c2, type: 3}
   - {fileID: 5938131798486582677, guid: 5c15bc90bad494c498a13b25b20f4ff6, type: 3}
   - {fileID: 475016966286692234, guid: 8a236d0fb1c7b3b41b8b9f1ef2279c0d, type: 3}
+  - {fileID: 7422153105058111058, guid: ea563efeb94b4d24f956069d03089e35, type: 3}
 --- !u!114 &6129733547684101986
 MonoBehaviour:
   m_ObjectHideFlags: 0
