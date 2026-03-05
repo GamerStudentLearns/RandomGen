@@ -27,6 +27,10 @@ public class PlayerHealth : MonoBehaviour
     private Color[] originalColors;
     public float flashDuration = 0.1f;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip damageSound;
+
     void Awake()
     {
         FindOrCreateHeartUI();
@@ -75,6 +79,10 @@ public class PlayerHealth : MonoBehaviour
     {
         if (invulnerable) return;
 
+        // --- DAMAGE SOUND ---
+        if (audioSource != null && damageSound != null)
+            audioSource.PlayOneShot(damageSound);
+
         if (soulHearts > 0)
         {
             soulHearts -= dmg;
@@ -101,7 +109,6 @@ public class PlayerHealth : MonoBehaviour
         HitStopController.instance.Stop(0.05f);
 
         StartCoroutine(FlashRed());
-
         StartCoroutine(Invulnerability());
 
         PlayerEvents.PlayerDamaged();   // EVENT HOOK

@@ -2,24 +2,25 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
 
     private SpriteRenderer spriteRenderer;
     private TearSpawner tearSpawner;
 
+    private PlayerStats stats;
+
     public Sprite upSprite;
     public Sprite downSprite;
     public Sprite leftSprite;
     public Sprite rightSprite;
-
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         tearSpawner = GetComponent<TearSpawner>();
+        stats = GetComponent<PlayerStats>();   // NEW
     }
 
     void Update()
@@ -31,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) movement.x -= 1;
         if (Input.GetKey(KeyCode.D)) movement.x += 1;
 
-        // Only update sprite if NOT shooting
         if (movement != Vector2.zero && tearSpawner.CurrentShootDirection == Vector2.zero)
         {
             UpdateSprite(movement);
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.linearVelocity = movement.normalized * moveSpeed;
+        rb.linearVelocity = movement.normalized * stats.moveSpeed; // UPDATED
     }
 
     void UpdateSprite(Vector2 dir)

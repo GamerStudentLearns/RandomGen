@@ -111,11 +111,11 @@ MonoBehaviour:
   player: {fileID: 0}
   isAwake: 0
   tearPrefab: {fileID: 3715812023786578678, guid: 30e01a24cc3463d4fb6d01286212152f, type: 3}
-  fireRate: 0.12
+  fireRate: 0.15
   projectileSpeed: 6
   spreadAngle: 20
   burstDuration: 2
-  restDuration: 1.5
+  restDuration: 2
   moveSpeed: 1.5
 --- !u!70 &5471333850105793460
 CapsuleCollider2D:
@@ -208,4 +208,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
