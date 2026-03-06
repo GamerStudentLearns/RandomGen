@@ -4,7 +4,7 @@ using System.Collections;
 [CreateAssetMenu(menuName = "Items/Candle of Doubt")]
 public class CandleOfDoubt : ItemData
 {
-    private bool subscribed;
+   
 
     public override void OnPickup(PlayerStats stats, RunManager run)
     {
