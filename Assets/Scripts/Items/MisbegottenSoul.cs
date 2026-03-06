@@ -8,7 +8,7 @@ public class MisbegottenSoul : ItemData
         stats.ModifyStat(s =>
         {
             s.damage += 3f;
-            s.moveSpeed -= 7f;
+            s.moveSpeed -= 3f;
         });
     }
 
@@ -17,7 +17,7 @@ public class MisbegottenSoul : ItemData
         stats.ModifyStat(s =>
         {
             s.damage += 3f;
-            s.moveSpeed -= 7f;
+            s.moveSpeed -= 3f;
         });
     }
 }

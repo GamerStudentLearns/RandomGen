@@ -5,24 +5,36 @@ public class EnemyHealth : MonoBehaviour
     public float maxHealth = 5f;
     private float currentHealth;
 
+    [Header("Boss Settings")]
+    public bool isBoss = false;   // NEW TOGGLE
+
     [HideInInspector] public Room parentRoom;
 
     public float CurrentHealth => currentHealth;
 
-    // --------------------
     // FLASH FIELDS
-    // --------------------
     private Renderer[] renderers;
     private Color[] originalColors;
     public float flashDuration = 0.1f;
 
     void Awake()
     {
-        // Get floor number from RunManager
         int floor = RunManager.instance != null ? RunManager.instance.currentFloor : 1;
 
-        // Floor scaling
-        maxHealth += (floor - 1) * 2;
+        // --------------------
+        // FLOOR SCALING
+        // --------------------
+        if (isBoss)
+        {
+            // Boss scaling: +15 per floor after floor 1
+            maxHealth += (floor - 1) * 15f;
+        }
+        else
+        {
+            // Normal enemy scaling: +2 per floor after floor 1
+            maxHealth += (floor - 1) * 2f;
+        }
+
         currentHealth = maxHealth;
 
         // --------------------
@@ -41,7 +53,6 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth -= damage;
 
-        // FLASH RED
         StartCoroutine(FlashRed());
 
         if (parentRoom != null && parentRoom.isBossRoom)
@@ -51,24 +62,15 @@ public class EnemyHealth : MonoBehaviour
             Die();
     }
 
-    // --------------------
-    // FLASH RED EFFECT
-    // --------------------
     private System.Collections.IEnumerator FlashRed()
     {
-        // Set all renderers to red
         for (int i = 0; i < renderers.Length; i++)
-        {
             renderers[i].material.color = Color.red;
-        }
 
         yield return new WaitForSeconds(flashDuration);
 
-        // Restore original colors
         for (int i = 0; i < renderers.Length; i++)
-        {
             renderers[i].material.color = originalColors[i];
-        }
     }
 
     void Die()

@@ -40,29 +40,5 @@ public class TumorPod : MonoBehaviour
     }
 }
 
-public class HomingProjectile : MonoBehaviour
-{
-    public Transform target;
-    public float homingTime = 2f;
 
-    private Projectile proj;
-    private float timer;
 
-    void Start()
-    {
-        proj = GetComponent<Projectile>();
-        timer = homingTime;
-    }
-
-    void Update()
-    {
-        if (!target || proj == null) return;
-
-        timer -= Time.deltaTime;
-        if (timer > 0f)
-        {
-            Vector2 dir = ((Vector2)target.position - (Vector2)transform.position).normalized;
-            proj.SetDirection(dir);
-        }
-    }
-}

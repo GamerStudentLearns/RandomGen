@@ -52,6 +52,7 @@ MonoBehaviour:
   player: {fileID: 0}
   attackCooldown: 4
   projectilePrefab: {fileID: 3715812023786578678, guid: 30e01a24cc3463d4fb6d01286212152f, type: 3}
+  isAwake: 0
 --- !u!50 &1352588150358697108
 Rigidbody2D:
   serializedVersion: 5
@@ -81,6 +82,7 @@ Rigidbody2D:
   m_Constraints: 4
 --- !u!212 &1104954676425618303
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -126,6 +128,7 @@ SpriteRenderer:
   m_SortingLayerID: -442133741
   m_SortingLayer: 4
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: -2424553518018739129, guid: fa05378666a7d394dadbd49747897e62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -135,7 +138,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!70 &4459174160088188073
 CapsuleCollider2D:
@@ -187,4 +189,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 75
+  isBoss: 1
   parentRoom: {fileID: 0}
+  flashDuration: 0.1

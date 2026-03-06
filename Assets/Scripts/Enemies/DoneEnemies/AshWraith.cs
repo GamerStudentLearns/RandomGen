@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class AshWraith : MonoBehaviour
 {
     [Header("Startup Delay")]
@@ -18,6 +19,11 @@ public class AshWraith : MonoBehaviour
     private float stillTimer;
     private bool isVulnerable;
 
+    [Header("Combat")]
+    public float fireRate = 1.2f;
+    public GameObject projectilePrefab;
+    public Transform firePoint;
+
     [Header("Visuals")]
     public SpriteRenderer spriteRenderer;
     public Sprite movingSprite;
@@ -27,14 +33,27 @@ public class AshWraith : MonoBehaviour
     private Vector2 wanderTarget;
     private float wanderTimer;
     private Vector2 lastPos;
+
     private Collider2D col;
+    private Rigidbody2D rb;
+    private Transform player;
+    private float fireTimer;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
+
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        rb.freezeRotation = true;
+
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
         PickNewWanderTarget();
         delayTimer = startDelay;
         lastPos = transform.position;
-        col = GetComponent<Collider2D>();
+        fireTimer = fireRate;
     }
 
     void Update()
@@ -48,6 +67,7 @@ public class AshWraith : MonoBehaviour
         Wander();
         UpdateVulnerability();
         UpdateVisuals();
+        HandleShooting();
     }
 
     void Wander()
@@ -62,7 +82,9 @@ public class AshWraith : MonoBehaviour
         if (dist > moveThreshold)
         {
             Vector2 moveDir = dir.normalized;
-            transform.position += (Vector3)(moveDir * moveSpeed * Time.deltaTime);
+            Vector2 newPos = (Vector2)transform.position + moveDir * moveSpeed * Time.deltaTime;
+
+            rb.MovePosition(newPos); // prevents wall clipping
         }
     }
 
@@ -90,9 +112,25 @@ public class AshWraith : MonoBehaviour
 
         lastPos = transform.position;
 
-        // Collider only enabled when vulnerable
-        if (col != null)
-            col.enabled = isVulnerable;
+        col.enabled = isVulnerable;
+    }
+
+    void HandleShooting()
+    {
+        if (isVulnerable) return; // only shoot when INVULNERABLE (moving)
+
+        if (!player || !projectilePrefab || !firePoint) return;
+
+        fireTimer -= Time.deltaTime;
+        if (fireTimer <= 0f)
+        {
+            Vector2 dir = (player.position - firePoint.position).normalized;
+
+            GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+            proj.GetComponent<Projectile>().SetDirection(dir);
+
+            fireTimer = fireRate;
+        }
     }
 
     void UpdateVisuals()

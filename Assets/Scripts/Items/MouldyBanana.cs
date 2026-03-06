@@ -9,7 +9,7 @@ public class MouldyBanana : ItemData
         {
             s.range += 1f;
             s.shotSpeed += 1f;
-            s.fireRate -= 0.1f;
+            s.fireRate -= 0.05f;
             s.damage += 1f;
             s.moveSpeed += 1f;
         });
@@ -42,7 +42,7 @@ public class MouldyBanana : ItemData
         {
             s.range += 1f;
             s.shotSpeed += 1f;
-            s.fireRate -= 0.1f;
+            s.fireRate -= 0.05f;
             s.damage += 1f;
             s.moveSpeed += 1f;
         });

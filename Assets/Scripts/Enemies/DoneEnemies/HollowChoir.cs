@@ -9,6 +9,7 @@ public class HollowChoir : MonoBehaviour
 
     private static int choirCount = 0;
     private float fireTimer;
+    private Transform player;
 
     void OnEnable()
     {
@@ -23,10 +24,13 @@ public class HollowChoir : MonoBehaviour
     void Start()
     {
         fireTimer = baseFireInterval;
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
     }
 
     void Update()
     {
+        if (!player) return;
+
         fireTimer -= Time.deltaTime;
         if (fireTimer <= 0f)
         {
@@ -37,30 +41,32 @@ public class HollowChoir : MonoBehaviour
 
     void FirePattern()
     {
-        if (!projectilePrefab || !firePoint) return;
+        if (!projectilePrefab || !firePoint || !player) return;
+
+        // Base direction toward the player
+        Vector2 baseDir = (player.position - firePoint.position).normalized;
 
         int patternLevel = Mathf.Clamp(choirCount, 1, 3);
 
         if (patternLevel == 1)
         {
-            // Single forward shot (up)
-            SpawnProjectile(Vector2.up);
+            // Single shot aimed at player
+            SpawnProjectile(baseDir);
         }
         else if (patternLevel == 2)
         {
-            // Spread of 3
-            SpawnProjectile(Quaternion.Euler(0, 0, -15) * Vector2.up);
-            SpawnProjectile(Vector2.up);
-            SpawnProjectile(Quaternion.Euler(0, 0, 15) * Vector2.up);
+            // 3‑way spread centered on the player
+            SpawnProjectile(Rotate(baseDir, -15f));
+            SpawnProjectile(baseDir);
+            SpawnProjectile(Rotate(baseDir, 15f));
         }
         else
         {
-            // Full 6-way burst
+            // 6‑way burst around the player direction
             for (int i = 0; i < 6; i++)
             {
-                float angle = i * 60f * Mathf.Deg2Rad;
-                Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-                SpawnProjectile(dir);
+                float angle = i * 60f;
+                SpawnProjectile(Rotate(baseDir, angle));
             }
         }
     }
@@ -69,5 +75,17 @@ public class HollowChoir : MonoBehaviour
     {
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         proj.GetComponent<Projectile>().SetDirection(dir);
+    }
+
+    // Rotate a vector by degrees
+    Vector2 Rotate(Vector2 v, float degrees)
+    {
+        float rad = degrees * Mathf.Deg2Rad;
+        float sin = Mathf.Sin(rad);
+        float cos = Mathf.Cos(rad);
+        return new Vector2(
+            v.x * cos - v.y * sin,
+            v.x * sin + v.y * cos
+        );
     }
 }

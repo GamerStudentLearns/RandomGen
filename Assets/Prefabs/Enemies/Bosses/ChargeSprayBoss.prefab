@@ -57,6 +57,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3715812023786578678, guid: 3bed59cd387b99842b16d4a70b81eb21, type: 3}
 --- !u!212 &965614692784631077
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,6 +103,7 @@ SpriteRenderer:
   m_SortingLayerID: -442133741
   m_SortingLayer: 4
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: -8204937758180847513, guid: 7eda7559f5b253e448b87b759879ad3a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -111,7 +113,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &1598797886961155757
 Rigidbody2D:
@@ -190,4 +191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 100
+  isBoss: 1
   parentRoom: {fileID: 0}
+  flashDuration: 0.1

@@ -54,6 +54,11 @@ public class RunManager : MonoBehaviour
             RunEvents.FloorChanged?.Invoke();
         }
 
+        // --- FIXED ORDER ---
+        // 1. Refresh UI first
+        RunEvents.OnItemAcquired?.Invoke();
+
+        // 2. THEN apply persistent item effects
         PlayerStats stats = FindFirstObjectByType<PlayerStats>();
         if (stats != null)
         {
@@ -61,9 +66,7 @@ public class RunManager : MonoBehaviour
                 item.ApplyPersistent(stats, this);
         }
 
-        // IMPORTANT: tell UI to refresh after items are reapplied
-        RunEvents.OnItemAcquired?.Invoke();
-
+        // 3. Sync health after stats are correct
         SyncPlayerHealthToRun();
     }
 
