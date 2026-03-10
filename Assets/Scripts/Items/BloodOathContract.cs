@@ -4,8 +4,7 @@ using System.Collections;
 [CreateAssetMenu(menuName = "Items/Blood Oath Contract")]
 public class BloodOathContract : ItemData
 {
-    private bool subscribed = false;
-    private int enemiesThisRoom = 0;
+    
 
     public override void OnPickup(PlayerStats stats, RunManager run)
     {

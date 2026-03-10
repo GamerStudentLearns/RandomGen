@@ -9,7 +9,7 @@ public class OverclockedCortex : ItemData
     {
         stats.ModifyStat(s =>
         {
-            s.fireRate += 1f;
+            s.fireRate -= 1f;
         });
     }
 
@@ -17,7 +17,7 @@ public class OverclockedCortex : ItemData
     {
         stats.ModifyStat(s =>
         {
-            s.fireRate += 1f;
+            s.fireRate -= 1f;
         });
     }
 

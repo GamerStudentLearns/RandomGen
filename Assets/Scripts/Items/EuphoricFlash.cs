@@ -4,7 +4,7 @@ using System.Collections;
 [CreateAssetMenu(menuName = "Items/Euphoric Flash")]
 public class EuphoricFlash : ItemData
 {
-    private bool subscribed = false;
+    
 
     public override void OnPickup(PlayerStats stats, RunManager run)
     {
