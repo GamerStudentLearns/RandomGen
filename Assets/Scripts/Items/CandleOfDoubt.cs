@@ -11,7 +11,7 @@ public class CandleOfDoubt : ItemData
         stats.ModifyStat(s => {
             s.fireRate += 0.5f;
             s.damage -= 0.5f;
-            s.moveSpeed += 10f;
+            s.moveSpeed += 5f;
         });
     }
 
@@ -20,7 +20,7 @@ public class CandleOfDoubt : ItemData
         stats.ModifyStat(s => {
             s.fireRate += 0.5f;
             s.damage -= 0.5f;
-            s.moveSpeed += 10f;
+            s.moveSpeed += 5f;
         });
     }
 

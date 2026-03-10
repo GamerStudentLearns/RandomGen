@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 4664774345909732060}
   - component: {fileID: 1640139710297219705}
   m_Layer: 0
-  m_Name: WanderENEMY
+  m_Name: WanderENEMYChampion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.4500003, y: 1.1400003, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.3848, y: 2.3848, z: 2.3848}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2267488374026278265}
@@ -118,7 +118,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8429679703886432377, guid: e4b5d7732a7702044a31f35d1b41cd97, type: 3}
+  m_Sprite: {fileID: -468603088975747957, guid: 7bd5dd6ea25312c429ee43e4ed9512fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3d5b305dd210348abfc5f226af3b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 8
+  maxHealth: 16
   isBoss: 0
   parentRoom: {fileID: 0}
   flashDuration: 0.1
@@ -190,17 +190,17 @@ MonoBehaviour:
   moveThreshold: 0.01
   detectionRange: 6
   fireRate: 1.2
-  projectilePrefab: {fileID: 3715812023786578678, guid: 9dbc4b7915ee7d0438753bddfec76c29, type: 3}
+  projectilePrefab: {fileID: 3715812023786578678, guid: 3119617c389169a4a959adcd5607e9e5, type: 3}
   firePoint: {fileID: 2267488374026278265}
   spriteRenderer: {fileID: 3412920533333955601}
-  walkUp: {fileID: -1349992807348148987, guid: dc27fd927955fd74b9427b18fd7adf9d, type: 3}
-  walkDown: {fileID: 8429679703886432377, guid: e4b5d7732a7702044a31f35d1b41cd97, type: 3}
-  walkLeft: {fileID: -8971526621412401362, guid: 0cc7fb83794fe644592d78ce2e043c69, type: 3}
-  walkRight: {fileID: 2125732870751766175, guid: 5e1c181f35a8716448880dcea3d08685, type: 3}
-  shootUp: {fileID: -1349992807348148987, guid: dc27fd927955fd74b9427b18fd7adf9d, type: 3}
-  shootDown: {fileID: 8429679703886432377, guid: e4b5d7732a7702044a31f35d1b41cd97, type: 3}
-  shootLeft: {fileID: -8971526621412401362, guid: 0cc7fb83794fe644592d78ce2e043c69, type: 3}
-  shootRight: {fileID: 2125732870751766175, guid: 5e1c181f35a8716448880dcea3d08685, type: 3}
+  walkUp: {fileID: -4630429701461679248, guid: afa09b1d189ac8c4cb5356b658136f5c, type: 3}
+  walkDown: {fileID: -468603088975747957, guid: 7bd5dd6ea25312c429ee43e4ed9512fa, type: 3}
+  walkLeft: {fileID: -2066340408524800262, guid: b78bc19ff81da5d4b95881c3e0359b54, type: 3}
+  walkRight: {fileID: 5083908102093684585, guid: aed27d91293bd5246aad79ca7b2870ca, type: 3}
+  shootUp: {fileID: -4630429701461679248, guid: afa09b1d189ac8c4cb5356b658136f5c, type: 3}
+  shootDown: {fileID: -468603088975747957, guid: 7bd5dd6ea25312c429ee43e4ed9512fa, type: 3}
+  shootLeft: {fileID: -2066340408524800262, guid: b78bc19ff81da5d4b95881c3e0359b54, type: 3}
+  shootRight: {fileID: 5083908102093684585, guid: aed27d91293bd5246aad79ca7b2870ca, type: 3}
 --- !u!61 &4664774345909732060
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -239,7 +239,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.75, y: 0.75}
+    oldSize: {x: 0.375, y: 0.375}
     newSize: {x: 0.375, y: 0.375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
