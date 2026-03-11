@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: abc4e549d9f118b41811ec9967d06f1b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3293458862845674785
+    second: Butter_Sprite_Sheet_0
+  - first:
+      213: -6736321909629102945
+    second: Butter_Sprite_Sheet_1
+  - first:
+      213: -2600373299020379617
+    second: Butter_Sprite_Sheet_2
+  - first:
+      213: 4724537668962630713
+    second: Butter_Sprite_Sheet_3
+  - first:
+      213: 6995502543949586869
+    second: Butter_Sprite_Sheet_4
+  - first:
+      213: 83477526256080562
+    second: Butter_Sprite_Sheet_5
+  - first:
+      213: 8552057686932929238
+    second: Butter_Sprite_Sheet_6
+  - first:
+      213: -8630991265944992681
+    second: Butter_Sprite_Sheet_7
+  - first:
+      213: 3885457339402198343
+    second: Butter_Sprite_Sheet_8
+  - first:
+      213: 2860460069507229479
+    second: Butter_Sprite_Sheet_9
+  - first:
+      213: 6666326247344282733
+    second: Butter_Sprite_Sheet_10
+  - first:
+      213: -898851596969664573
+    second: Butter_Sprite_Sheet_11
+  - first:
+      213: -3086331847968658313
+    second: Butter_Sprite_Sheet_12
+  - first:
+      213: -7737727449711125027
+    second: Butter_Sprite_Sheet_13
+  - first:
+      213: 5205287953502157271
+    second: Butter_Sprite_Sheet_14
+  - first:
+      213: -2338876307829756793
+    second: Butter_Sprite_Sheet_15
+  - first:
+      213: 8927501706923293422
+    second: Butter_Sprite_Sheet_16
+  - first:
+      213: -7618703793903309790
+    second: Butter_Sprite_Sheet_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 15
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdab8bd1d984b42d0800000000000000
+      internalID: -3293458862845674785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 15
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9450ebe9e6c382a0800000000000000
+      internalID: -6736321909629102945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 15
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1aca7c034e99ebd0800000000000000
+      internalID: -2600373299020379617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 15
+        width: 23
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93c387e6afde09140800000000000000
+      internalID: 4724537668962630713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 15
+        width: 23
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b1e47dff74051160800000000000000
+      internalID: 6995502543949586869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 15
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b6d83b2e52982100800000000000000
+      internalID: 83477526256080562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 15
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6da3940d7230fa670800000000000000
+      internalID: 8552057686932929238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 15
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75489dd2c2f883880800000000000000
+      internalID: -8630991265944992681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 15
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74d90093ddaebe530800000000000000
+      internalID: 3885457339402198343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 15
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 727ea21274562b720800000000000000
+      internalID: 2860460069507229479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 15
+        width: 23
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6c91d9f66c838c50800000000000000
+      internalID: 6666326247344282733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 15
+        width: 23
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cf94d02c33a683f0800000000000000
+      internalID: -898851596969664573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 15
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77c6ade49852b25d0800000000000000
+      internalID: -3086331847968658313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 853
+        y: 15
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddddd2771e11e9490800000000000000
+      internalID: -7737727449711125027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 15
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d9bd1e90d5ec3840800000000000000
+      internalID: 5205287953502157271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 981
+        y: 15
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78cea32d364aa8fd0800000000000000
+      internalID: -2338876307829756793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1045
+        y: 15
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eea3bd4a08bd4eb70800000000000000
+      internalID: 8927501706923293422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Butter_Sprite_Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 15
+        width: 23
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22ce87bd34de44690800000000000000
+      internalID: -7618703793903309790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Butter_Sprite_Sheet_0: -3293458862845674785
+      Butter_Sprite_Sheet_1: -6736321909629102945
+      Butter_Sprite_Sheet_10: 6666326247344282733
+      Butter_Sprite_Sheet_11: -898851596969664573
+      Butter_Sprite_Sheet_12: -3086331847968658313
+      Butter_Sprite_Sheet_13: -7737727449711125027
+      Butter_Sprite_Sheet_14: 5205287953502157271
+      Butter_Sprite_Sheet_15: -2338876307829756793
+      Butter_Sprite_Sheet_16: 8927501706923293422
+      Butter_Sprite_Sheet_17: -7618703793903309790
+      Butter_Sprite_Sheet_2: -2600373299020379617
+      Butter_Sprite_Sheet_3: 4724537668962630713
+      Butter_Sprite_Sheet_4: 6995502543949586869
+      Butter_Sprite_Sheet_5: 83477526256080562
+      Butter_Sprite_Sheet_6: 8552057686932929238
+      Butter_Sprite_Sheet_7: -8630991265944992681
+      Butter_Sprite_Sheet_8: 3885457339402198343
+      Butter_Sprite_Sheet_9: 2860460069507229479
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
