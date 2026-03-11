@@ -4,15 +4,15 @@ using UnityEngine.SceneManagement;
 public class SceneSwapper : MonoBehaviour
 {
     [Header("Scene Settings")]
-    [Tooltip("Name of the scene you want to load.")]
     public string sceneToLoad;
-
-    [Tooltip("How long to wait before swapping scenes.")]
     public float delay = 2f;
+
+    [Header("Cursor Settings")]
+    [Tooltip("Enable this if the target scene is a menu.")]
+    public bool unlockCursorOnLoad = true;
 
     private void Start()
     {
-        // Start the delayed scene load
         Invoke(nameof(SwapScene), delay);
     }
 
@@ -22,6 +22,12 @@ public class SceneSwapper : MonoBehaviour
         {
             Debug.LogError("SceneSwapper: No scene name assigned!");
             return;
+        }
+
+        if (unlockCursorOnLoad)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         SceneManager.LoadScene(sceneToLoad);

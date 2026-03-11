@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+
+    [Header("Progression Unlocks")]
+    public bool unlocksLevel7 = false;
+
     public float maxHealth = 5f;
     private float currentHealth;
 
@@ -75,15 +79,26 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
+        // Hitstop effect
         if (HitStopController.instance != null)
             HitStopController.instance.Stop(0.03f);
 
+        // If this enemy was the boss, clear the reference
         if (parentRoom != null && parentRoom.hasBoss)
             parentRoom.bossObject = null;
 
+        // Hide boss health UI if this was a boss
         if (parentRoom != null && parentRoom.isBossRoom)
             BossHealthUI.instance.Hide();
 
+        // NEW — If this boss unlocks Level 7, save it
+        if (unlocksLevel7)
+        {
+            SaveManager.SetLevel6Cleared();
+        }
+
+        // Destroy the enemy object
         Destroy(gameObject);
     }
+
 }

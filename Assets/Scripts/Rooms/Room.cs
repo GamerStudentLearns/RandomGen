@@ -231,25 +231,51 @@ public class Room : MonoBehaviour
             if (obj != null && ShouldAffectDoor(obj))
                 obj.SetActive(true);
 
+        // -----------------------------
+        // TRAPDOOR + LEVEL 7 PORTAL LOGIC
+        // -----------------------------
         if (hasTrapdoor)
         {
-            if (trapdoorClosed != null) trapdoorClosed.SetActive(false);
-            if (trapdoorOpen != null) trapdoorOpen.SetActive(true);
+            // Closed trapdoor always hides
+            if (trapdoorClosed != null)
+                trapdoorClosed.SetActive(false);
+
+            // Normal trapdoor ALWAYS appears when room is cleared
+            if (trapdoorOpen != null)
+                trapdoorOpen.SetActive(true);
+
+            // If this is a boss room AND Level 7 is unlocked
+            if (isBossRoom && SaveManager.HasClearedLevel6())
+            {
+                // Show the Level 7 portal too
+                if (optionalExitObject != null)
+                    optionalExitObject.SetActive(true);
+            }
         }
 
+        // -----------------------------
+        // PICKUP SPAWNING
+        // -----------------------------
         PickupSpawner spawner = GetComponent<PickupSpawner>();
         if (spawner != null)
             spawner.TrySpawnPickup(isBossRoom);
 
-        if (hasOptionalExit && optionalExitObject != null)
+        // -----------------------------
+        // OPTIONAL EXIT (non‑boss floors)
+        // -----------------------------
+        if (hasOptionalExit && optionalExitObject != null && !isBossRoom)
             optionalExitObject.SetActive(true);
 
+        // -----------------------------
+        // BOSS REWARD
+        // -----------------------------
         if (isBossRoom && !bossRewardSpawned)
         {
             SpawnBossReward();
             bossRewardSpawned = true;
         }
     }
+
 
 
 

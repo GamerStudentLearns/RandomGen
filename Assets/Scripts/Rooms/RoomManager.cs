@@ -85,6 +85,8 @@ public class RoomManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Level 6 cleared? " + SaveManager.HasClearedLevel6());
+
         roomGrid = new int[gridSizeX, gridSizeY];
         roomQueue = new Queue<Vector2Int>();
 
@@ -184,8 +186,8 @@ public class RoomManager : MonoBehaviour
 
         lastRoomScript.hasTrapdoor = true;
 
-        // 5. Optional exit
-        if (spawnOptionalExit && optionalExitPrefab != null)
+        // 5. Optional exit (ALWAYS spawn for boss room)
+        if (optionalExitPrefab != null)
         {
             GameObject optionalExit = Instantiate(
                 optionalExitPrefab,
@@ -194,6 +196,7 @@ public class RoomManager : MonoBehaviour
                 lastRoom.transform
             );
 
+            // Portal starts inactive — Room.ClearRoom() will activate it if unlocked
             optionalExit.SetActive(false);
 
             lastRoomScript.optionalExitObject = optionalExit;
@@ -248,6 +251,7 @@ public class RoomManager : MonoBehaviour
             }
         }
     }
+
 
 
 

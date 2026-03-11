@@ -131,6 +131,14 @@ PrefabInstance:
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 2628583323709484415, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2628583323709484415, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6703027690410907990, guid: b4868ec687a7ca44b8cee00e05bf284a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -493,6 +501,14 @@ PrefabInstance:
       propertyPath: trapdoorOpenPrefab
       value: 
       objectReference: {fileID: 3574237843649389023, guid: 302ee156ff1534e4d8ad3bcd6a75155d, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: bossPrefab.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'bossPrefab.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3985786472111431676, guid: 194bbf556c2b3334f9978dc14c9d29a6, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: bossRewardItemPrefabs.Array.size
       value: 11
