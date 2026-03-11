@@ -378,10 +378,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MargarineBoss
   player: {fileID: 0}
-  moveSpeed: 3
+  moveSpeed: 2
   chargeSpeed: 7
   chargeDuration: 0.5
-  attackCooldown: 2.5
+  attackCooldown: 3
   isAwake: 0
 --- !u!114 &3356633324111733385
 MonoBehaviour:

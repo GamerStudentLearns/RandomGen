@@ -180,17 +180,17 @@ public class MenuController : MonoBehaviour
         // Slot 1
         SaveSlotManager.CurrentSlot = 1;
         if (slot1Status != null)
-            slot1Status.text = SaveManager.HasClearedLevel6() ? "Level 7: Unlocked" : "Level 7: Locked";
+            slot1Status.text = SaveManager.HasClearedLevel6() ? "Dead Man Walking" : "New Game";
 
         // Slot 2
         SaveSlotManager.CurrentSlot = 2;
         if (slot2Status != null)
-            slot2Status.text = SaveManager.HasClearedLevel6() ? "Level 7: Unlocked" : "Level 7: Locked";
+            slot2Status.text = SaveManager.HasClearedLevel6() ? "Dead Man Walking" : "New Game";
 
         // Slot 3
         SaveSlotManager.CurrentSlot = 3;
         if (slot3Status != null)
-            slot3Status.text = SaveManager.HasClearedLevel6() ? "Level 7: Unlocked" : "Level 7: Locked";
+            slot3Status.text = SaveManager.HasClearedLevel6() ? "Dead Man Walking" : "New Game";
 
         // Restore previously selected slot
         SaveSlotManager.CurrentSlot = previousSlot;
