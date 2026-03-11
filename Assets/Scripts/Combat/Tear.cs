@@ -22,12 +22,29 @@ public class Tear : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        // -----------------------------
+        // 1. Normal enemies / bosses
+        // -----------------------------
         if (other.TryGetComponent(out EnemyHealth enemy))
         {
             enemy.TakeDamage(damage);
             PlayDestroyEffectAndDie();
+            return;
         }
 
+        // -----------------------------
+        // 2. DuoBoss fighters (Butters / Margarine)
+        // -----------------------------
+        if (other.TryGetComponent(out FighterHitbox hitbox))
+        {
+            hitbox.TakeDamage(damage);
+            PlayDestroyEffectAndDie();
+            return;
+        }
+
+        // -----------------------------
+        // 3. Walls
+        // -----------------------------
         if (other.CompareTag("Wall"))
         {
             PlayDestroyEffectAndDie();
