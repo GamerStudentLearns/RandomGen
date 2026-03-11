@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   unlocksLevel7: 1
-  maxHealth: 5000
+  maxHealth: 2500
   isBoss: 1
   parentRoom: {fileID: 0}
   flashDuration: 0.1

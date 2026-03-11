@@ -500,7 +500,7 @@ PrefabInstance:
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: trapdoorOpenPrefab
       value: 
-      objectReference: {fileID: 3574237843649389023, guid: 302ee156ff1534e4d8ad3bcd6a75155d, type: 3}
+      objectReference: {fileID: 3574237843649389023, guid: be5e346a62165e1468e597e1314d1016, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: bossPrefab.Array.size
       value: 1

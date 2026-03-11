@@ -186,8 +186,8 @@ public class RoomManager : MonoBehaviour
 
         lastRoomScript.hasTrapdoor = true;
 
-        // 5. Optional exit (ALWAYS spawn for boss room)
-        if (optionalExitPrefab != null)
+        // 5. Optional exit (ONLY if Level 6 is cleared)
+        if (SaveManager.HasClearedLevel6() && optionalExitPrefab != null)
         {
             GameObject optionalExit = Instantiate(
                 optionalExitPrefab,
@@ -196,11 +196,14 @@ public class RoomManager : MonoBehaviour
                 lastRoom.transform
             );
 
-            // Portal starts inactive — Room.ClearRoom() will activate it if unlocked
             optionalExit.SetActive(false);
 
             lastRoomScript.optionalExitObject = optionalExit;
             lastRoomScript.hasOptionalExit = true;
+        }
+        else
+        {
+            lastRoomScript.hasOptionalExit = false;
         }
 
         // 6. Apply boss door sprites
@@ -251,6 +254,7 @@ public class RoomManager : MonoBehaviour
             }
         }
     }
+
 
 
 
