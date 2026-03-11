@@ -2,18 +2,29 @@ using UnityEngine;
 
 public static class SaveManager
 {
-    private const string Level6ClearedKey = "Level6Cleared";
+    private static string Key(string baseKey)
+    {
+        return $"SaveSlot{SaveSlotManager.CurrentSlot}_{baseKey}";
+    }
 
-    // Returns true if the player has ever beaten Level 6
     public static bool HasClearedLevel6()
     {
-        return PlayerPrefs.GetInt(Level6ClearedKey, 0) == 1;
+        return PlayerPrefs.GetInt(Key("Level6Cleared"), 0) == 1;
     }
 
-    // Call this once when the Level 6 boss dies
     public static void SetLevel6Cleared()
     {
-        PlayerPrefs.SetInt(Level6ClearedKey, 1);
+        PlayerPrefs.SetInt(Key("Level6Cleared"), 1);
         PlayerPrefs.Save();
     }
+    public static void DeleteSlot(int slot)
+    {
+        // Delete all keys for this slot
+        PlayerPrefs.DeleteKey($"SaveSlot{slot}_Level6Cleared");
+
+        // Add more keys here later if you save more data per slot
+
+        PlayerPrefs.Save();
+    }
+
 }

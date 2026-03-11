@@ -1,20 +1,22 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
 public class MenuController : MonoBehaviour
 {
+    [Header("Save Slot Status Text")]
+    public TMP_Text slot1Status;
+    public TMP_Text slot2Status;
+    public TMP_Text slot3Status;
+
     [Header("Levels To Load")]
     public string newGameLevel;
-    private string levelToLoad;
 
     [Header("Audio Settings")]
     [SerializeField] private TMP_Text volumeTextValue = null;
     [SerializeField] private Slider volumeSlider = null;
     [SerializeField] private float defaultVolume = 1.0f;
-
     [SerializeField] private GameObject comfirmationPrompt = null;
 
     [Header("Gameplay Settings")]
@@ -26,11 +28,53 @@ public class MenuController : MonoBehaviour
     [Header("Toggle Settings")]
     [SerializeField] private Toggle invertYToggle = null;
 
+    [Header("Save Slot UI")]
+    public TMP_Text selectedSlotText;
+
     private void Start()
     {
         LoadAudioSettings();
+        LoadLastUsedSlot();
+        UpdateSlotStatusLabels();   
     }
 
+
+    // -----------------------------
+    // SAVE SLOT SYSTEM
+    // -----------------------------
+    public void SelectSaveSlot(int slot)
+    {
+        SaveSlotManager.CurrentSlot = slot;
+        PlayerPrefs.SetInt("LastUsedSlot", slot);
+        PlayerPrefs.Save();
+
+        if (selectedSlotText != null)
+            selectedSlotText.text = "Selected Slot: " + slot;
+
+        UpdateSlotStatusLabels();   // ← add this
+
+        Debug.Log("Selected Save Slot: " + slot);
+    }
+
+
+    private void LoadLastUsedSlot()
+    {
+        int lastSlot = PlayerPrefs.GetInt("LastUsedSlot", 1);
+        SaveSlotManager.CurrentSlot = lastSlot;
+
+        if (selectedSlotText != null)
+            selectedSlotText.text = "Selected Slot: " + lastSlot;
+    }
+
+    public void NewGameDialogYes()
+    {
+        // Slot is already selected before this is pressed
+        UnityEngine.SceneManagement.SceneManager.LoadScene(newGameLevel);
+    }
+
+    // -----------------------------
+    // AUDIO SETTINGS
+    // -----------------------------
     public void SetVolume(float volume)
     {
         AudioListener.volume = volume;
@@ -44,6 +88,23 @@ public class MenuController : MonoBehaviour
         StartCoroutine(ComfirmationBox(1f));
     }
 
+    private void LoadAudioSettings()
+    {
+        if (PlayerPrefs.HasKey("masterVolume"))
+        {
+            float volume = PlayerPrefs.GetFloat("masterVolume");
+            AudioListener.volume = volume;
+
+            if (volumeSlider != null)
+                volumeSlider.value = volume;
+            if (volumeTextValue != null)
+                volumeTextValue.text = volume.ToString("0.0");
+        }
+    }
+
+    // -----------------------------
+    // GAMEPLAY SETTINGS
+    // -----------------------------
     public void SetKeyboardSensitivity(float sensitivity)
     {
         mainKeyboardSensitivity = Mathf.RoundToInt(sensitivity);
@@ -55,19 +116,11 @@ public class MenuController : MonoBehaviour
     {
         if (invertYToggle != null)
         {
-            if (invertYToggle.isOn)
-                PlayerPrefs.SetInt("masterInvertY", 1);
-            else
-                PlayerPrefs.SetInt("masterInvertY", 0);
+            PlayerPrefs.SetInt("masterInvertY", invertYToggle.isOn ? 1 : 0);
         }
 
         PlayerPrefs.SetFloat("masterSen", mainKeyboardSensitivity);
         StartCoroutine(ComfirmationBox(1f));
-    }
-
-    public void NewGameDialogYes()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(newGameLevel);
     }
 
     public void ResetButton(string MenuType)
@@ -88,27 +141,19 @@ public class MenuController : MonoBehaviour
                 KeyboardSensitivityTextValue.text = defaultSen.ToString("0");
             if (KeyboardSensitivitySlider != null)
                 KeyboardSensitivitySlider.value = defaultSen;
+
             mainKeyboardSensitivity = defaultSen;
+
             if (invertYToggle != null)
                 invertYToggle.isOn = false;
+
             GameplayApply();
         }
     }
 
-    private void LoadAudioSettings()
-    {
-        if (PlayerPrefs.HasKey("masterVolume"))
-        {
-            float volume = PlayerPrefs.GetFloat("masterVolume");
-            AudioListener.volume = volume;
-
-            if (volumeSlider != null)
-                volumeSlider.value = volume;
-            if (volumeTextValue != null)
-                volumeTextValue.text = volume.ToString("0.0");
-        }
-    }
-
+    // -----------------------------
+    // CONFIRMATION POPUP
+    // -----------------------------
     public IEnumerator ComfirmationBox(float duration)
     {
         if (comfirmationPrompt != null)
@@ -119,9 +164,46 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    // -----------------------------
+    // QUIT GAME
+    // -----------------------------
     public void QuitGame()
     {
         Application.Quit();
         Debug.Log("Game Quit");
     }
+
+    private void UpdateSlotStatusLabels()
+    {
+        int previousSlot = SaveSlotManager.CurrentSlot;
+
+        // Slot 1
+        SaveSlotManager.CurrentSlot = 1;
+        if (slot1Status != null)
+            slot1Status.text = SaveManager.HasClearedLevel6() ? "Level 7: Unlocked" : "Level 7: Locked";
+
+        // Slot 2
+        SaveSlotManager.CurrentSlot = 2;
+        if (slot2Status != null)
+            slot2Status.text = SaveManager.HasClearedLevel6() ? "Level 7: Unlocked" : "Level 7: Locked";
+
+        // Slot 3
+        SaveSlotManager.CurrentSlot = 3;
+        if (slot3Status != null)
+            slot3Status.text = SaveManager.HasClearedLevel6() ? "Level 7: Unlocked" : "Level 7: Locked";
+
+        // Restore previously selected slot
+        SaveSlotManager.CurrentSlot = previousSlot;
+    }
+
+    public void DeleteSaveSlot(int slot)
+    {
+        SaveManager.DeleteSlot(slot);
+        UpdateSlotStatusLabels(); // refresh the UI
+        Debug.Log("Deleted save slot " + slot);
+    }
+
+
+
+
 }

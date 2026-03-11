@@ -18,7 +18,9 @@ public class GuiltSoakedLedger : ItemData
     {
         stats.ModifyStat(s =>
         {
-            
+            s.shotSpeed -= 1f;
+            s.damage += 0.5f;
+            s.moveSpeed -= 0.2f;
         });
     }
 }
