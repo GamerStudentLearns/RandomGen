@@ -28,6 +28,11 @@ public class SoulHeartPickup : MonoBehaviour
         if (player == null)
             return;
 
+        // ❌ If player is full (normal + soul = 12), do NOT pick up
+        if (!player.CanPickUpSoulHeart())
+            return;
+
+        // ✅ Add soul heart and consume pickup
         player.AddSoulHearts(1);
         Destroy(gameObject);
     }

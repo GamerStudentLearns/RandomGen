@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
+    private const int TOTAL_HEART_LIMIT = 12;
+
     [Header("Health Settings")]
     public int maxHearts = 6;
 
@@ -64,22 +66,22 @@ public class PlayerHealth : MonoBehaviour
         originalColors = new Color[renderers.Length];
 
         for (int i = 0; i < renderers.Length; i++)
-        {
             originalColors[i] = renderers[i].material.color;
-        }
     }
 
     void Start()
     {
         stats = GetComponent<PlayerStats>();
-        PlayerEvents.PlayerStatsRef = stats;   // EVENT HOOK
+        PlayerEvents.PlayerStatsRef = stats;
     }
 
+    // -----------------------------
+    //          DAMAGE
+    // -----------------------------
     public void TakeDamage(int dmg)
     {
         if (invulnerable) return;
 
-        // --- DAMAGE SOUND ---
         if (audioSource != null && damageSound != null)
             audioSource.PlayOneShot(damageSound);
 
@@ -111,17 +113,100 @@ public class PlayerHealth : MonoBehaviour
         StartCoroutine(FlashRed());
         StartCoroutine(Invulnerability());
 
-        PlayerEvents.PlayerDamaged();   // EVENT HOOK
+        PlayerEvents.PlayerDamaged();
 
         if (currentHearts <= 0)
             Die();
     }
 
+    // -----------------------------
+    //      SOUL HEART PICKUP
+    // -----------------------------
+    public bool CanPickUpSoulHeart()
+    {
+        return (currentHearts + soulHearts) < TOTAL_HEART_LIMIT;
+    }
+
     public void AddSoulHearts(int amount)
     {
+        if (!CanPickUpSoulHeart())
+            return;
+
         soulHearts += amount;
 
+        int overflow = (currentHearts + soulHearts) - TOTAL_HEART_LIMIT;
+        if (overflow > 0)
+            soulHearts -= overflow;
+
         RunManager.instance.soulHearts = soulHearts;
+
+        if (heartUI != null)
+            heartUI.UpdateHearts(currentHearts, soulHearts);
+    }
+
+    // -----------------------------
+    //      HEART CONTAINER PICKUP
+    // -----------------------------
+    public void AddHeartContainer(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            int total = currentHearts + soulHearts;
+
+            // ⭐ If total hearts = 12, items give NOTHING
+            // Pickups still use swap logic (soul → container)
+            if (total >= TOTAL_HEART_LIMIT)
+            {
+                // If no soul hearts → this was an item → do nothing
+                if (soulHearts == 0)
+                    return;
+
+                // If soul hearts exist → this was a pickup → swap soul → container
+                soulHearts--;
+
+                RunManager.instance.heartModifiers++;
+                maxHearts = RunManager.instance.MaxHearts;
+
+                // Fill the new container
+                currentHearts = Mathf.Min(currentHearts + 1, maxHearts);
+
+                continue;
+            }
+
+            // Normal container gain (not full)
+            RunManager.instance.heartModifiers++;
+            maxHearts = RunManager.instance.MaxHearts;
+
+            currentHearts = Mathf.Min(currentHearts + 1, maxHearts);
+
+            // Clamp total to 12
+            int totalAfter = currentHearts + soulHearts;
+            if (totalAfter > TOTAL_HEART_LIMIT)
+            {
+                int overflow = totalAfter - TOTAL_HEART_LIMIT;
+                soulHearts = Mathf.Max(0, soulHearts - overflow);
+            }
+        }
+
+        RunManager.instance.currentHearts = currentHearts;
+        RunManager.instance.soulHearts = soulHearts;
+
+        if (heartUI != null)
+            heartUI.UpdateHearts(currentHearts, soulHearts);
+    }
+
+
+    // -----------------------------
+    //             HEAL
+    // -----------------------------
+    public void Heal(int amount)
+    {
+        currentHearts += amount;
+
+        currentHearts = Mathf.Min(currentHearts, maxHearts);
+        currentHearts = Mathf.Min(currentHearts, TOTAL_HEART_LIMIT - soulHearts);
+
+        RunManager.instance.currentHearts = currentHearts;
 
         if (heartUI != null)
             heartUI.UpdateHearts(currentHearts, soulHearts);
@@ -158,17 +243,6 @@ public class PlayerHealth : MonoBehaviour
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-    }
-
-    public void Heal(int amount)
-    {
-        currentHearts += amount;
-        currentHearts = Mathf.Min(currentHearts, maxHearts);
-
-        RunManager.instance.currentHearts = currentHearts;
-
-        if (heartUI != null)
-            heartUI.UpdateHearts(currentHearts, soulHearts);
     }
 
     private void FindOrCreateHeartUI()

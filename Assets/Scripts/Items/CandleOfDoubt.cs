@@ -9,7 +9,7 @@ public class CandleOfDoubt : ItemData
     public override void OnPickup(PlayerStats stats, RunManager run)
     {
         stats.ModifyStat(s => {
-            s.fireRate += 0.5f;
+            s.fireRate += 0.2f;
             s.damage -= 0.5f;
             s.moveSpeed += 5f;
         });
@@ -18,7 +18,7 @@ public class CandleOfDoubt : ItemData
     public override void ApplyPersistent(PlayerStats stats, RunManager run)
     {
         stats.ModifyStat(s => {
-            s.fireRate += 0.5f;
+            s.fireRate += 0.2f;
             s.damage -= 0.5f;
             s.moveSpeed += 5f;
         });
