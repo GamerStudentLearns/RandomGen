@@ -109,6 +109,10 @@ public class Room : MonoBehaviour
 
     public Vector2Int RoomIndex { get; set; }
 
+    private int wallDecorSpawned = 0;
+    private const int MAX_WALL_DECOR = 5;
+
+
     private List<GameObject> spawnedEnemies = new List<GameObject>();
     private bool roomActivated = false;
 
@@ -478,26 +482,42 @@ public class Room : MonoBehaviour
 
     private void SpawnDecor()
     {
-        SpawnDecorGroup(floorDecorPoints, floorDecorPrefabs, 0.45f);
-        SpawnDecorGroup(topWallDecorPoints, topWallDecorPrefabs, 0.30f);
-        SpawnDecorGroup(bottomWallDecorPoints, bottomWallDecorPrefabs, 0.30f);
-        SpawnDecorGroup(leftWallDecorPoints, leftWallDecorPrefabs, 0.30f);
-        SpawnDecorGroup(rightWallDecorPoints, rightWallDecorPrefabs, 0.30f);
+        // Floor decor stays unlimited
+        SpawnDecorGroup(floorDecorPoints, floorDecorPrefabs, 0.45f, false);
+
+        // Wall decor (shared limit of 5)
+        SpawnDecorGroup(topWallDecorPoints, topWallDecorPrefabs, 0.30f, true);
+        SpawnDecorGroup(bottomWallDecorPoints, bottomWallDecorPrefabs, 0.30f, true);
+        SpawnDecorGroup(leftWallDecorPoints, leftWallDecorPrefabs, 0.30f, true);
+        SpawnDecorGroup(rightWallDecorPoints, rightWallDecorPrefabs, 0.30f, true);
     }
 
-    private void SpawnDecorGroup(List<Transform> points, List<GameObject> prefabs, float chance)
+
+    private void SpawnDecorGroup(List<Transform> points, List<GameObject> prefabs, float chance, bool isWall)
     {
         if (points == null || prefabs == null || prefabs.Count == 0)
             return;
 
         foreach (Transform point in points)
         {
+            // If this is wall decor and we've hit the limit, stop
+            if (isWall && wallDecorSpawned >= MAX_WALL_DECOR)
+                return;
+
             if (Random.value < chance)
             {
+                // Again, check limit before spawning
+                if (isWall && wallDecorSpawned >= MAX_WALL_DECOR)
+                    return;
+
                 GameObject prefab = prefabs[Random.Range(0, prefabs.Count)];
                 Instantiate(prefab, point.position, Quaternion.identity, transform);
+
+                if (isWall)
+                    wallDecorSpawned++;
             }
         }
     }
+
 
 }

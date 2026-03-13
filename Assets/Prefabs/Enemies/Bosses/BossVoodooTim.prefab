@@ -188,7 +188,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3d5b305dd210348abfc5f226af3b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 75
+  unlocksLevel7: 0
+  maxHealth: 200
   isBoss: 1
   parentRoom: {fileID: 0}
   flashDuration: 0.1
