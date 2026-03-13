@@ -137,7 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a0d922cde66314e92327f0f47cdfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 5
   upSprite: {fileID: 4364267414111906435, guid: d65bc2da80bf7e34fa4efe9f04014ade, type: 3}
   downSprite: {fileID: -5382798856197201280, guid: ebe438fb603b3934db1e722f2bc4013b, type: 3}
   leftSprite: {fileID: -5353055557623205198, guid: 07ab3659fc6f67149923cb61554e1ed2, type: 3}
@@ -232,8 +231,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.26}
-  m_Size: {x: 0.58, y: 1.65}
+  m_Offset: {x: 0, y: -0.05}
+  m_Size: {x: 0.58, y: 2.11}
   m_Direction: 0
 --- !u!82 &3946318442457362390
 AudioSource:
