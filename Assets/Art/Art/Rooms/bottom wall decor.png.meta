@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 276b4e9d4dc9f6148830e0fdb33bb85c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1477735031412893758
+    second: bottom wall decor_0
+  - first:
+      213: 8275294847127014118
+    second: bottom wall decor_1
+  - first:
+      213: 9061991707775424426
+    second: bottom wall decor_2
+  - first:
+      213: -824426254814956284
+    second: bottom wall decor_3
+  - first:
+      213: -6778296479829403032
+    second: bottom wall decor_4
+  - first:
+      213: -4249937371016874245
+    second: bottom wall decor_5
+  - first:
+      213: 6792648715355790905
+    second: bottom wall decor_6
+  - first:
+      213: 7980329027607630088
+    second: bottom wall decor_7
+  - first:
+      213: 358447482773826711
+    second: bottom wall decor_8
+  - first:
+      213: 384864528869288599
+    second: bottom wall decor_9
+  - first:
+      213: -8540152893021257611
+    second: bottom wall decor_10
+  - first:
+      213: -8552311808541619885
+    second: bottom wall decor_11
+  - first:
+      213: 7651888240643609787
+    second: bottom wall decor_12
+  - first:
+      213: 2539196247570281094
+    second: bottom wall decor_13
+  - first:
+      213: 1577577447996424531
+    second: bottom wall decor_14
+  - first:
+      213: -4989517493902501852
+    second: bottom wall decor_15
+  - first:
+      213: 7769402194947079057
+    second: bottom wall decor_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: bottom wall decor_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c7db7c71d70e7be0800000000000000
+      internalID: -1477735031412893758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 11
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ea40aea1d0c7d270800000000000000
+      internalID: 8275294847127014118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_2
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 13
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa75d7b1279a2cd70800000000000000
+      internalID: 9061991707775424426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_3
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 10
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 405bf3270bc0f84f0800000000000000
+      internalID: -824426254814956284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_4
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 10
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86adc79b347aee1a0800000000000000
+      internalID: -6778296479829403032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_5
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 7
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf6b1ea6a703505c0800000000000000
+      internalID: -4249937371016874245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_6
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 9
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93e9bc28406544e50800000000000000
+      internalID: 6792648715355790905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_7
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 9
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8019a4118f2dfbe60800000000000000
+      internalID: 7980329027607630088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_8
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 9
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79ced51261679f400800000000000000
+      internalID: 358447482773826711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_9
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 8
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79ae6e9ff30575500800000000000000
+      internalID: 384864528869288599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 5
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57081f301384b7980800000000000000
+      internalID: -8540152893021257611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_11
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 0
+        width: 7
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3598f73e8b5105980800000000000000
+      internalID: -8552311808541619885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_12
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 9
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb41d8c30d7f03a60800000000000000
+      internalID: 7651888240643609787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_13
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 9
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6827e6fa8890d3320800000000000000
+      internalID: 2539196247570281094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_14
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 0
+        width: 12
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3518e71a45ea4e510800000000000000
+      internalID: 1577577447996424531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_15
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 9
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 428185f564ca1cab0800000000000000
+      internalID: -4989517493902501852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bottom wall decor_16
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 10
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19bf5fad12672db60800000000000000
+      internalID: 7769402194947079057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      bottom wall decor_0: -1477735031412893758
+      bottom wall decor_1: 8275294847127014118
+      bottom wall decor_10: -8540152893021257611
+      bottom wall decor_11: -8552311808541619885
+      bottom wall decor_12: 7651888240643609787
+      bottom wall decor_13: 2539196247570281094
+      bottom wall decor_14: 1577577447996424531
+      bottom wall decor_15: -4989517493902501852
+      bottom wall decor_16: 7769402194947079057
+      bottom wall decor_2: 9061991707775424426
+      bottom wall decor_3: -824426254814956284
+      bottom wall decor_4: -6778296479829403032
+      bottom wall decor_5: -4249937371016874245
+      bottom wall decor_6: 6792648715355790905
+      bottom wall decor_7: 7980329027607630088
+      bottom wall decor_8: 358447482773826711
+      bottom wall decor_9: 384864528869288599
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

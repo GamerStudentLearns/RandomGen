@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 1999105983603132671}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: bossPrefab.Array.size
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: 'bossPrefab.Array.data[0]'
@@ -162,25 +162,29 @@ PrefabInstance:
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: 'bossPrefab.Array.data[6]'
       value: 
-      objectReference: {fileID: 3723570472689415439, guid: 87198bd904126f5409c277eae23b7b09, type: 3}
+      objectReference: {fileID: 8807333807495253691, guid: 5cccf889a1d4db34c8918cd970d7ee07, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: 'bossPrefab.Array.data[7]'
       value: 
-      objectReference: {fileID: 5597554475938657141, guid: fd3716fa7a92cb0468f826cd0d30f35f, type: 3}
+      objectReference: {fileID: 3723570472689415439, guid: 87198bd904126f5409c277eae23b7b09, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: 'bossPrefab.Array.data[8]'
       value: 
-      objectReference: {fileID: 2499397574481298769, guid: 41dba9a7758d5ee4d89843e3a15b552f, type: 3}
+      objectReference: {fileID: 5597554475938657141, guid: fd3716fa7a92cb0468f826cd0d30f35f, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: 'bossPrefab.Array.data[9]'
       value: 
-      objectReference: {fileID: 1187591596815221310, guid: ef9a85ae428f33d4f8baf59bfce3b277, type: 3}
+      objectReference: {fileID: 2499397574481298769, guid: 41dba9a7758d5ee4d89843e3a15b552f, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: 'bossPrefab.Array.data[10]'
       value: 
-      objectReference: {fileID: 1182791449582516802, guid: 89ce6d1333e1af643b66fc2f4ccc5a6e, type: 3}
+      objectReference: {fileID: 1187591596815221310, guid: ef9a85ae428f33d4f8baf59bfce3b277, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
       propertyPath: 'bossPrefab.Array.data[11]'
+      value: 
+      objectReference: {fileID: 1182791449582516802, guid: 89ce6d1333e1af643b66fc2f4ccc5a6e, type: 3}
+    - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}
+      propertyPath: 'bossPrefab.Array.data[12]'
       value: 
       objectReference: {fileID: 3350699373118113798, guid: 0354fbfc86c713c439b69f106be3e70f, type: 3}
     - target: {fileID: 306790599566195303, guid: a809c5ca0c7c2244ab623f615a0dbdb2, type: 3}

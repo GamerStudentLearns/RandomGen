@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 1c9cffbc53ea3da458ff5a4f2f07e60a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8295809010841229204
+    second: Left wall decor_0
+  - first:
+      213: -6893359106188364404
+    second: Left wall decor_1
+  - first:
+      213: -6367799718257788574
+    second: Left wall decor_2
+  - first:
+      213: 6206859063142550951
+    second: Left wall decor_3
+  - first:
+      213: 5280147132903486985
+    second: Left wall decor_4
+  - first:
+      213: -3973267558758479996
+    second: Left wall decor_5
+  - first:
+      213: -8113972191381613704
+    second: Left wall decor_6
+  - first:
+      213: -2512399720777661150
+    second: Left wall decor_7
+  - first:
+      213: 3272118946130451652
+    second: Left wall decor_8
+  - first:
+      213: 3732399743024022218
+    second: Left wall decor_9
+  - first:
+      213: 8309870045789453730
+    second: Left wall decor_10
+  - first:
+      213: 1301155516256031960
+    second: Left wall decor_11
+  - first:
+      213: -9201127975567502090
+    second: Left wall decor_12
+  - first:
+      213: 9023823527955164656
+    second: Left wall decor_13
+  - first:
+      213: -8475241960695622209
+    second: Left wall decor_14
+  - first:
+      213: 2737324795638693908
+    second: Left wall decor_15
+  - first:
+      213: 7018630965188823411
+    second: Left wall decor_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Left wall decor_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 259
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4971daf9752a02370800000000000000
+      internalID: 8295809010841229204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_1
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 258
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c85307e5a6ed550a0800000000000000
+      internalID: -6893359106188364404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_2
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 257
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2697960f4e701a7a0800000000000000
+      internalID: -6367799718257788574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_3
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 242
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ad868dbe61332650800000000000000
+      internalID: 6206859063142550951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_4
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 239
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 906728a87d9d64940800000000000000
+      internalID: 5280147132903486985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_5
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 220
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4870e92e43e1cd8c0800000000000000
+      internalID: -3973267558758479996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_6
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 204
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8731d471841656f80800000000000000
+      internalID: -8113972191381613704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_7
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 189
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 225c145e3c9222dd0800000000000000
+      internalID: -2512399720777661150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_8
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 174
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cc5ee658d6e86d20800000000000000
+      internalID: 3272118946130451652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_9
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 162
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac2c4ba8ac52cc330800000000000000
+      internalID: 3732399743024022218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_10
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 128
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ad70f077c6925370800000000000000
+      internalID: 8309870045789453730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 114
+        width: 22
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d41bf75c02ae0210800000000000000
+      internalID: 1301155516256031960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_12
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 94
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f4d36b1bd60f4080800000000000000
+      internalID: -9201127975567502090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_13
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 69
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fd649b30bf0b3d70800000000000000
+      internalID: 9023823527955164656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_14
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 50
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb5904b2754e16a80800000000000000
+      internalID: -8475241960695622209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_15
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 32
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 410c9ee066eecf520800000000000000
+      internalID: 2737324795638693908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Left wall decor_16
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 2
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37903a13daf276160800000000000000
+      internalID: 7018630965188823411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Left wall decor_0: 8295809010841229204
+      Left wall decor_1: -6893359106188364404
+      Left wall decor_10: 8309870045789453730
+      Left wall decor_11: 1301155516256031960
+      Left wall decor_12: -9201127975567502090
+      Left wall decor_13: 9023823527955164656
+      Left wall decor_14: -8475241960695622209
+      Left wall decor_15: 2737324795638693908
+      Left wall decor_16: 7018630965188823411
+      Left wall decor_2: -6367799718257788574
+      Left wall decor_3: 6206859063142550951
+      Left wall decor_4: 5280147132903486985
+      Left wall decor_5: -3973267558758479996
+      Left wall decor_6: -8113972191381613704
+      Left wall decor_7: -2512399720777661150
+      Left wall decor_8: 3272118946130451652
+      Left wall decor_9: 3732399743024022218
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

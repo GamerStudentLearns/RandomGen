@@ -121,7 +121,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!70 &2562839023893870802
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -174,8 +174,10 @@ MonoBehaviour:
   player: {fileID: 0}
   isAwake: 0
   tearPrefab: {fileID: 3715812023786578678, guid: 3bed59cd387b99842b16d4a70b81eb21, type: 3}
-  rainCooldown: 1
-  tearsPerBurst: 50
+  shotInterval: 0.15
+  tearsPerBurst: 6
+  burstDuration: 3
+  pauseDuration: 2
 --- !u!114 &2361586600492602146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3d5b305dd210348abfc5f226af3b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  unlocksLevel7: 0
   maxHealth: 130
   isBoss: 1
   parentRoom: {fileID: 0}
