@@ -185,6 +185,15 @@ public class Room : MonoBehaviour
             foreach (IBoss boss in bosses)
                 boss.WakeUp();
         }
+        // --- MUSIC: Switch to boss track ---
+        if (isBossRoom)
+        {
+            BossMusicController music = FindFirstObjectByType<BossMusicController>();
+            if (music != null)
+                music.PlayRandomBossTrack();
+        }
+
+
 
         StartCoroutine(CheckRoomClear());
     }
@@ -364,9 +373,15 @@ public class Room : MonoBehaviour
 
             if (spawnedEnemies.Count == 0 && bossDead)
             {
+                BossMusicController music = FindFirstObjectByType<BossMusicController>();
+                if (music != null)
+                    music.RestoreNormalMusic();
+
                 ClearRoom();
                 yield break;
             }
+
+
 
             yield return null;
         }

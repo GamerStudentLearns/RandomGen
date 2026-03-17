@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7644673975894172556}
   - component: {fileID: 8876584072174592307}
   - component: {fileID: 2931663951265308238}
+  - component: {fileID: 1849050146373085672}
   m_Layer: 0
   m_Name: RandomMusicPlayer
   m_TagString: Untagged
@@ -146,3 +147,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1849050146373085672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650349354559424263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4f201ddbeec794eb0b0ecd375097c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossMusicController
+  bossSongs:
+  - {fileID: 8300000, guid: b5acd8bd56bb02c4b9b9106b3e40fa1d, type: 3}
+  - {fileID: 8300000, guid: 523a7811f71e2b949b18df7c239c6fc7, type: 3}
+  audioSource: {fileID: 2931663951265308238}
