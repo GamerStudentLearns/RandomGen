@@ -792,6 +792,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: RandomMusicPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 1849050146373085672, guid: 0627ce0ea0eada84fb737306bf56828f, type: 3}
+      propertyPath: 'bossSongs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: b21abdee197e8b8499d62f93b1b16dcc, type: 3}
+    - target: {fileID: 1849050146373085672, guid: 0627ce0ea0eada84fb737306bf56828f, type: 3}
+      propertyPath: 'bossSongs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: b8c2c500aef389843b5e9d604cba67d4, type: 3}
     - target: {fileID: 7644673975894172556, guid: 0627ce0ea0eada84fb737306bf56828f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1299.5101
@@ -835,7 +843,7 @@ PrefabInstance:
     - target: {fileID: 8876584072174592307, guid: 0627ce0ea0eada84fb737306bf56828f, type: 3}
       propertyPath: 'songs.Array.data[0]'
       value: 
-      objectReference: {fileID: 8300000, guid: 9a7788ecbd351e0449035969a54810c2, type: 3}
+      objectReference: {fileID: 8300000, guid: a30388542e7356841b770d29e85dcba5, type: 3}
     - target: {fileID: 8876584072174592307, guid: 0627ce0ea0eada84fb737306bf56828f, type: 3}
       propertyPath: 'songs.Array.data[1]'
       value: 
