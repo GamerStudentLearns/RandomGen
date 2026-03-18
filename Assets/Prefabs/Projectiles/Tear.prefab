@@ -37,6 +37,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3003370153577669100
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -82,6 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 197808247
   m_SortingLayer: 5
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 6218468429113522630, guid: 5f9db7401fa98d04392a1895de958b10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -91,7 +93,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &4746327660443141168
 Rigidbody2D:
@@ -172,3 +173,10 @@ MonoBehaviour:
   speed: 0
   range: 0
   destroyEffect: {fileID: 3250461063860846938, guid: f2d4e3ddce7aa864c987659c12a329da, type: 3}
+  destroySounds:
+  - {fileID: 8300000, guid: ab9494b2000deff4cae14a1a19c5f1e2, type: 3}
+  - {fileID: 8300000, guid: 02c70263b7b0dd1459437681df454c0e, type: 3}
+  - {fileID: 8300000, guid: 189a06fa4843ac740bbb229f3759ca98, type: 3}
+  - {fileID: 8300000, guid: cc80abb5ccf11ab44807ce07c186eecb, type: 3}
+  playChance: 0.5
+  volume: 1.5

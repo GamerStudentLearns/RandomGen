@@ -14,6 +14,12 @@ public class Projectile : MonoBehaviour
     [Header("Effects")]
     public ParticleSystem destroyEffect;
 
+    [Header("Sound")]
+    public AudioClip[] destroySounds;   // Random clip chosen from here
+    [Range(0f, 1f)]
+    public float playChance = 0.5f;     // 50% chance by default
+    public float volume = 1f;
+
     private Vector2 direction;
 
     void Start()
@@ -49,7 +55,7 @@ public class Projectile : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
-                ProjectileEvents.PlayerProjectileHit(enemy);   // EVENT HOOK
+                ProjectileEvents.PlayerProjectileHit(enemy);
             }
 
             PlayDestroyEffectAndDie();
@@ -64,9 +70,31 @@ public class Projectile : MonoBehaviour
 
     private void PlayDestroyEffectAndDie()
     {
+        // Particle effect
         if (destroyEffect != null)
             Instantiate(destroyEffect, transform.position, Quaternion.identity);
 
+        // Sound effect
+        PlayRandomDestroySound();
+
         Destroy(gameObject);
+    }
+
+    private void PlayRandomDestroySound()
+    {
+        // Chance check
+        if (Random.value > playChance)
+            return;
+
+        // Safety checks
+        if (destroySounds == null || destroySounds.Length == 0)
+            return;
+
+        // Pick random clip
+        int index = Random.Range(0, destroySounds.Length);
+        AudioClip clip = destroySounds[index];
+
+        // Play at projectile position (survives object destruction)
+        AudioSource.PlayClipAtPoint(clip, transform.position, volume);
     }
 }

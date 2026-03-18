@@ -7,9 +7,11 @@ public class Tear : MonoBehaviour
     public float range;
     public ParticleSystem destroyEffect;
 
-    [Header("Sound Effects")]
-    public AudioClip[] destroySounds;   // Assign multiple clips in Inspector
-    public AudioSource audioSource;     // Assign in Inspector (on tear or child)
+    [Header("Sound")]
+    public AudioClip[] destroySounds;   // Random clip chosen from here
+    [Range(0f, 1f)]
+    public float playChance = 0.5f;     // 50/50 chance by default
+    public float volume = 1f;
 
     private Vector2 startPos;
 
@@ -48,11 +50,11 @@ public class Tear : MonoBehaviour
 
     private void PlayDestroyEffectAndDie()
     {
-        // Spawn particles
+        // Particle effect
         if (destroyEffect != null)
             Instantiate(destroyEffect, transform.position, Quaternion.identity);
 
-        // Play random sound
+        // Sound effect (random chance + random clip)
         PlayRandomDestroySound();
 
         Destroy(gameObject);
@@ -60,10 +62,19 @@ public class Tear : MonoBehaviour
 
     private void PlayRandomDestroySound()
     {
-        if (audioSource == null || destroySounds == null || destroySounds.Length == 0)
+        // Chance check
+        if (Random.value > playChance)
             return;
 
+        // Safety checks
+        if (destroySounds == null || destroySounds.Length == 0)
+            return;
+
+        // Pick random clip
         int index = Random.Range(0, destroySounds.Length);
-        audioSource.PlayOneShot(destroySounds[index]);
+        AudioClip clip = destroySounds[index];
+
+        // Play at the tear's position (survives object destruction)
+        AudioSource.PlayClipAtPoint(clip, transform.position, volume);
     }
 }

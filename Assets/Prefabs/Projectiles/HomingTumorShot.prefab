@@ -176,6 +176,13 @@ MonoBehaviour:
   damagesPlayer: 1
   damagesEnemies: 0
   destroyEffect: {fileID: 3250461063860846938, guid: 94474cccdc18e194389b419b6dfc6148, type: 3}
+  destroySounds:
+  - {fileID: 8300000, guid: ab9494b2000deff4cae14a1a19c5f1e2, type: 3}
+  - {fileID: 8300000, guid: 02c70263b7b0dd1459437681df454c0e, type: 3}
+  - {fileID: 8300000, guid: 189a06fa4843ac740bbb229f3759ca98, type: 3}
+  - {fileID: 8300000, guid: cc80abb5ccf11ab44807ce07c186eecb, type: 3}
+  playChance: 0.5
+  volume: 1
 --- !u!114 &8792945991800973472
 MonoBehaviour:
   m_ObjectHideFlags: 0
