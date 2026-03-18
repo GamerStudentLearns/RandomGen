@@ -19,6 +19,9 @@ public class MenuController : MonoBehaviour
     [SerializeField] private float defaultVolume = 1.0f;
     [SerializeField] private GameObject comfirmationPrompt = null;
 
+    // ⭐ NEW — Damage Sound Toggle
+    [SerializeField] private Toggle damageSoundToggle = null;
+
     [Header("Gameplay Settings")]
     [SerializeField] private TMP_Text KeyboardSensitivityTextValue = null;
     [SerializeField] private Slider KeyboardSensitivitySlider = null;
@@ -35,9 +38,8 @@ public class MenuController : MonoBehaviour
     {
         LoadAudioSettings();
         LoadLastUsedSlot();
-        UpdateSlotStatusLabels();   
+        UpdateSlotStatusLabels();
     }
-
 
     // -----------------------------
     // SAVE SLOT SYSTEM
@@ -51,11 +53,9 @@ public class MenuController : MonoBehaviour
         if (selectedSlotText != null)
             selectedSlotText.text = "Selected Slot: " + slot;
 
-        UpdateSlotStatusLabels();   // ← add this
-
+        UpdateSlotStatusLabels();
         Debug.Log("Selected Save Slot: " + slot);
     }
-
 
     private void LoadLastUsedSlot()
     {
@@ -68,7 +68,6 @@ public class MenuController : MonoBehaviour
 
     public void NewGameDialogYes()
     {
-        // Slot is already selected before this is pressed
         UnityEngine.SceneManagement.SceneManager.LoadScene(newGameLevel);
     }
 
@@ -78,18 +77,33 @@ public class MenuController : MonoBehaviour
     public void SetVolume(float volume)
     {
         AudioListener.volume = volume;
+
         if (volumeTextValue != null)
             volumeTextValue.text = volume.ToString("0.0");
+    }
+
+    // ⭐ NEW — behaves like SetVolume()
+    public void SetDamageSound(bool enabled)
+    {
+        PlayerPrefs.SetInt("DamageSoundEnabled", enabled ? 1 : 0);
+        Debug.Log("Damage Sound: " + (enabled ? "ON" : "OFF"));
     }
 
     public void VolumeApply()
     {
         PlayerPrefs.SetFloat("masterVolume", AudioListener.volume);
+
+        // Save damage sound toggle
+        if (damageSoundToggle != null)
+            PlayerPrefs.SetInt("DamageSoundEnabled", damageSoundToggle.isOn ? 1 : 0);
+
+        PlayerPrefs.Save();
         StartCoroutine(ComfirmationBox(1f));
     }
 
     private void LoadAudioSettings()
     {
+        // Load master volume
         if (PlayerPrefs.HasKey("masterVolume"))
         {
             float volume = PlayerPrefs.GetFloat("masterVolume");
@@ -100,6 +114,10 @@ public class MenuController : MonoBehaviour
             if (volumeTextValue != null)
                 volumeTextValue.text = volume.ToString("0.0");
         }
+
+        // Load damage sound toggle
+        if (damageSoundToggle != null)
+            damageSoundToggle.isOn = PlayerPrefs.GetInt("DamageSoundEnabled", 1) == 1;
     }
 
     // -----------------------------
@@ -108,6 +126,7 @@ public class MenuController : MonoBehaviour
     public void SetKeyboardSensitivity(float sensitivity)
     {
         mainKeyboardSensitivity = Mathf.RoundToInt(sensitivity);
+
         if (KeyboardSensitivityTextValue != null)
             KeyboardSensitivityTextValue.text = sensitivity.ToString("0");
     }
@@ -115,9 +134,7 @@ public class MenuController : MonoBehaviour
     public void GameplayApply()
     {
         if (invertYToggle != null)
-        {
             PlayerPrefs.SetInt("masterInvertY", invertYToggle.isOn ? 1 : 0);
-        }
 
         PlayerPrefs.SetFloat("masterSen", mainKeyboardSensitivity);
         StartCoroutine(ComfirmationBox(1f));
@@ -128,10 +145,16 @@ public class MenuController : MonoBehaviour
         if (MenuType == "Audio")
         {
             AudioListener.volume = defaultVolume;
+
             if (volumeSlider != null)
                 volumeSlider.value = defaultVolume;
             if (volumeTextValue != null)
                 volumeTextValue.text = defaultVolume.ToString("0.0");
+
+            // Reset damage sound toggle to ON
+            if (damageSoundToggle != null)
+                damageSoundToggle.isOn = true;
+
             VolumeApply();
         }
 
@@ -177,33 +200,25 @@ public class MenuController : MonoBehaviour
     {
         int previousSlot = SaveSlotManager.CurrentSlot;
 
-        // Slot 1
         SaveSlotManager.CurrentSlot = 1;
         if (slot1Status != null)
             slot1Status.text = SaveManager.HasClearedLevel6() ? "Dead Man Walking" : "New Game";
 
-        // Slot 2
         SaveSlotManager.CurrentSlot = 2;
         if (slot2Status != null)
             slot2Status.text = SaveManager.HasClearedLevel6() ? "Dead Man Walking" : "New Game";
 
-        // Slot 3
         SaveSlotManager.CurrentSlot = 3;
         if (slot3Status != null)
             slot3Status.text = SaveManager.HasClearedLevel6() ? "Dead Man Walking" : "New Game";
 
-        // Restore previously selected slot
         SaveSlotManager.CurrentSlot = previousSlot;
     }
 
     public void DeleteSaveSlot(int slot)
     {
         SaveManager.DeleteSlot(slot);
-        UpdateSlotStatusLabels(); // refresh the UI
+        UpdateSlotStatusLabels();
         Debug.Log("Deleted save slot " + slot);
     }
-
-
-
-
 }

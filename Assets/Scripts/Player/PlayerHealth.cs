@@ -78,20 +78,26 @@ public class PlayerHealth : MonoBehaviour
     // -----------------------------
     //          DAMAGE
     // -----------------------------
+
     public void TakeDamage(int dmg)
     {
-        if (invulnerable) return;
+        if (invulnerable)
+            return;
 
-        if (audioSource != null && damageSound != null)
+        // ⭐ Check if damage sound is enabled in settings
+        bool damageSoundEnabled = PlayerPrefs.GetInt("DamageSoundEnabled", 1) == 1;
+
+        if (damageSoundEnabled && audioSource != null && damageSound != null)
             audioSource.PlayOneShot(damageSound);
 
+        // Soul hearts absorb damage first
         if (soulHearts > 0)
         {
             soulHearts -= dmg;
 
             if (soulHearts < 0)
             {
-                currentHearts += soulHearts;
+                currentHearts += soulHearts; // subtract overflow from real hearts
                 soulHearts = 0;
             }
         }
@@ -118,6 +124,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHearts <= 0)
             Die();
     }
+
 
     // -----------------------------
     //      SOUL HEART PICKUP
