@@ -37,6 +37,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3003370153577669100
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -82,6 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 197808247
   m_SortingLayer: 5
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: -1851991236, guid: bd0ed678206348343bbf8fc03c1a2ad3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -91,7 +93,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &4746327660443141168
 Rigidbody2D:
@@ -174,3 +175,6 @@ MonoBehaviour:
   damagesPlayer: 1
   damagesEnemies: 0
   destroyEffect: {fileID: 3250461063860846938, guid: 94474cccdc18e194389b419b6dfc6148, type: 3}
+  destroySounds: []
+  playChance: 0.5
+  volume: 1

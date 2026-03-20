@@ -232,7 +232,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.05}
-  m_Size: {x: 0.58, y: 2.11}
+  m_Size: {x: 0.28, y: 1.4}
   m_Direction: 0
 --- !u!82 &3946318442457362390
 AudioSource:

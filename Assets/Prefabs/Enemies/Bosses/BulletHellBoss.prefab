@@ -53,7 +53,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3715812023786578678, guid: 3bed59cd387b99842b16d4a70b81eb21, type: 3}
   isAwake: 0
   patternSwitchTime: 6
-  fireRate: 0.1
+  fireRate: 0.6
   idleSprite: {fileID: 6590929082774973175, guid: 3d9a418fd99cef846ad7b7846acdbf13, type: 3}
   flapSprite: {fileID: 2209785653586050511, guid: 71856be596c6bc649b988bd2d2e5ecfb, type: 3}
   flapSpeed: 0.15

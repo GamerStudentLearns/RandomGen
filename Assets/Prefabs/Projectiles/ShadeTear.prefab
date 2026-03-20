@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899ad0b0038b2bb4bbf3fb6101ca6b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  speed: 7
+  speed: 6
   damage: 1
   lifeTime: 5
   damagesPlayer: 1
@@ -181,4 +181,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 189a06fa4843ac740bbb229f3759ca98, type: 3}
   - {fileID: 8300000, guid: cc80abb5ccf11ab44807ce07c186eecb, type: 3}
   playChance: 0.5
-  volume: 1
+  volume: 0.75

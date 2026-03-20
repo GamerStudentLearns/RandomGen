@@ -663,6 +663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeleportDoor
   playerDestination: {fileID: 86421070004617814}
   cameraDestination: {fileID: 8336251459489971213}
+  cameraSlideDuration: 0.4
   reenableDelay: 0.5
 --- !u!1 &1000898613179327329
 GameObject:
@@ -1167,6 +1168,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47a95254943b9594e95e1ce1dcc6a0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Room
+  bossWakeDelay: 1.5
+  randomizeBossWakeDelay: 0
+  minBossWakeDelay: 0.5
+  maxBossWakeDelay: 3
   roomType: 0
   roomTrigger: {fileID: 6180227419951814830}
   topDoor: {fileID: 5326470113199317412}
@@ -2291,6 +2296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeleportDoor
   playerDestination: {fileID: 8367139591541515291}
   cameraDestination: {fileID: 6974397906533095186}
+  cameraSlideDuration: 0.4
   reenableDelay: 0.5
 --- !u!1 &4279881589313062012
 GameObject:
@@ -3026,6 +3032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeleportDoor
   playerDestination: {fileID: 7298272624680799139}
   cameraDestination: {fileID: 8263984999032145561}
+  cameraSlideDuration: 0.4
   reenableDelay: 0.5
 --- !u!1 &5415070960905053306
 GameObject:
@@ -4017,6 +4024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeleportDoor
   playerDestination: {fileID: 8778527759742985757}
   cameraDestination: {fileID: 200105439690033501}
+  cameraSlideDuration: 0.4
   reenableDelay: 0.5
 --- !u!1 &8213872771815671886
 GameObject:
@@ -4105,7 +4113,7 @@ Transform:
   m_GameObject: {fileID: 8455026492877147740}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.26, y: 1.47, z: 0}
+  m_LocalPosition: {x: 3.19, y: -3.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4167,7 +4175,7 @@ Transform:
   m_GameObject: {fileID: 8832456654414920247}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.26, y: -0.13, z: 0}
+  m_LocalPosition: {x: 3.54, y: 2.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

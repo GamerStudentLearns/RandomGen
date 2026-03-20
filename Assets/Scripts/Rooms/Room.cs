@@ -6,6 +6,12 @@ using System.Linq;
 
 public class Room : MonoBehaviour
 {
+    [Header("Boss Wake Settings")]
+    public float bossWakeDelay = 1.5f;   // Time before boss wakes
+    public bool randomizeBossWakeDelay = false;
+    public float minBossWakeDelay = 0.5f;
+    public float maxBossWakeDelay = 3f;
+
     public enum RoomType { Normal, Boss, Item }
 
     [Header("Room Type")]
@@ -181,9 +187,8 @@ public class Room : MonoBehaviour
                 BossHealthUI.instance.Show(bossHealth.maxHealth);
             }
 
-            IBoss[] bosses = bossObject.GetComponents<IBoss>();
-            foreach (IBoss boss in bosses)
-                boss.WakeUp();
+            StartCoroutine(WakeBossWithDelay());
+
         }
         // --- MUSIC: Switch to boss track ---
         if (isBossRoom)
@@ -531,6 +536,23 @@ public class Room : MonoBehaviour
                 if (isWall)
                     wallDecorSpawned++;
             }
+        }
+    }
+
+    private IEnumerator WakeBossWithDelay()
+    {
+        float delay = bossWakeDelay;
+
+        if (randomizeBossWakeDelay)
+            delay = Random.Range(minBossWakeDelay, maxBossWakeDelay);
+
+        yield return new WaitForSeconds(delay);
+
+        if (bossObject != null)
+        {
+            IBoss[] bosses = bossObject.GetComponents<IBoss>();
+            foreach (IBoss boss in bosses)
+                boss.WakeUp();
         }
     }
 

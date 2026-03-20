@@ -178,5 +178,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 02c70263b7b0dd1459437681df454c0e, type: 3}
   - {fileID: 8300000, guid: 189a06fa4843ac740bbb229f3759ca98, type: 3}
   - {fileID: 8300000, guid: cc80abb5ccf11ab44807ce07c186eecb, type: 3}
-  playChance: 0.5
-  volume: 1.5
+  playChance: 0.75
+  volume: 2
