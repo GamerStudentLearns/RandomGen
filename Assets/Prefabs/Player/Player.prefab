@@ -188,15 +188,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHearts: 6
-  deathEffect: {fileID: 1928436143237126930, guid: b3fdb08aa7de7634b846de6ea4ded03e, type: 3}
-  invulnTime: 0.5
   currentHearts: 0
   soulHearts: 0
   heartUI: {fileID: 0}
   gameOverUI: {fileID: 0}
+  invulnTime: 0.5
   flashDuration: 0.1
   audioSource: {fileID: 3946318442457362390}
-  damageSound: {fileID: 8300000, guid: 972a409ea39208b418feb2be942cbfe0, type: 3}
+  damageSound: {fileID: 8300000, guid: 6154869e836a35d4e9ffe13d5de2d27b, type: 3}
 --- !u!70 &3978188527296000903
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -14,15 +14,26 @@ public class MouldyBanana : ItemData
             s.moveSpeed += 1f;
         });
 
-        // Correct: use PlayerHealth logic for heart containers
+        
+        run.heartModifiers += 1;
+
+        // Clamp health
+        int newMax = run.MaxHearts;
+        run.currentHearts = Mathf.Clamp(run.currentHearts, 0, newMax);
+
+        // Sync PlayerHealth
         PlayerHealth player = Object.FindFirstObjectByType<PlayerHealth>();
         if (player != null)
         {
-            player.AddHeartContainer(1); // ❤️ correct behaviour
-        }
+            player.maxHearts = newMax;
+            player.currentHearts = run.currentHearts;
 
-        // Refresh UI
-        RunManager.RunEvents.OnItemAcquired?.Invoke();
+            if (player.heartUI != null)
+            {
+                player.heartUI.Initialize(newMax, player.soulHearts);
+                player.heartUI.UpdateHearts(player.currentHearts, player.soulHearts);
+            }
+        }
     }
 
     public override void ApplyPersistent(PlayerStats stats, RunManager run)

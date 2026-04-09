@@ -6,16 +6,9 @@ public class PlayerHealth : MonoBehaviour
     private const int TOTAL_HEART_LIMIT = 12;
 
     [Header("Health Settings")]
-    public int maxHearts = 6;
-
-    public GameObject deathEffect;
-    public float invulnTime = 1f;
-
-    [HideInInspector] public int currentHearts;
-    private bool invulnerable;
-
-    [Header("Soul Hearts")]
-    public int soulHearts = 0;
+    public int maxHearts = 6;       // red heart containers
+    public int currentHearts = 6;   // filled red hearts
+    public int soulHearts = 0;      // blue hearts
 
     [Header("UI")]
     public HeartUI heartUI;
@@ -23,8 +16,11 @@ public class PlayerHealth : MonoBehaviour
     [Header("Game Over UI")]
     public GameObject gameOverUI;
 
-    private PlayerStats stats;
+    [Header("Invulnerability")]
+    public float invulnTime = 1f;
+    private bool invulnerable;
 
+    [Header("Damage Flash")]
     private Renderer[] renderers;
     private Color[] originalColors;
     public float flashDuration = 0.1f;
@@ -35,69 +31,30 @@ public class PlayerHealth : MonoBehaviour
 
     void Awake()
     {
-        FindOrCreateHeartUI();
-
-        if (RunManager.instance == null)
-        {
-            var rmGo = new GameObject("RunManager");
-            rmGo.AddComponent<RunManager>();
-        }
-
-        maxHearts = RunManager.instance.MaxHearts;
-        currentHearts = RunManager.instance.currentHearts;
-        soulHearts = RunManager.instance.soulHearts;
-
-        if (heartUI == null)
-            heartUI = FindFirstObjectByType<HeartUI>();
-
-        if (heartUI != null)
-        {
-            heartUI.Initialize(maxHearts, soulHearts);
-            heartUI.UpdateHearts(currentHearts, soulHearts);
-        }
-
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
-        if (gameOverUI != null)
-            gameOverUI.SetActive(false);
-
-        renderers = GetComponentsInChildren<Renderer>();
-        originalColors = new Color[renderers.Length];
-
-        for (int i = 0; i < renderers.Length; i++)
-            originalColors[i] = renderers[i].material.color;
-    }
-
-    void Start()
-    {
-        stats = GetComponent<PlayerStats>();
-        PlayerEvents.PlayerStatsRef = stats;
+        LoadFromRunManager();
+        CacheRenderers();
+        UpdateUI();
     }
 
     // -----------------------------
     //          DAMAGE
     // -----------------------------
-
     public void TakeDamage(int dmg)
     {
         if (invulnerable)
             return;
 
-        // ⭐ Check if damage sound is enabled in settings
-        bool damageSoundEnabled = PlayerPrefs.GetInt("DamageSoundEnabled", 1) == 1;
+        PlayDamageSound();
 
-        if (damageSoundEnabled && audioSource != null && damageSound != null)
-            audioSource.PlayOneShot(damageSound);
-
-        // Soul hearts absorb damage first
+        // Soul hearts absorb first
         if (soulHearts > 0)
         {
             soulHearts -= dmg;
 
+            // Overflow hits red hearts
             if (soulHearts < 0)
             {
-                currentHearts += soulHearts; // subtract overflow from real hearts
+                currentHearts += soulHearts; // soulHearts is negative
                 soulHearts = 0;
             }
         }
@@ -106,25 +63,15 @@ public class PlayerHealth : MonoBehaviour
             currentHearts -= dmg;
         }
 
-        currentHearts = Mathf.Max(currentHearts, 0);
-
-        RunManager.instance.currentHearts = currentHearts;
-        RunManager.instance.soulHearts = soulHearts;
-
-        if (heartUI != null)
-            heartUI.UpdateHearts(currentHearts, soulHearts);
-
-        HitStopController.instance.Stop(0.05f);
+        NormalizeHearts();
+        UpdateUI();
 
         StartCoroutine(FlashRed());
         StartCoroutine(Invulnerability());
 
-        PlayerEvents.PlayerDamaged();
-
         if (currentHearts <= 0)
             Die();
     }
-
 
     // -----------------------------
     //      SOUL HEART PICKUP
@@ -136,19 +83,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void AddSoulHearts(int amount)
     {
-        if (!CanPickUpSoulHeart())
-            return;
-
         soulHearts += amount;
-
-        int overflow = (currentHearts + soulHearts) - TOTAL_HEART_LIMIT;
-        if (overflow > 0)
-            soulHearts -= overflow;
-
-        RunManager.instance.soulHearts = soulHearts;
-
-        if (heartUI != null)
-            heartUI.UpdateHearts(currentHearts, soulHearts);
+        NormalizeHearts();
+        UpdateUI();
     }
 
     // -----------------------------
@@ -160,48 +97,26 @@ public class PlayerHealth : MonoBehaviour
         {
             int total = currentHearts + soulHearts;
 
-            // ⭐ If total hearts = 12, items give NOTHING
-            // Pickups still use swap logic (soul → container)
+            // If full (12), swap soul → red
             if (total >= TOTAL_HEART_LIMIT)
             {
-                // If no soul hearts → this was an item → do nothing
-                if (soulHearts == 0)
-                    return;
-
-                // If soul hearts exist → this was a pickup → swap soul → container
-                soulHearts--;
-
-                RunManager.instance.heartModifiers++;
-                maxHearts = RunManager.instance.MaxHearts;
-
-                // Fill the new container
-                currentHearts = Mathf.Min(currentHearts + 1, maxHearts);
-
+                if (soulHearts > 0)
+                {
+                    soulHearts--;
+                    maxHearts++;
+                    currentHearts = Mathf.Min(currentHearts + 1, maxHearts);
+                }
                 continue;
             }
 
-            // Normal container gain (not full)
-            RunManager.instance.heartModifiers++;
-            maxHearts = RunManager.instance.MaxHearts;
-
+            // Normal container pickup
+            maxHearts++;
             currentHearts = Mathf.Min(currentHearts + 1, maxHearts);
-
-            // Clamp total to 12
-            int totalAfter = currentHearts + soulHearts;
-            if (totalAfter > TOTAL_HEART_LIMIT)
-            {
-                int overflow = totalAfter - TOTAL_HEART_LIMIT;
-                soulHearts = Mathf.Max(0, soulHearts - overflow);
-            }
         }
 
-        RunManager.instance.currentHearts = currentHearts;
-        RunManager.instance.soulHearts = soulHearts;
-
-        if (heartUI != null)
-            heartUI.UpdateHearts(currentHearts, soulHearts);
+        NormalizeHearts();
+        UpdateUI();
     }
-
 
     // -----------------------------
     //             HEAL
@@ -209,27 +124,61 @@ public class PlayerHealth : MonoBehaviour
     public void Heal(int amount)
     {
         currentHearts += amount;
+        NormalizeHearts();
+        UpdateUI();
+    }
 
-        currentHearts = Mathf.Min(currentHearts, maxHearts);
-        currentHearts = Mathf.Min(currentHearts, TOTAL_HEART_LIMIT - soulHearts);
+    // -----------------------------
+    //       NORMALIZATION
+    // -----------------------------
+    private void NormalizeHearts()
+    {
+        // Clamp red hearts to container size
+        currentHearts = Mathf.Clamp(currentHearts, 0, maxHearts);
 
-        RunManager.instance.currentHearts = currentHearts;
+        // Clamp total to 12
+        int total = currentHearts + soulHearts;
+        if (total > TOTAL_HEART_LIMIT)
+            soulHearts = TOTAL_HEART_LIMIT - currentHearts;
 
+        // No negative soul hearts
+        soulHearts = Mathf.Max(0, soulHearts);
+
+        SaveToRunManager();
+    }
+
+    // -----------------------------
+    //             UI
+    // -----------------------------
+    private void UpdateUI()
+    {
         if (heartUI != null)
             heartUI.UpdateHearts(currentHearts, soulHearts);
     }
 
-    IEnumerator Invulnerability()
+    // -----------------------------
+    //         UTILITIES
+    // -----------------------------
+    private void PlayDamageSound()
     {
-        invulnerable = true;
-        yield return new WaitForSeconds(invulnTime);
-        invulnerable = false;
+        bool enabled = PlayerPrefs.GetInt("DamageSoundEnabled", 1) == 1;
+        if (enabled && audioSource && damageSound)
+            audioSource.PlayOneShot(damageSound);
+    }
+
+    private void CacheRenderers()
+    {
+        renderers = GetComponentsInChildren<Renderer>();
+        originalColors = new Color[renderers.Length];
+
+        for (int i = 0; i < renderers.Length; i++)
+            originalColors[i] = renderers[i].material.color;
     }
 
     private IEnumerator FlashRed()
     {
-        for (int i = 0; i < renderers.Length; i++)
-            renderers[i].material.color = Color.red;
+        foreach (var r in renderers)
+            r.material.color = Color.red;
 
         yield return new WaitForSeconds(flashDuration);
 
@@ -237,12 +186,15 @@ public class PlayerHealth : MonoBehaviour
             renderers[i].material.color = originalColors[i];
     }
 
+    private IEnumerator Invulnerability()
+    {
+        invulnerable = true;
+        yield return new WaitForSeconds(invulnTime);
+        invulnerable = false;
+    }
+
     private void Die()
     {
-        if (deathEffect != null)
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
-
-        Destroy(gameObject);
         Time.timeScale = 0f;
 
         if (gameOverUI != null)
@@ -250,20 +202,31 @@ public class PlayerHealth : MonoBehaviour
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        Destroy(gameObject);
     }
 
-    private void FindOrCreateHeartUI()
+    // -----------------------------
+    //         SAVE / LOAD
+    // -----------------------------
+    private void LoadFromRunManager()
     {
-        if (heartUI != null)
-            return;
+        if (RunManager.instance == null)
+            new GameObject("RunManager").AddComponent<RunManager>();
 
-        heartUI = FindFirstObjectByType<HeartUI>();
+        maxHearts = RunManager.instance.MaxHearts;
+        currentHearts = RunManager.instance.currentHearts;
+        soulHearts = RunManager.instance.soulHearts;
 
-        if (heartUI == null)
-        {
-            GameObject prefab = Resources.Load<GameObject>("HeartUI");
-            GameObject ui = Instantiate(prefab);
-            heartUI = ui.GetComponent<HeartUI>();
-        }
+        NormalizeHearts();
+    }
+
+    private void SaveToRunManager()
+    {
+        RunManager.instance.currentHearts = currentHearts;
+        RunManager.instance.soulHearts = soulHearts;
+
+        // FIXED: use baseMaxHearts, not baseHearts
+        RunManager.instance.heartModifiers = maxHearts - RunManager.instance.baseMaxHearts;
     }
 }
