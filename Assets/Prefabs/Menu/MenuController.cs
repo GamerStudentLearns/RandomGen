@@ -5,6 +5,10 @@ using TMPro;
 
 public class MenuController : MonoBehaviour
 {
+
+    [Header("CraigStoryButton")]
+    public GameObject specialButton;
+
     [Header("Save Slot Status Text")]
     public TMP_Text slot1Status;
     public TMP_Text slot2Status;
@@ -36,6 +40,7 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
+        specialButton.SetActive(SaveManager.HasUnlockedSpecialButton());
         LoadAudioSettings();
         LoadLastUsedSlot();
         UpdateSlotStatusLabels();

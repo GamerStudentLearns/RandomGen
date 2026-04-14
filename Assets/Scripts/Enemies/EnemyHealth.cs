@@ -5,6 +5,7 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("Progression Unlocks")]
     public bool unlocksLevel7 = false;
+    public bool unlocksSpecialButton = false; 
 
     public float maxHealth = 5f;
     private float currentHealth;
@@ -95,6 +96,11 @@ public class EnemyHealth : MonoBehaviour
         if (unlocksLevel7)
         {
             SaveManager.SetLevel6Cleared();
+        }
+
+        if (unlocksSpecialButton)
+        {
+            SaveManager.SetSpecialButtonUnlocked();
         }
 
         // Destroy the enemy object
