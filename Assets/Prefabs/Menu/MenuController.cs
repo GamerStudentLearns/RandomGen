@@ -40,7 +40,7 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
-        specialButton.SetActive(SaveManager.HasUnlockedSpecialButton());
+        specialButton.SetActive(SaveManager.AnySlotHasSpecialUnlocked());
         LoadAudioSettings();
         LoadLastUsedSlot();
         UpdateSlotStatusLabels();
@@ -201,24 +201,49 @@ public class MenuController : MonoBehaviour
         Debug.Log("Game Quit");
     }
 
-    private void UpdateSlotStatusLabels()
+    public void UpdateSlotStatusLabels()
     {
         int previousSlot = SaveSlotManager.CurrentSlot;
 
+        // --- SLOT 1 ---
         SaveSlotManager.CurrentSlot = 1;
         if (slot1Status != null)
-            slot1Status.text = SaveManager.HasClearedLevel6() ? "Dead Man Walking" : "New Game";
+        {
+            if (SaveManager.HasUnlockedSpecialButton())
+                slot1Status.text = "Truth Seeker";
+            else if (SaveManager.HasClearedLevel6())
+                slot1Status.text = "Dead Man Walking";
+            else
+                slot1Status.text = "New Game";
+        }
 
+        // --- SLOT 2 ---
         SaveSlotManager.CurrentSlot = 2;
         if (slot2Status != null)
-            slot2Status.text = SaveManager.HasClearedLevel6() ? "Dead Man Walking" : "New Game";
+        {
+            if (SaveManager.HasUnlockedSpecialButton())
+                slot2Status.text = "Truth Seeker";
+            else if (SaveManager.HasClearedLevel6())
+                slot2Status.text = "Dead Man Walking";
+            else
+                slot2Status.text = "New Game";
+        }
 
+        // --- SLOT 3 ---
         SaveSlotManager.CurrentSlot = 3;
         if (slot3Status != null)
-            slot3Status.text = SaveManager.HasClearedLevel6() ? "Dead Man Walking" : "New Game";
+        {
+            if (SaveManager.HasUnlockedSpecialButton())
+                slot3Status.text = "Truth Seeker";
+            else if (SaveManager.HasClearedLevel6())
+                slot3Status.text = "Dead Man Walking";
+            else
+                slot3Status.text = "New Game";
+        }
 
         SaveSlotManager.CurrentSlot = previousSlot;
     }
+
 
     public void DeleteSaveSlot(int slot)
     {

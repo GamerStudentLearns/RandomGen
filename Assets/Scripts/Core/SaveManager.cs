@@ -47,4 +47,15 @@ public static class SaveManager
 
         PlayerPrefs.Save();
     }
+
+    public static bool AnySlotHasSpecialUnlocked()
+    {
+        for (int slot = 1; slot <= 3; slot++)
+        {
+            if (PlayerPrefs.GetInt($"SaveSlot{slot}_SpecialButtonUnlocked", 0) == 1)
+                return true;
+        }
+        return false;
+    }
+
 }
