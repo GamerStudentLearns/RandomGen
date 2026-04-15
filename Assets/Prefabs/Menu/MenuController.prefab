@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 146185275008596758}
   - component: {fileID: 971184913690997356}
+  - component: {fileID: 8282465577974529007}
   m_Layer: 0
   m_Name: MenuController
   m_TagString: Untagged
@@ -44,19 +45,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b313056b0e36c2245973e4c438953903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  specialButton: {fileID: 0}
+  slot1Status: {fileID: 0}
+  slot2Status: {fileID: 0}
+  slot3Status: {fileID: 0}
+  newGameLevel: 
   volumeTextValue: {fileID: 0}
   volumeSlider: {fileID: 0}
   defaultVolume: 1
   comfirmationPrompt: {fileID: 0}
+  damageSoundToggle: {fileID: 0}
   KeyboardSensitivityTextValue: {fileID: 0}
   KeyboardSensitivitySlider: {fileID: 0}
   defaultSen: 4
   mainKeyboardSensitivity: 4
   invertYToggle: {fileID: 0}
-  brightnessSlider: {fileID: 0}
-  brightnessTextValue: {fileID: 0}
-  defaultBrightness: 1
-  qualityDropdown: {fileID: 0}
-  fullscreenToggle: {fileID: 0}
-  resolutionDropdown: {fileID: 0}
-  globalVolume: {fileID: 0}
+  selectedSlotText: {fileID: 0}
+--- !u!114 &8282465577974529007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4247877358527306114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6ce034911e9ae46a0fa35b091f149b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'

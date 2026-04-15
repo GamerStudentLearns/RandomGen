@@ -146,6 +146,7 @@ PlayerSettings:
   bundleVersion: 1.0
   preloadedAssets:
   - {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
+  - {fileID: -944628639613478452, guid: f63ccc54948d5484e9ebbc3818e22e5d, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -725,11 +726,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 57893160-d0cb-4617-8edc-5482f2885b53
+  cloudProjectId: c6a5e5f2-87e1-4098-b444-41226b1c6217
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: RandomGen
-  organizationId: gamerstudentlearns
+  projectName: My project (1)
+  organizationId: nashnasher23
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
