@@ -137,6 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a0d922cde66314e92327f0f47cdfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  tearSpawner: {fileID: 6284995067787689676}
+  sr: {fileID: 4471301443408200020}
   upSprite: {fileID: 4364267414111906435, guid: d65bc2da80bf7e34fa4efe9f04014ade, type: 3}
   downSprite: {fileID: -5382798856197201280, guid: ebe438fb603b3934db1e722f2bc4013b, type: 3}
   leftSprite: {fileID: -5353055557623205198, guid: 07ab3659fc6f67149923cb61554e1ed2, type: 3}
@@ -154,10 +156,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TearSpawner
   tearPrefab: {fileID: 3715812023786578678, guid: a89eadf95dd9b28458816532e76bb740, type: 3}
-  upSprite: {fileID: 4364267414111906435, guid: d65bc2da80bf7e34fa4efe9f04014ade, type: 3}
-  downSprite: {fileID: -5382798856197201280, guid: ebe438fb603b3934db1e722f2bc4013b, type: 3}
-  leftSprite: {fileID: -5353055557623205198, guid: 07ab3659fc6f67149923cb61554e1ed2, type: 3}
-  rightSprite: {fileID: 7683049384377187941, guid: 308190c8752edbd4c99fbc50aaa89a60, type: 3}
+  shooterSR: {fileID: 4471301443408200020}
+  shootUpSprite: {fileID: 4364267414111906435, guid: d65bc2da80bf7e34fa4efe9f04014ade, type: 3}
+  shootDownSprite: {fileID: -5382798856197201280, guid: ebe438fb603b3934db1e722f2bc4013b, type: 3}
+  shootLeftSprite: {fileID: -5353055557623205198, guid: 07ab3659fc6f67149923cb61554e1ed2, type: 3}
+  shootRightSprite: {fileID: 7683049384377187941, guid: 308190c8752edbd4c99fbc50aaa89a60, type: 3}
+  playerMovement: {fileID: 8615718614562525276}
 --- !u!114 &39860794017716179
 MonoBehaviour:
   m_ObjectHideFlags: 0

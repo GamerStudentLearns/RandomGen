@@ -1,14 +1,18 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private PlayerControls controls;
     private Rigidbody2D rb;
-    private Vector2 movement;
-
-    private SpriteRenderer spriteRenderer;
-    private TearSpawner tearSpawner;
-
     private PlayerStats stats;
+
+    private Vector2 moveInput;
+    private Vector2 lastDir = Vector2.down;
+
+    public TearSpawner tearSpawner; // assign in inspector
+    public SpriteRenderer sr;       // assign in inspector
+    public Vector2 LastFacingDirection => lastDir;
 
     public Sprite upSprite;
     public Sprite downSprite;
@@ -17,37 +21,62 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
+        controls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        tearSpawner = GetComponent<TearSpawner>();
-        stats = GetComponent<PlayerStats>();   // NEW
+        stats = GetComponent<PlayerStats>();
+
+        // Gamepad left stick
+        controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
+        controls.Player.Move.canceled += ctx => moveInput = Vector2.zero;
+
+        // Keyboard WASD
+        controls.Player.MoveKeyboard.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
+        controls.Player.MoveKeyboard.canceled += ctx => moveInput = Vector2.zero;
     }
+
+    void OnEnable() => controls.Enable();
+    void OnDisable() => controls.Disable();
 
     void Update()
     {
-        movement = Vector2.zero;
-
-        if (Input.GetKey(KeyCode.W)) movement.y += 1;
-        if (Input.GetKey(KeyCode.S)) movement.y -= 1;
-        if (Input.GetKey(KeyCode.A)) movement.x -= 1;
-        if (Input.GetKey(KeyCode.D)) movement.x += 1;
-
-        if (movement != Vector2.zero && tearSpawner.CurrentShootDirection == Vector2.zero)
-        {
-            UpdateSprite(movement);
-        }
+        UpdateSpriteFacing();
     }
 
     void FixedUpdate()
     {
-        rb.linearVelocity = movement.normalized * stats.moveSpeed; // UPDATED
+        rb.linearVelocity = moveInput.normalized * stats.moveSpeed;
     }
 
-    void UpdateSprite(Vector2 dir)
+    void UpdateSpriteFacing()
     {
-        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
-            spriteRenderer.sprite = dir.x > 0 ? rightSprite : leftSprite;
+        Vector2 shootDir = tearSpawner.CurrentShootDirection;
+
+        // SHOOTING OVERRIDES MOVEMENT
+        if (shootDir != Vector2.zero)
+        {
+            lastDir = shootDir;
+        }
+        else if (moveInput != Vector2.zero)
+        {
+            lastDir = moveInput;
+        }
+
+        // Choose sprite
+        if (Mathf.Abs(lastDir.x) > Mathf.Abs(lastDir.y))
+        {
+            // Horizontal
+            if (lastDir.x > 0)
+                sr.sprite = rightSprite;
+            else
+                sr.sprite = leftSprite;
+        }
         else
-            spriteRenderer.sprite = dir.y > 0 ? upSprite : downSprite;
+        {
+            // Vertical
+            if (lastDir.y > 0)
+                sr.sprite = upSprite;
+            else
+                sr.sprite = downSprite;
+        }
     }
 }

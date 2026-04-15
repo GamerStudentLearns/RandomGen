@@ -1,43 +1,84 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TearSpawner : MonoBehaviour
 {
-    public GameObject tearPrefab;
-    private PlayerStats playerStats;
+    private PlayerControls controls;
+    private PlayerStats stats;
+
+    private Vector2 shootInput;
     private float cooldown;
 
-    private SpriteRenderer spriteRenderer;
+    public GameObject tearPrefab;
 
-    public Sprite upSprite;
-    public Sprite downSprite;
-    public Sprite leftSprite;
-    public Sprite rightSprite;
+    public SpriteRenderer shooterSR;
 
-    // Expose shooting direction so movement can check it
-    public Vector2 CurrentShootDirection { get; private set; }
+    public Sprite shootUpSprite;
+    public Sprite shootDownSprite;
+    public Sprite shootLeftSprite;
+    public Sprite shootRightSprite;
+
+    public Vector2 CurrentShootDirection => shootInput;
+
+    public PlayerMovement playerMovement; // assign in inspector
 
     void Awake()
     {
-        playerStats = GetComponent<PlayerStats>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        controls = new PlayerControls();
+        stats = GetComponent<PlayerStats>();
+
+        // Gamepad right stick
+        controls.Player.Shoot.performed += ctx => shootInput = Snap(ctx.ReadValue<Vector2>());
+        controls.Player.Shoot.canceled += ctx => shootInput = Vector2.zero;
+
+        // Keyboard arrow keys
+        controls.Player.ShootKeyboard.performed += ctx => shootInput = Snap(ctx.ReadValue<Vector2>());
+        controls.Player.ShootKeyboard.canceled += ctx => shootInput = Vector2.zero;
     }
+
+    void OnEnable() => controls.Enable();
+    void OnDisable() => controls.Disable();
 
     void Update()
     {
+        UpdateShooterSprite();
+
         cooldown -= Time.deltaTime;
 
-        CurrentShootDirection = GetShootDirection();
-
-        if (CurrentShootDirection != Vector2.zero)
+        if (shootInput != Vector2.zero && cooldown <= 0)
         {
-            UpdateSprite(CurrentShootDirection);
-
-            if (cooldown <= 0)
-            {
-                SpawnTear(CurrentShootDirection);
-                cooldown = playerStats.fireRate;
-            }
+            SpawnTear(shootInput);
+            cooldown = stats.fireRate;
         }
+    }
+
+    Vector2 Snap(Vector2 v)
+    {
+        if (v.magnitude < 0.5f) return Vector2.zero;
+
+        if (Mathf.Abs(v.x) > Mathf.Abs(v.y))
+            return v.x > 0 ? Vector2.right : Vector2.left;
+        else
+            return v.y > 0 ? Vector2.up : Vector2.down;
+    }
+
+    void UpdateShooterSprite()
+    {
+        Vector2 dir = shootInput;
+
+        // If not shooting, use player's facing direction
+        if (dir == Vector2.zero)
+            dir = playerMovement.LastFacingDirection;
+
+        // Choose sprite
+        if (dir.x > 0)
+            shooterSR.sprite = shootRightSprite;
+        else if (dir.x < 0)
+            shooterSR.sprite = shootLeftSprite;
+        else if (dir.y > 0)
+            shooterSR.sprite = shootUpSprite;
+        else
+            shooterSR.sprite = shootDownSprite;
     }
 
     void SpawnTear(Vector2 dir)
@@ -45,31 +86,10 @@ public class TearSpawner : MonoBehaviour
         var tear = Instantiate(tearPrefab, transform.position, Quaternion.identity)
             .GetComponent<Tear>();
 
-        tear.damage = playerStats.damage;
-        tear.speed = playerStats.shotSpeed;
-        tear.range = playerStats.range;
+        tear.damage = stats.damage;
+        tear.speed = stats.shotSpeed;
+        tear.range = stats.range;
 
-        tear.GetComponent<Rigidbody2D>().linearVelocity = dir * playerStats.shotSpeed;
-    }
-
-    void UpdateSprite(Vector2 dir)
-    {
-        if (dir == Vector2.up) spriteRenderer.sprite = upSprite;
-        else if (dir == Vector2.down) spriteRenderer.sprite = downSprite;
-        else if (dir == Vector2.left) spriteRenderer.sprite = leftSprite;
-        else if (dir == Vector2.right) spriteRenderer.sprite = rightSprite;
-    }
-
-    Vector2 GetShootDirection()
-    {
-        Vector2 direction = Vector2.zero;
-
-        if (Input.GetKey(KeyCode.UpArrow)) direction = Vector2.up;
-        else if (Input.GetKey(KeyCode.DownArrow)) direction = Vector2.down;
-        else if (Input.GetKey(KeyCode.LeftArrow)) direction = Vector2.left;
-        else if (Input.GetKey(KeyCode.RightArrow)) direction = Vector2.right;
-
-        return direction;
+        tear.GetComponent<Rigidbody2D>().linearVelocity = dir * stats.shotSpeed;
     }
 }
-
