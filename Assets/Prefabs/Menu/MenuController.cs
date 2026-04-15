@@ -251,4 +251,13 @@ public class MenuController : MonoBehaviour
         UpdateSlotStatusLabels();
         Debug.Log("Deleted save slot " + slot);
     }
+
+
+    public void RefreshSpecialButton()
+    {
+        specialButton.SetActive(SaveManager.AnySlotHasSpecialUnlocked());
+    }
+
+
+
 }
