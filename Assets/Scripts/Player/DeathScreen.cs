@@ -9,10 +9,10 @@ public class DeathScreen : MonoBehaviour
 {
     [Header("UI")]
     public GameObject deathScreenUI;
-    public GameObject singleButton;   // Only one button now
+    public GameObject singleButton;
 
     [Header("Scene To Load")]
-    public string sceneToLoad;
+    public string sceneToLoad = "Level1";
 
     private PlayerControls controls;
     private bool usingController = false;
@@ -21,11 +21,11 @@ public class DeathScreen : MonoBehaviour
     {
         controls = new PlayerControls();
 
-        // Submit (Cross / A / Enter / Space)
+        // Handle Submit (A / Cross / Enter / Space)
         controls.UI.Submit.performed += ctx =>
         {
-            if (!deathScreenUI.activeSelf) return;
-            LoadScene();
+            if (deathScreenUI.activeSelf)
+                LoadScene();
         };
     }
 
@@ -68,12 +68,21 @@ public class DeathScreen : MonoBehaviour
     private IEnumerator SelectNextFrame(GameObject button)
     {
         yield return null;
+
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(button);
     }
 
     public void LoadScene()
     {
+        // FULL INPUT SYSTEM RESET
+        controls.Disable();                 // Disable UI map
+        PlayerControls fresh = new PlayerControls();
+        fresh.Player.Enable();              // Enable gameplay map
+
+        // Optional: ensure time scale is normal
+        Time.timeScale = 1f;
+
         SceneManager.LoadScene(sceneToLoad);
     }
 }
