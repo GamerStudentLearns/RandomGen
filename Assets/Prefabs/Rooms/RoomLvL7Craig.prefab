@@ -617,6 +617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeleportDoor
   playerDestination: {fileID: 86421070004617814}
   cameraDestination: {fileID: 8336251459489971213}
+  cameraSlideDuration: 0.4
   reenableDelay: 0.5
 --- !u!1 &996856956964276800
 GameObject:
@@ -962,12 +963,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47a95254943b9594e95e1ce1dcc6a0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Room
+  bossWakeDelay: 1.5
+  randomizeBossWakeDelay: 0
+  minBossWakeDelay: 0.5
+  maxBossWakeDelay: 3
   roomType: 0
   roomTrigger: {fileID: 6180227419951814830}
   topDoor: {fileID: 5326470113199317412}
   bottomDoor: {fileID: 8054844295582698086}
   leftDoor: {fileID: 945393661851996283}
   rightDoor: {fileID: 3981732816718584222}
+  trapdoorReopenDelay: 1
   topClosedDoor: {fileID: 7506537034136036995}
   bottomClosedDoor: {fileID: 499520144706122446}
   leftClosedDoor: {fileID: 1726109261614443678}
@@ -1921,6 +1927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeleportDoor
   playerDestination: {fileID: 8367139591541515291}
   cameraDestination: {fileID: 6974397906533095186}
+  cameraSlideDuration: 0.4
   reenableDelay: 0.5
 --- !u!1 &3994013687911109034
 GameObject:
@@ -2683,6 +2690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeleportDoor
   playerDestination: {fileID: 7298272624680799139}
   cameraDestination: {fileID: 8263984999032145561}
+  cameraSlideDuration: 0.4
   reenableDelay: 0.5
 --- !u!1 &5446364101250182279
 GameObject:
@@ -3906,6 +3914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeleportDoor
   playerDestination: {fileID: 8778527759742985757}
   cameraDestination: {fileID: 200105439690033501}
+  cameraSlideDuration: 0.4
   reenableDelay: 0.5
 --- !u!1 &8098596715301813995
 GameObject:

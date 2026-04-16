@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: 27cccb1d4e184234c82822e60c84bf07
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -9206061395322621706
+    second: ControllerTutorial_0
+  - first:
+      213: 1893506468587297293
+    second: ControllerTutorial_1
+  - first:
+      213: 7266552959730549149
+    second: ControllerTutorial_2
+  - first:
+      213: -8055533279060497862
+    second: ControllerTutorial_3
+  - first:
+      213: 2691751316606908534
+    second: ControllerTutorial_4
+  - first:
+      213: -2614700488938630701
+    second: ControllerTutorial_5
+  - first:
+      213: -270800257697222118
+    second: ControllerTutorial_6
+  - first:
+      213: 1786274911867137733
+    second: ControllerTutorial_7
+  - first:
+      213: 3547696323627572507
+    second: ControllerTutorial_8
+  - first:
+      213: -736757822028899150
+    second: ControllerTutorial_9
+  - first:
+      213: -3374657535597953250
+    second: ControllerTutorial_10
+  - first:
+      213: -8624005709112535215
+    second: ControllerTutorial_11
+  - first:
+      213: -4661445571745779584
+    second: ControllerTutorial_12
+  - first:
+      213: 4591253023583794826
+    second: ControllerTutorial_13
+  - first:
+      213: 5262336476609164920
+    second: ControllerTutorial_14
+  - first:
+      213: 7048808038138626865
+    second: ControllerTutorial_15
+  - first:
+      213: 6347450741535335196
+    second: ControllerTutorial_16
+  - first:
+      213: 6750353512490411794
+    second: ControllerTutorial_17
+  - first:
+      213: -8355127431900941525
+    second: ControllerTutorial_18
+  - first:
+      213: 2989768370409325169
+    second: ControllerTutorial_19
+  - first:
+      213: -6816646509797380007
+    second: ControllerTutorial_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ControllerTutorial_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 49
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f0bb5fcfef7d3080800000000000000
+      internalID: -9206061395322621706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_1
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 36
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0adc08d916174a10800000000000000
+      internalID: 1893506468587297293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_2
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 54
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d918d42ca6bf7d460800000000000000
+      internalID: 7266552959730549149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_3
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 35
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3ae249a92ff43090800000000000000
+      internalID: -8055533279060497862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_4
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 36
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6787b0a9f850b5520800000000000000
+      internalID: 2691751316606908534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_5
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 22
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d1d5c232c7b6bbd0800000000000000
+      internalID: -2614700488938630701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_6
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 35
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a127fd2b99ced3cf0800000000000000
+      internalID: -270800257697222118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_7
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 33
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ce6809719f1ac810800000000000000
+      internalID: 1786274911867137733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_8
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 22
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1dd7c48203fb3130800000000000000
+      internalID: 3547696323627572507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_9
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 33
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bc1a741aa286c5f0800000000000000
+      internalID: -736757822028899150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_10
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 12
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1fb610e9deca21d0800000000000000
+      internalID: -3374657535597953250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_11
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 12
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 157186fdf70615880800000000000000
+      internalID: -8624005709112535215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_12
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 17
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 080764c23f73f4fb0800000000000000
+      internalID: -4661445571745779584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_13
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 12
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8676a8ac4867bf30800000000000000
+      internalID: 4591253023583794826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_14
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 12
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 876bed8f423970940800000000000000
+      internalID: 5262336476609164920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_15
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 11
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 133cb23809562d160800000000000000
+      internalID: 7048808038138626865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_16
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 11
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c13e086b1dca61850800000000000000
+      internalID: 6347450741535335196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_17
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 11
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2172d4431c21ead50800000000000000
+      internalID: 6750353512490411794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_18
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 11
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b233c683edf9c0c80800000000000000
+      internalID: -8355127431900941525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_19
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 6
+        width: 23
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17242fe0e7acd7920800000000000000
+      internalID: 2989768370409325169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerTutorial_20
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 5
+        width: 23
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 950fe109d186661a0800000000000000
+      internalID: -6816646509797380007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ControllerTutorial_0: -9206061395322621706
+      ControllerTutorial_1: 1893506468587297293
+      ControllerTutorial_10: -3374657535597953250
+      ControllerTutorial_11: -8624005709112535215
+      ControllerTutorial_12: -4661445571745779584
+      ControllerTutorial_13: 4591253023583794826
+      ControllerTutorial_14: 5262336476609164920
+      ControllerTutorial_15: 7048808038138626865
+      ControllerTutorial_16: 6347450741535335196
+      ControllerTutorial_17: 6750353512490411794
+      ControllerTutorial_18: -8355127431900941525
+      ControllerTutorial_19: 2989768370409325169
+      ControllerTutorial_2: 7266552959730549149
+      ControllerTutorial_20: -6816646509797380007
+      ControllerTutorial_3: -8055533279060497862
+      ControllerTutorial_4: 2691751316606908534
+      ControllerTutorial_5: -2614700488938630701
+      ControllerTutorial_6: -270800257697222118
+      ControllerTutorial_7: 1786274911867137733
+      ControllerTutorial_8: 3547696323627572507
+      ControllerTutorial_9: -736757822028899150
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

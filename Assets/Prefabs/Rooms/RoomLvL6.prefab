@@ -1149,6 +1149,7 @@ MonoBehaviour:
   bottomDoor: {fileID: 8054844295582698086}
   leftDoor: {fileID: 945393661851996283}
   rightDoor: {fileID: 3981732816718584222}
+  trapdoorReopenDelay: 1
   topClosedDoor: {fileID: 7506537034136036995}
   bottomClosedDoor: {fileID: 499520144706122446}
   leftClosedDoor: {fileID: 1726109261614443678}

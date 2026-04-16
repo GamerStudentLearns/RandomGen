@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4ead5881a745e4292cfb170f9fee6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeActivator
-  targetObject: {fileID: 0}
+  targetObject: {fileID: 8942942010608260781}
   duration: 4
   triggerTag: Player
 --- !u!212 &4836807932779560077

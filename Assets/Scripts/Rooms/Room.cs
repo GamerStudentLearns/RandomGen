@@ -26,6 +26,11 @@ public class Room : MonoBehaviour
     public GameObject leftDoor;
     public GameObject rightDoor;
 
+    [Header("Trapdoor Reopen Delay")]
+    public float trapdoorReopenDelay = 1.75f;
+    private bool trapdoorReopenRoutineRunning = false;
+
+
     [Header("Closed Door Sprites")]
     public GameObject topClosedDoor;
     public GameObject bottomClosedDoor;
@@ -163,8 +168,28 @@ public class Room : MonoBehaviour
         RevealAdjacent(RoomIndex + Vector2Int.left);
         RevealAdjacent(RoomIndex + Vector2Int.right);
 
+        // If room already activated once, skip activation logic
         if (roomActivated)
+        {
+            // -----------------------------
+            // REENTERING BOSS ROOM AFTER CLEAR
+            // -----------------------------
+            if (isBossRoom && bossObject == null && hasTrapdoor)
+            {
+                // Show CLOSED trapdoor while re-entering
+                if (trapdoorClosed != null)
+                    trapdoorClosed.SetActive(true);
+
+                // Hide OPEN trapdoor temporarily
+                if (trapdoorOpen != null)
+                    trapdoorOpen.SetActive(false);
+
+                if (!trapdoorReopenRoutineRunning)
+                    StartCoroutine(ReopenTrapdoorAfterDelay());
+            }
+
             return;
+        }
 
         roomActivated = true;
 
@@ -175,9 +200,15 @@ public class Room : MonoBehaviour
 
         LockRoom();
 
+        // -----------------------------
+        // NORMAL ENEMY SPAWNING
+        // -----------------------------
         if (!isBossRoom)
             SpawnEnemies();
 
+        // -----------------------------
+        // BOSS ROOM ENTRY
+        // -----------------------------
         if (isBossRoom && bossObject != null)
         {
             EnemyHealth bossHealth = bossObject.GetComponent<EnemyHealth>();
@@ -188,8 +219,8 @@ public class Room : MonoBehaviour
             }
 
             StartCoroutine(WakeBossWithDelay());
-
         }
+
         // --- MUSIC: Switch to boss track ---
         if (isBossRoom)
         {
@@ -198,10 +229,10 @@ public class Room : MonoBehaviour
                 music.PlayRandomBossTrack();
         }
 
-
-
         StartCoroutine(CheckRoomClear());
     }
+
+
 
     private void RevealAdjacent(Vector2Int index)
     {
@@ -554,6 +585,23 @@ public class Room : MonoBehaviour
             foreach (IBoss boss in bosses)
                 boss.WakeUp();
         }
+    }
+
+    private IEnumerator ReopenTrapdoorAfterDelay()
+    {
+        trapdoorReopenRoutineRunning = true;
+
+        yield return new WaitForSeconds(trapdoorReopenDelay);
+
+        // Hide closed trapdoor
+        if (trapdoorClosed != null)
+            trapdoorClosed.SetActive(false);
+
+        // Show open trapdoor
+        if (trapdoorOpen != null)
+            trapdoorOpen.SetActive(true);
+
+        trapdoorReopenRoutineRunning = false;
     }
 
 
