@@ -199,7 +199,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3853447827641711876}
   - component: {fileID: 882632736443675847}
-  - component: {fileID: 5104517674000030596}
   m_Layer: 0
   m_Name: DoorBClose
   m_TagString: Untagged
@@ -216,7 +215,7 @@ Transform:
   m_GameObject: {fileID: 499520144706122446}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.42705917, y: -4.1399994, z: 0}
+  m_LocalPosition: {x: -0.42705917, y: -4.2, z: 0}
   m_LocalScale: {x: 1, y: 1.3091, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -281,52 +280,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &5104517674000030596
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 499520144706122446}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.75, y: 0.65625}
-    newSize: {x: 1.75, y: 0.65625}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.75, y: 0.94}
-  m_EdgeRadius: 0
 --- !u!1 &580543407121221991
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,37 +382,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3134328083456497905}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &873136475793506013
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8517288905288219489}
-  m_Layer: 0
-  m_Name: EnemySpawner (7)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8517288905288219489
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 873136475793506013}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.44, y: -2.01, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1176755238943750891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &945393661851996283
 GameObject:
@@ -903,7 +825,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2177277877591072401}
   - component: {fileID: 1340182354257426577}
-  - component: {fileID: 47226696584879037}
   m_Layer: 0
   m_Name: DoorLClose
   m_TagString: Untagged
@@ -920,7 +841,7 @@ Transform:
   m_GameObject: {fileID: 1726109261614443678}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.01, y: 0.1800003, z: 0}
+  m_LocalPosition: {x: -9.115, y: 0.1800003, z: 0}
   m_LocalScale: {x: 1.7936, y: 1.3091, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -985,52 +906,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &47226696584879037
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1726109261614443678}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: -0.08, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.65625, y: 1.75}
-    newSize: {x: 1.75, y: 0.65625}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.93, y: 1.61}
-  m_EdgeRadius: 0
 --- !u!1 &1798578728255868285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,8 +973,6 @@ Transform:
   - {fileID: 4567239554254533199}
   - {fileID: 2374972731245432929}
   - {fileID: 8598668325986049679}
-  - {fileID: 7113605732027806352}
-  - {fileID: 8517288905288219489}
   - {fileID: 3286006255270504519}
   - {fileID: 4385455002041481842}
   - {fileID: 5968355406672697251}
@@ -1384,8 +1257,6 @@ MonoBehaviour:
   - {fileID: 4567239554254533199}
   - {fileID: 2374972731245432929}
   - {fileID: 8598668325986049679}
-  - {fileID: 7113605732027806352}
-  - {fileID: 8517288905288219489}
   enemyPrefabs:
   - {fileID: 7563917189872993814, guid: bdd33c93c38e971429c8bc2b7b31e812, type: 3}
   - {fileID: 7781515359145245184, guid: 5e4f80b804de19d48baffb1e40091488, type: 3}
@@ -2300,37 +2171,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &4241966183346904439
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7113605732027806352}
-  m_Layer: 0
-  m_Name: EnemySpawner (6)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &7113605732027806352
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4241966183346904439}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.42, y: 1.64, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1176755238943750891}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4279881589313062012
 GameObject:
   m_ObjectHideFlags: 0
@@ -2747,7 +2587,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8483243266084180269}
   - component: {fileID: 1885142434758251645}
-  - component: {fileID: 6312576116703166511}
   m_Layer: 0
   m_Name: DoorRClose
   m_TagString: Untagged
@@ -2829,52 +2668,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &6312576116703166511
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5280231145841621676}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.1, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.65625, y: 1.75}
-    newSize: {x: 1.75, y: 0.65625}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.04, y: 1.38}
-  m_EdgeRadius: 0
 --- !u!1 &5286125881928748794
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,7 +3131,7 @@ Transform:
   m_GameObject: {fileID: 6049270521967836405}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.42705917, y: 4.9399986, z: 0}
+  m_LocalPosition: {x: -0.42705917, y: 5.071, z: 0}
   m_LocalScale: {x: 1, y: 1.3091, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3447,7 +3240,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.75, y: 0.94}
+  m_Size: {x: 1.75, y: 0.71}
   m_EdgeRadius: 0
 --- !u!1 &6243290730832323866
 GameObject:
@@ -4473,7 +4266,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8063437483523892123}
   - component: {fileID: 6214829674820824275}
-  - component: {fileID: 3809314513141781606}
   m_Layer: 0
   m_Name: DoorTClose
   m_TagString: Untagged
@@ -4490,7 +4282,7 @@ Transform:
   m_GameObject: {fileID: 7506537034136036995}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.42705917, y: 4.9399986, z: 0}
+  m_LocalPosition: {x: -0.42705917, y: 5.033, z: 0}
   m_LocalScale: {x: 1, y: 1.3091, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4555,52 +4347,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &3809314513141781606
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7506537034136036995}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.75, y: 0.65625}
-    newSize: {x: 1.75, y: 0.65625}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.75, y: 0.94}
-  m_EdgeRadius: 0
 --- !u!1 &7630301630586616744
 GameObject:
   m_ObjectHideFlags: 0
@@ -5251,7 +4997,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 15.99, y: 8}
+  m_Size: {x: 16.66, y: 8.2}
   m_EdgeRadius: 0
 --- !u!1 &8927847525629520416
 GameObject:
