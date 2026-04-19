@@ -7,6 +7,7 @@ public class LoreUnlockDebugWindow : EditorWindow
     private BossLogMenu bossLogMenu;
     private List<string> loreIDs = new List<string>();
     private int selectedIndex = 0;
+    private int selectedSlot = 1;
 
     [MenuItem("Tools/Lore Debug/Lore Unlocker")]
     public static void ShowWindow()
@@ -22,6 +23,11 @@ public class LoreUnlockDebugWindow : EditorWindow
     private void OnGUI()
     {
         GUILayout.Label("Lore Page Unlocker", EditorStyles.boldLabel);
+
+        // Slot selector
+        selectedSlot = EditorGUILayout.IntSlider("Target Slot", selectedSlot, 1, 3);
+
+        GUILayout.Space(10);
 
         if (bossLogMenu == null)
         {
@@ -45,20 +51,23 @@ public class LoreUnlockDebugWindow : EditorWindow
         GUILayout.Space(10);
 
         // Unlock selected
-        if (GUILayout.Button("Unlock Selected (Current Slot)"))
+        if (GUILayout.Button("Unlock Selected (Chosen Slot)"))
         {
             string id = loreIDs[selectedIndex];
-            SaveManager.SetBossUnlock(id);
-            Debug.Log($"Unlocked {id} in slot {SaveSlotManager.CurrentSlot}");
+            PlayerPrefs.SetInt($"SaveSlot{selectedSlot}_BossUnlocked_{id}", 1);
+            PlayerPrefs.Save();
+
+            Debug.Log($"Unlocked {id} in Slot {selectedSlot}");
         }
 
         // Unlock all
-        if (GUILayout.Button("Unlock ALL Lore Pages (Current Slot)"))
+        if (GUILayout.Button("Unlock ALL Lore Pages (Chosen Slot)"))
         {
             foreach (string id in loreIDs)
-                SaveManager.SetBossUnlock(id);
+                PlayerPrefs.SetInt($"SaveSlot{selectedSlot}_BossUnlocked_{id}", 1);
 
-            Debug.Log($"Unlocked ALL lore pages in slot {SaveSlotManager.CurrentSlot}");
+            PlayerPrefs.Save();
+            Debug.Log($"Unlocked ALL lore pages in Slot {selectedSlot}");
         }
 
         GUILayout.Space(10);

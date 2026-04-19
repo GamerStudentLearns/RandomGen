@@ -73,11 +73,17 @@ public class BossLogMenu : MonoBehaviour
 
         foreach (string id in allLorePages)
         {
-            if (SaveManager.AnySlotHasBossUnlock(id))
+            bool has = SaveManager.AnySlotHasBossUnlock(id);
+
+            if (!has)
+                Debug.LogWarning("❌ Missing unlock for ID: " + id);
+
+            if (has)
                 unlocked++;
         }
 
         if (loreCountText != null)
             loreCountText.text = $"Lore Pages Unlocked: {unlocked}/{allLorePages.Length}";
     }
+
 }

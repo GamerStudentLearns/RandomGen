@@ -6349,7 +6349,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &1621209767
 GameObject:
   m_ObjectHideFlags: 0
@@ -8615,7 +8615,7 @@ PrefabInstance:
     - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
       propertyPath: specialButton
       value: 
-      objectReference: {fileID: 810722128}
+      objectReference: {fileID: 1633797617}
     - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
       propertyPath: volumeTextValue
       value: 
