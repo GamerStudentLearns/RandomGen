@@ -2,16 +2,26 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-
     [Header("Progression Unlocks")]
-    public bool unlocksLevel7 = false;
-    public bool unlocksSpecialButton = false; 
+    public bool unlocksLevel6 = false;          // Your old Level 6 unlock
+    public bool unlocksSpecialButton = false;   // Your old Special Button unlock
 
+    [System.Serializable]
+    public class BossUnlockFlag
+    {
+        public string unlockID;   // e.g. "LorePage"
+        public bool unlocksThis;  // tick in inspector
+    }
+
+    [Header("Lore Unlocks (Slot-Specific)")]
+    public BossUnlockFlag[] bossUnlocks;        // NEW: This is where you put "LorePage"
+
+    [Header("Health Settings")]
     public float maxHealth = 5f;
     private float currentHealth;
 
     [Header("Boss Settings")]
-    public bool isBoss = false;   // NEW TOGGLE
+    public bool isBoss = false;   // Toggle for boss scaling + UI
 
     [HideInInspector] public Room parentRoom;
 
@@ -92,19 +102,36 @@ public class EnemyHealth : MonoBehaviour
         if (parentRoom != null && parentRoom.isBossRoom)
             BossHealthUI.instance.Hide();
 
-        // NEW — If this boss unlocks Level 7, save it
-        if (unlocksLevel7)
-        {
+        // -------------------------
+        // SLOT-SPECIFIC LORE UNLOCKS
+        // -------------------------
+        HandleBossLoreUnlocks();
+
+        // -------------------------
+        // OLD UNLOCKS (PER SLOT)
+        // -------------------------
+        if (unlocksLevel6)
             SaveManager.SetLevel6Cleared();
-        }
 
         if (unlocksSpecialButton)
-        {
             SaveManager.SetSpecialButtonUnlocked();
-        }
 
         // Destroy the enemy object
         Destroy(gameObject);
     }
 
+    private void HandleBossLoreUnlocks()
+    {
+        foreach (var flag in bossUnlocks)
+        {
+            if (!flag.unlocksThis || string.IsNullOrEmpty(flag.unlockID))
+                continue;
+
+            // Convert "LorePage" → "LorePage_Slot1/2/3"
+            string slotSpecificID = SaveManager.GetSlotSpecificUnlock(flag.unlockID);
+
+            // Save per-slot unlock
+            SaveManager.SetBossUnlock(slotSpecificID);
+        }
+    }
 }

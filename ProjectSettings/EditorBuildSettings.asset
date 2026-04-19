@@ -44,6 +44,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CraigDocument.unity
     guid: c59a5d27aeff82740a9809bb8e8f3094
+  - enabled: 1
+    path: Assets/Scenes/LorePages.unity
+    guid: 0ce3424ef1ddfa647a6465e74d566c19
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: f63ccc54948d5484e9ebbc3818e22e5d, type: 3}
   m_UseUCBPForAssetBundles: 0

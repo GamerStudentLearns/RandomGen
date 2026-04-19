@@ -5,7 +5,6 @@ using TMPro;
 
 public class MenuController : MonoBehaviour
 {
-
     [Header("CraigStoryButton")]
     public GameObject specialButton;
 
@@ -23,7 +22,6 @@ public class MenuController : MonoBehaviour
     [SerializeField] private float defaultVolume = 1.0f;
     [SerializeField] private GameObject comfirmationPrompt = null;
 
-    // ⭐ NEW — Damage Sound Toggle
     [SerializeField] private Toggle damageSoundToggle = null;
 
     [Header("Gameplay Settings")]
@@ -38,9 +36,20 @@ public class MenuController : MonoBehaviour
     [Header("Save Slot UI")]
     public TMP_Text selectedSlotText;
 
+    [Header("Global Unlock Reward (TRUE 100%)")]
+    public GameObject globalUnlockObject;
+
+    // ⭐ ALL lore pages that count toward 100%
+    public string[] allLorePages = {
+        "LorePage_Slot1",
+        "LorePage_Slot2",
+        "LorePage_Slot3"
+    };
+
     private void Start()
     {
         specialButton.SetActive(SaveManager.AnySlotHasSpecialUnlocked());
+        RefreshGlobalUnlocks();
         LoadAudioSettings();
         LoadLastUsedSlot();
         UpdateSlotStatusLabels();
@@ -59,7 +68,7 @@ public class MenuController : MonoBehaviour
             selectedSlotText.text = "Selected Slot: " + slot;
 
         UpdateSlotStatusLabels();
-        Debug.Log("Selected Save Slot: " + slot);
+        RefreshGlobalUnlocks();
     }
 
     private void LoadLastUsedSlot()
@@ -87,18 +96,15 @@ public class MenuController : MonoBehaviour
             volumeTextValue.text = volume.ToString("0.0");
     }
 
-    // ⭐ NEW — behaves like SetVolume()
     public void SetDamageSound(bool enabled)
     {
         PlayerPrefs.SetInt("DamageSoundEnabled", enabled ? 1 : 0);
-        Debug.Log("Damage Sound: " + (enabled ? "ON" : "OFF"));
     }
 
     public void VolumeApply()
     {
         PlayerPrefs.SetFloat("masterVolume", AudioListener.volume);
 
-        // Save damage sound toggle
         if (damageSoundToggle != null)
             PlayerPrefs.SetInt("DamageSoundEnabled", damageSoundToggle.isOn ? 1 : 0);
 
@@ -108,7 +114,6 @@ public class MenuController : MonoBehaviour
 
     private void LoadAudioSettings()
     {
-        // Load master volume
         if (PlayerPrefs.HasKey("masterVolume"))
         {
             float volume = PlayerPrefs.GetFloat("masterVolume");
@@ -120,7 +125,6 @@ public class MenuController : MonoBehaviour
                 volumeTextValue.text = volume.ToString("0.0");
         }
 
-        // Load damage sound toggle
         if (damageSoundToggle != null)
             damageSoundToggle.isOn = PlayerPrefs.GetInt("DamageSoundEnabled", 1) == 1;
     }
@@ -156,7 +160,6 @@ public class MenuController : MonoBehaviour
             if (volumeTextValue != null)
                 volumeTextValue.text = defaultVolume.ToString("0.0");
 
-            // Reset damage sound toggle to ON
             if (damageSoundToggle != null)
                 damageSoundToggle.isOn = true;
 
@@ -198,66 +201,66 @@ public class MenuController : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-        Debug.Log("Game Quit");
     }
 
+    // -----------------------------
+    // SLOT LABELS
+    // -----------------------------
     public void UpdateSlotStatusLabels()
     {
         int previousSlot = SaveSlotManager.CurrentSlot;
 
-        // --- SLOT 1 ---
+        // SLOT 1
         SaveSlotManager.CurrentSlot = 1;
-        if (slot1Status != null)
-        {
-            if (SaveManager.HasUnlockedSpecialButton())
-                slot1Status.text = "Truth Seeker";
-            else if (SaveManager.HasClearedLevel6())
-                slot1Status.text = "Dead Man Walking";
-            else
-                slot1Status.text = "New Game";
-        }
+        slot1Status.text =
+            SaveManager.HasUnlockedSpecialButton() ? "Truth Seeker" :
+            SaveManager.HasClearedLevel6() ? "Dead Man Walking" :
+            "New Game";
 
-        // --- SLOT 2 ---
+        // SLOT 2
         SaveSlotManager.CurrentSlot = 2;
-        if (slot2Status != null)
-        {
-            if (SaveManager.HasUnlockedSpecialButton())
-                slot2Status.text = "Truth Seeker";
-            else if (SaveManager.HasClearedLevel6())
-                slot2Status.text = "Dead Man Walking";
-            else
-                slot2Status.text = "New Game";
-        }
+        slot2Status.text =
+            SaveManager.HasUnlockedSpecialButton() ? "Truth Seeker" :
+            SaveManager.HasClearedLevel6() ? "Dead Man Walking" :
+            "New Game";
 
-        // --- SLOT 3 ---
+        // SLOT 3
         SaveSlotManager.CurrentSlot = 3;
-        if (slot3Status != null)
-        {
-            if (SaveManager.HasUnlockedSpecialButton())
-                slot3Status.text = "Truth Seeker";
-            else if (SaveManager.HasClearedLevel6())
-                slot3Status.text = "Dead Man Walking";
-            else
-                slot3Status.text = "New Game";
-        }
+        slot3Status.text =
+            SaveManager.HasUnlockedSpecialButton() ? "Truth Seeker" :
+            SaveManager.HasClearedLevel6() ? "Dead Man Walking" :
+            "New Game";
 
         SaveSlotManager.CurrentSlot = previousSlot;
     }
 
-
+    // -----------------------------
+    // DELETE SLOT
+    // -----------------------------
     public void DeleteSaveSlot(int slot)
     {
         SaveManager.DeleteSlot(slot);
         UpdateSlotStatusLabels();
-        Debug.Log("Deleted save slot " + slot);
+        RefreshGlobalUnlocks();
     }
 
-
+    // -----------------------------
+    // SPECIAL BUTTON
+    // -----------------------------
     public void RefreshSpecialButton()
     {
         specialButton.SetActive(SaveManager.AnySlotHasSpecialUnlocked());
     }
 
-
-
+    // -----------------------------
+    // ⭐ TRUE 100% COMPLETION
+    // -----------------------------
+    public void RefreshGlobalUnlocks()
+    {
+        if (globalUnlockObject != null)
+        {
+            bool has100 = SaveManager.Has100PercentCompletion(allLorePages);
+            globalUnlockObject.SetActive(has100);
+        }
+    }
 }

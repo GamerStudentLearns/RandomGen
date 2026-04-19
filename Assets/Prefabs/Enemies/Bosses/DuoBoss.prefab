@@ -47,7 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3d5b305dd210348abfc5f226af3b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  unlocksLevel7: 1
+  unlocksLevel6: 1
+  unlocksSpecialButton: 0
+  bossUnlocks:
+  - unlockID: LorePageDuo
+    unlocksThis: 1
   maxHealth: 2500
   isBoss: 1
   parentRoom: {fileID: 0}
