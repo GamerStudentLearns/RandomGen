@@ -1,14 +1,15 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;   // <-- Needed for IEnumerator
 
 public class BossLogMenu : MonoBehaviour
 {
     [System.Serializable]
     public class LoreEntry
     {
-        public string unlockID;          // e.g. "LorePage_Slot1"
-        public GameObject buttonObject;  // The button in the scroll list
-        public GameObject pageObject;    // The full lore page panel
+        public string unlockID;
+        public GameObject buttonObject;
+        public GameObject pageObject;
     }
 
     [Header("Lore Entries")]
@@ -17,8 +18,13 @@ public class BossLogMenu : MonoBehaviour
     [Header("Lore Count UI")]
     public TMP_Text loreCountText;
 
-    [Header("All Lore Page IDs (for counting + 100%)")]
+    [Header("All Lore Page IDs")]
     public string[] allLorePages;
+
+    [Header("Exit Delay")]
+    public float exitDelay = 2f;
+
+    private bool inputLocked = false;
 
     private void Start()
     {
@@ -27,9 +33,6 @@ public class BossLogMenu : MonoBehaviour
         HideAllPages();
     }
 
-    // ---------------------------------------------------------
-    // SHOW / HIDE BUTTONS BASED ON UNLOCKS
-    // ---------------------------------------------------------
     public void RefreshLoreButtons()
     {
         foreach (var entry in loreEntries)
@@ -41,20 +44,32 @@ public class BossLogMenu : MonoBehaviour
         }
     }
 
-    // ---------------------------------------------------------
-    // OPEN A LORE PAGE
-    // ---------------------------------------------------------
     public void OpenPage(GameObject page)
     {
+        if (inputLocked) return;
+
         HideAllPages();
 
         if (page != null)
             page.SetActive(true);
     }
 
-    // ---------------------------------------------------------
-    // CLOSE ALL LORE PAGES
-    // ---------------------------------------------------------
+    public void ExitMenu()
+    {
+        StartCoroutine(ExitDelayRoutine());
+    }
+
+    private IEnumerator ExitDelayRoutine()
+    {
+        inputLocked = true;
+
+        yield return new WaitForSeconds(exitDelay);
+
+        inputLocked = false;
+
+        gameObject.SetActive(false);
+    }
+
     public void HideAllPages()
     {
         foreach (var entry in loreEntries)
@@ -64,9 +79,6 @@ public class BossLogMenu : MonoBehaviour
         }
     }
 
-    // ---------------------------------------------------------
-    // UPDATE "Lore Pages Unlocked: X/Y"
-    // ---------------------------------------------------------
     public void UpdateLoreCount()
     {
         int unlocked = 0;
@@ -75,9 +87,6 @@ public class BossLogMenu : MonoBehaviour
         {
             bool has = SaveManager.AnySlotHasBossUnlock(id);
 
-            if (!has)
-                Debug.LogWarning("❌ Missing unlock for ID: " + id);
-
             if (has)
                 unlocked++;
         }
@@ -85,5 +94,4 @@ public class BossLogMenu : MonoBehaviour
         if (loreCountText != null)
             loreCountText.text = $"Lore Pages Unlocked: {unlocked}/{allLorePages.Length}";
     }
-
 }
