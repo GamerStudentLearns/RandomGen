@@ -2770,12 +2770,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788393915}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 810722129}
+  m_Father: {fileID: 8084486058180232000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2819,53 +2819,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788393915}
-  m_CullTransparentMesh: 1
---- !u!1 &810722128
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 810722129}
-  - component: {fileID: 810722130}
-  m_Layer: 5
-  m_Name: Craig's Story
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &810722129
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 810722128}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 788393916}
-  - {fileID: 1633797618}
-  - {fileID: 1431761552}
-  m_Father: {fileID: 6167967247279224229}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &810722130
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 810722128}
   m_CullTransparentMesh: 1
 --- !u!1 &923731391
 GameObject:
@@ -5257,12 +5210,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431761551}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.3072, y: 3.3072, z: 3.3072}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 810722129}
+  m_Father: {fileID: 8084486058180232000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6501,7 +6454,7 @@ GameObject:
   - component: {fileID: 1633797620}
   - component: {fileID: 1633797619}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: story of a dead mN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6514,12 +6467,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633797617}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.3072, y: 3.3072, z: 3.3072}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 810722129}
+  m_Father: {fileID: 8084486058180232000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8637,12 +8590,184 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12999}
     - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: allLorePages.Array.size
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
       propertyPath: mainKeyboardSensitivity
       value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
       propertyPath: KeyboardSensitivitySlider
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[0]'
+      value: LorePageEyelord_Slot1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[1]'
+      value: LorePageEyelord_Slot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[2]'
+      value: LorePageEyelord_Slot3
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[3]'
+      value: LorePageVoodoo_Slot1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[4]'
+      value: LorePageVoodoo_Slot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[5]'
+      value: LorePageVoodoo_Slot3
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[6]'
+      value: LorePageOzzy_Slot1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[7]'
+      value: LorePageOzzy_Slot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[8]'
+      value: LorePageOzzy_Slot3
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[9]'
+      value: LorePageMaw_slot1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[10]'
+      value: LorePageMaw_Slot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[11]'
+      value: LorePageMaw_Slot3
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[12]'
+      value: LorePageCraig_Slot1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[13]'
+      value: LorePageCraig_Slot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[14]'
+      value: LorePageCraig_Slot3
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[15]'
+      value: LorePageDuo_Slot1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[16]'
+      value: LorePageDuo_Slot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[17]'
+      value: LorePageDuo_Slot3
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[18]'
+      value: LorePageWell_Slot1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[19]'
+      value: LorePageWell_Slot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[20]'
+      value: LorePageWell_Slot3
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[21]'
+      value: LorePageSuper_Slot1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[22]'
+      value: LorePageSuper_Slot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[23]'
+      value: LorePageSuper_Slot3
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[24]'
+      value: LorePagePriest_Slot1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[25]'
+      value: LorePagePriest_Slot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[26]'
+      value: LorePagePriest_Slot3
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[27]'
+      value: LorePageNova_Slot1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[28]'
+      value: LorePageNova_Slot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[29]'
+      value: LorePageNova_Slot3
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[30]'
+      value: LorePageGrim_Slot1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[31]'
+      value: LorePageGrim_Slot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[32]'
+      value: LorePageGrim_Slot3
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[33]'
+      value: LorePageSummoner_Slot1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[34]'
+      value: LorePageSummoner_Slot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[35]'
+      value: LorePageSummoner_Slot3
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[36]'
+      value: LorePageBrella_Slot1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[37]'
+      value: LorePageBrella_Slot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[38]'
+      value: LorePageBrella_Slot3
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[39]'
+      value: LorePagePlant_Slot1
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[40]'
+      value: LorePagePlant_Slot2
+      objectReference: {fileID: 0}
+    - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
+      propertyPath: 'allLorePages.Array.data[41]'
+      value: LorePagePlant_Slot3
       objectReference: {fileID: 0}
     - target: {fileID: 971184913690997356, guid: cca095d514f55524b9038b0003730bbc, type: 3}
       propertyPath: KeyboardSensitivityTextValue
@@ -10600,7 +10725,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 810722128}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -10872,7 +10997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4128864474680903920
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11719,7 +11844,6 @@ RectTransform:
   m_Children:
   - {fileID: 1976441619}
   - {fileID: 8084486058180232000}
-  - {fileID: 810722129}
   - {fileID: 6909082145363784707}
   - {fileID: 963237141952665283}
   - {fileID: 687839004977836880}
@@ -12709,6 +12833,9 @@ RectTransform:
   - {fileID: 8999816139635424452}
   - {fileID: 258875253}
   - {fileID: 7613296265741215133}
+  - {fileID: 788393916}
+  - {fileID: 1633797618}
+  - {fileID: 1431761552}
   m_Father: {fileID: 6167967247279224229}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -12883,6 +13010,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &8414630003330134184
 GameObject:

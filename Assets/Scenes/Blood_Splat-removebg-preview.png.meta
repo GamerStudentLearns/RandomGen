@@ -1,0 +1,481 @@
+fileFormatVersion: 2
+guid: 553b78e8651b54c4b90a312d95150792
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8323057360185822232
+    second: Blood_Splat-removebg-preview_0
+  - first:
+      213: -5818959999820316796
+    second: Blood_Splat-removebg-preview_1
+  - first:
+      213: -3664706463219725083
+    second: Blood_Splat-removebg-preview_2
+  - first:
+      213: 1838365941738536381
+    second: Blood_Splat-removebg-preview_3
+  - first:
+      213: 6415514544662768397
+    second: Blood_Splat-removebg-preview_4
+  - first:
+      213: 1341830174120498668
+    second: Blood_Splat-removebg-preview_5
+  - first:
+      213: -3290995216687124841
+    second: Blood_Splat-removebg-preview_6
+  - first:
+      213: 1062935733783013136
+    second: Blood_Splat-removebg-preview_7
+  - first:
+      213: 8654715013018167268
+    second: Blood_Splat-removebg-preview_8
+  - first:
+      213: 5973020097757513110
+    second: Blood_Splat-removebg-preview_9
+  - first:
+      213: 4937885981759636905
+    second: Blood_Splat-removebg-preview_10
+  - first:
+      213: -357020163158087294
+    second: Blood_Splat-removebg-preview_11
+  - first:
+      213: -5339853024516818219
+    second: Blood_Splat-removebg-preview_12
+  - first:
+      213: -5859065226200692426
+    second: Blood_Splat-removebg-preview_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Blood_Splat-removebg-preview_0
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 403
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81c83175290718370800000000000000
+      internalID: 8323057360185822232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blood_Splat-removebg-preview_1
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 363
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48fb088d5b6ee3fa0800000000000000
+      internalID: -5818959999820316796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blood_Splat-removebg-preview_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 373
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ecc5bd53e8542dc0800000000000000
+      internalID: -3664706463219725083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blood_Splat-removebg-preview_3
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 380
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbd708c7510338910800000000000000
+      internalID: 1838365941738536381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blood_Splat-removebg-preview_4
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 369
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0be9fdcc7c780950800000000000000
+      internalID: 6415514544662768397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blood_Splat-removebg-preview_5
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 380
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce55a5d1f632f9210800000000000000
+      internalID: 1341830174120498668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blood_Splat-removebg-preview_6
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 371
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79eaadf69490452d0800000000000000
+      internalID: -3290995216687124841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blood_Splat-removebg-preview_7
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 12
+        width: 459
+        height: 363
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 017a43f0b6e40ce00800000000000000
+      internalID: 1062935733783013136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blood_Splat-removebg-preview_8
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 368
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e7203f1379bb1870800000000000000
+      internalID: 8654715013018167268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blood_Splat-removebg-preview_9
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 367
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6950b1be12e64e250800000000000000
+      internalID: 5973020097757513110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blood_Splat-removebg-preview_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 308
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a50a2c6325e68440800000000000000
+      internalID: 4937885981759636905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blood_Splat-removebg-preview_11
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 225
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2896f4d9d0c9b0bf0800000000000000
+      internalID: -357020163158087294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blood_Splat-removebg-preview_12
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 167
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5da31e847f705e5b0800000000000000
+      internalID: -5339853024516818219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blood_Splat-removebg-preview_13
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 0
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 639c67c283b60bea0800000000000000
+      internalID: -5859065226200692426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Blood_Splat-removebg-preview_0: 8323057360185822232
+      Blood_Splat-removebg-preview_1: -5818959999820316796
+      Blood_Splat-removebg-preview_10: 4937885981759636905
+      Blood_Splat-removebg-preview_11: -357020163158087294
+      Blood_Splat-removebg-preview_12: -5339853024516818219
+      Blood_Splat-removebg-preview_13: -5859065226200692426
+      Blood_Splat-removebg-preview_2: -3664706463219725083
+      Blood_Splat-removebg-preview_3: 1838365941738536381
+      Blood_Splat-removebg-preview_4: 6415514544662768397
+      Blood_Splat-removebg-preview_5: 1341830174120498668
+      Blood_Splat-removebg-preview_6: -3290995216687124841
+      Blood_Splat-removebg-preview_7: 1062935733783013136
+      Blood_Splat-removebg-preview_8: 8654715013018167268
+      Blood_Splat-removebg-preview_9: 5973020097757513110
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
