@@ -371,7 +371,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'Where am I? I have nothing but this notebook. The previous entries tell
-    a horrible story. I feintly remember writing this. I''m in what looks to be a
+    a horrible story. I faintly remember writing this. I''m in what looks to be a
     cellar. I dont know what day it is, or what time it is. If i wrote the last entries.
     I shouldn''t be here. I should be dead. but im not. There''s a door here, im
     going to go try to find a way out. '
@@ -14744,6 +14744,7 @@ MonoBehaviour:
         m_Action: Stick
         m_Flags: 0
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: 0}
   m_LeftButtonAction:
     m_UseReference: 0
@@ -14764,6 +14765,7 @@ MonoBehaviour:
         m_Action: Left Button
         m_Flags: 0
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: 0}
   m_MiddleButtonAction:
     m_UseReference: 1
@@ -14776,6 +14778,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: -5080780370515519665, guid: f63ccc54948d5484e9ebbc3818e22e5d, type: 3}
   m_RightButtonAction:
     m_UseReference: 1
@@ -14788,6 +14791,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: 1405210159794122408, guid: f63ccc54948d5484e9ebbc3818e22e5d, type: 3}
   m_ForwardButtonAction:
     m_UseReference: 1
@@ -14800,6 +14804,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: 4404710397266280770, guid: f63ccc54948d5484e9ebbc3818e22e5d, type: 3}
   m_BackButtonAction:
     m_UseReference: 1
@@ -14812,6 +14817,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: 4404710397266280770, guid: f63ccc54948d5484e9ebbc3818e22e5d, type: 3}
   m_ScrollWheelAction:
     m_UseReference: 1
@@ -14824,6 +14830,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: -7983414719297103374, guid: f63ccc54948d5484e9ebbc3818e22e5d, type: 3}
 --- !u!114 &849905863
 MonoBehaviour:
@@ -34379,6 +34386,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -34398,9 +34406,9 @@ RectTransform:
   m_Children:
   - {fileID: 1968995378}
   - {fileID: 677723370}
-  - {fileID: 731466329}
   - {fileID: 452398167}
   - {fileID: 1618222289}
+  - {fileID: 731466329}
   - {fileID: 849905861}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

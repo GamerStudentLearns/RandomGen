@@ -11,6 +11,12 @@ public class VirtualMouseUI : MonoBehaviour
 
     private void Awake()
     {
+        if (FindObjectsByType<VirtualMouseUI>(FindObjectsSortMode.None).Length > 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         virtualMouseInput = GetComponent<VirtualMouseInput>();
     }
 
@@ -22,9 +28,16 @@ public class VirtualMouseUI : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector2 virtualMousePosition = virtualMouseInput.virtualMouse.position.value;
+        if (virtualMouseInput == null)
+            return;
+
+        var mouse = virtualMouseInput.virtualMouse;
+        if (mouse == null || !mouse.added)
+            return;
+
+        Vector2 virtualMousePosition = mouse.position.value;
         virtualMousePosition.x = Mathf.Clamp(virtualMousePosition.x, 0f, Screen.width);
         virtualMousePosition.y = Mathf.Clamp(virtualMousePosition.y, 0f, Screen.height);
-        InputState.Change(virtualMouseInput.virtualMouse.position, virtualMousePosition);
+        InputState.Change(mouse.position, virtualMousePosition);
     }
 }
